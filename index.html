@@ -689,6 +689,78 @@
             padding: 0 4px 4px;
             word-break: break-all;
         }
+
+        /* ============================================
+           VIDEO FINDING CARDS
+        ============================================ */
+        .video-container {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #1a1a1a;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+        }
+        .finding-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .video-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.25);
+            transition: opacity 0.3s ease, background 0.3s ease;
+        }
+        .video-play-overlay span {
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+        }
+        .video-container:hover .video-play-overlay {
+            background: rgba(0,0,0,0.35);
+        }
+        .video-container.playing .video-play-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .video-container.playing:hover .video-play-overlay {
+            opacity: 1;
+            pointer-events: auto;
+            background: rgba(0,0,0,0.15);
+        }
+        .video-container.playing:hover .video-play-overlay span {
+            display: none;
+        }
+        .video-container.playing:hover .video-play-overlay svg circle {
+            fill: rgba(54,117,136,0.7);
+        }
+        .video-container.playing:hover .video-play-overlay svg polygon {
+            /* Change to pause icon visually handled via JS */
+        }
+        .video-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: var(--color-primary);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            pointer-events: none;
+        }
         .finding-analysis {
             padding: 24px;
             display: flex;
@@ -958,6 +1030,7 @@
         }
         @media (max-width: 480px) {
             .finding-screenshots { grid-template-columns: 1fr; }
+            .video-container { aspect-ratio: 4 / 3; }
         }
         @media (max-width: 768px) {
             .cover-title { font-size: 28px; }
@@ -1468,8 +1541,22 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-homepage-popup-fresh.jpeg" alt="Deyga spin-to-win popup appearing on first page load">
-                                                <div class="finding-screenshot-label client-label">Deyga — Popup on First Load</div>
+                                                <div class="video-container" data-lazy-video>
+                                                    <span class="video-badge">▶ VIDEO</span>
+                                                    <video class="finding-video"
+                                                           poster="media/screenshots/client/deyga-homepage-popup-fresh.jpeg"
+                                                           muted loop playsinline preload="none"
+                                                           data-src="https://res.cloudinary.com/demo/video/upload/v1/samples/sea-turtle">
+                                                    </video>
+                                                    <div class="video-play-overlay">
+                                                        <svg viewBox="0 0 48 48" width="48" height="48">
+                                                            <circle cx="24" cy="24" r="23" fill="rgba(54,117,136,0.85)"/>
+                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
+                                                        </svg>
+                                                        <span>Click to play</span>
+                                                    </div>
+                                                </div>
+                                                <div class="finding-screenshot-label client-label">Deyga — Popup on First Load (Recording)</div>
                                                 <div class="finding-screenshot-url">deyga.in</div>
                                             </div>
                                             <div class="finding-screenshot">
@@ -2599,6 +2686,87 @@
                 observer.observe(section);
             });
         }
+
+        // ============================================
+        // VIDEO: Lazy Loading + Click-to-Play
+        // ============================================
+        (function() {
+            // Lazy load videos when scrolled near AND parent tab is active
+            var videoObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (!entry.isIntersecting) return;
+                    var container = entry.target;
+                    var video = container.querySelector('video[data-src]');
+                    if (!video) return;
+                    // Check if parent tab is active
+                    var tabContent = container.closest('.tab-content');
+                    if (tabContent && !tabContent.classList.contains('active')) return;
+                    // Load the video source
+                    video.src = video.getAttribute('data-src');
+                    video.removeAttribute('data-src');
+                    video.load();
+                    videoObserver.unobserve(container);
+                });
+            }, { rootMargin: '200px 0px' });
+
+            // Observe all lazy video containers
+            document.querySelectorAll('[data-lazy-video]').forEach(function(el) {
+                videoObserver.observe(el);
+            });
+
+            // Re-check lazy videos when a tab becomes active
+            var origShowTab = window.showTab;
+            window.showTab = function(tabId, btn) {
+                origShowTab(tabId, btn);
+                // After tab switch, check for unloaded videos in the new active tab
+                var activeTab = document.getElementById(tabId);
+                if (!activeTab) return;
+                activeTab.querySelectorAll('[data-lazy-video]').forEach(function(container) {
+                    var video = container.querySelector('video[data-src]');
+                    if (!video) return;
+                    var rect = container.getBoundingClientRect();
+                    // Load if it's in or near the viewport
+                    if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
+                        video.src = video.getAttribute('data-src');
+                        video.removeAttribute('data-src');
+                        video.load();
+                    }
+                });
+            };
+
+            // Click-to-play/pause toggle
+            document.addEventListener('click', function(e) {
+                var container = e.target.closest('.video-container');
+                if (!container) return;
+                var video = container.querySelector('video');
+                if (!video || !video.src || video.src === '') return;
+
+                if (container.classList.contains('playing')) {
+                    // Currently playing → pause
+                    video.pause();
+                    container.classList.remove('playing');
+                } else {
+                    // Currently paused → play
+                    // Pause all other playing videos first
+                    document.querySelectorAll('.video-container.playing').forEach(function(other) {
+                        if (other !== container) {
+                            other.classList.remove('playing');
+                            other.querySelector('video').pause();
+                        }
+                    });
+                    var playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(function() {
+                            container.classList.add('playing');
+                        }).catch(function() {
+                            container.classList.remove('playing');
+                        });
+                    } else {
+                        container.classList.add('playing');
+                    }
+                }
+            });
+        })();
     </script>
 </body>
 </html>
