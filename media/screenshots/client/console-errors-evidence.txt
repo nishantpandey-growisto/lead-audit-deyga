@@ -1,0 +1,37 @@
+Deyga.in Console Errors — Captured 2026-03-09
+Page: https://deyga.in/ (Homepage, Mobile 375x812)
+Total: 23 errors, 2 warnings on initial page load
+
+=== ERROR CATEGORIES ===
+
+1. GoKwik Checkout (12 occurrences):
+   "GoKwik checkout element not found." @ https://deyga.in/:46
+   → GoKwik script fires repeatedly looking for checkout button that doesn't exist on homepage
+   → Impact: Unnecessary JS execution on every page, degrades performance
+
+2. product-form.js (5 occurrences):
+   TypeError: Cannot read properties of null (reading 'querySelector')
+   @ product-form.js:1:169
+   → Product form component initialized on pages without product forms
+   → Fires on AJAX-loaded content (jQuery success callbacks)
+
+3. custom.js — JSON Parse Error (1 occurrence):
+   SyntaxError: Unexpected end of JSON input @ custom.js:4:13155
+   → Malformed or empty JSON being parsed in custom theme JS
+
+4. custom.js — Null querySelector (1 occurrence):
+   TypeError: Cannot read properties of null (reading 'querySelector')
+   @ custom.js:4:18363
+
+5. recurpay — Invalid Selector (1 occurrence):
+   SyntaxError: Failed to execute 'querySelectorAll' on 'Document':
+   '..icart-checkout-btn, .hs-checkout-purchase, .recurpay-custom-checkout-btn, .gokwik-checkout button, .checkoutbtns, .svelte-yb4nuo' is not a valid selector.
+   @ new-recurpay.js:1:5785
+   → Double-dot prefix ("..icart") is invalid CSS selector syntax
+   → Recurpay subscription app has a bug in its checkout button detection
+
+=== PERFORMANCE IMPACT ===
+- 23 JS errors on a single homepage load = significant main-thread overhead
+- GoKwik fires 12 times in a loop before giving up
+- These errors fire on EVERY page load, not just checkout
+- Contributes to poor mobile PageSpeed (estimated 2-4 point drag)
