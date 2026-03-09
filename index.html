@@ -649,7 +649,7 @@
         }
         .finding-screenshots {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
             padding: 24px;
             border-right: 1px solid #e5e7eb;
@@ -665,16 +665,17 @@
             border-radius: 8px;
             border: 1px solid #e5e7eb;
             object-fit: cover;
-            max-height: 320px;
+            max-height: 420px;
             background: #f0f0f0;
         }
         .finding-screenshot-label {
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             padding: 4px 0;
         }
         .finding-screenshot-label.client-label { color: var(--color-danger); }
+        .finding-screenshot-label.competitor-label { color: var(--color-success); }
         .finding-screenshot-label.benchmark-label { color: var(--color-success); }
         .finding-analysis {
             padding: 24px;
@@ -940,6 +941,10 @@
         @media (max-width: 900px) {
             .finding-card-body { grid-template-columns: 1fr; }
             .finding-screenshots { border-right: none; border-bottom: 1px solid #e5e7eb; }
+            .finding-screenshots { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .finding-screenshots { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
             .cover-title { font-size: 28px; }
@@ -1414,8 +1419,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/homepage-hero-desktop.jpeg" alt="Deyga homepage with spin-to-win popup">
+                                                <img src="screenshots/deyga-homepage-mobile-popup.jpeg" alt="Deyga homepage with spin-to-win popup">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-mamaearth-homepage-mobile.jpeg" alt="Mamaearth clean homepage without intrusive popups">
+                                                <div class="finding-screenshot-label competitor-label">Mamaearth — Clean Hero</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1448,8 +1457,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/homepage-hero-desktop.jpeg" alt="Deyga hero section with confusing messaging">
+                                                <img src="screenshots/deyga-hp-hero-mobile.jpeg" alt="Deyga hero section with confusing messaging">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-mamaearth-homepage-mobile.jpeg" alt="Mamaearth clear hero with benefit-driven messaging">
+                                                <div class="finding-screenshot-label competitor-label">Mamaearth — Clear Value Props</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1482,8 +1495,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/homepage-categories-desktop.jpeg" alt="Deyga product cards without quick add">
+                                                <img src="screenshots/deyga-hp-products-mobile.jpeg" alt="Deyga product cards without quick add">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics with Quick Add and shade swatches on product cards">
+                                                <div class="finding-screenshot-label competitor-label">Sugar — Quick Add + Swatches</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1516,7 +1533,7 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/homepage-bottom-desktop.jpeg" alt="Deyga homepage footer area">
+                                                <img src="screenshots/deyga-homepage-mobile.jpeg" alt="Deyga homepage with SEO issues">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
                                             </div>
                                         </div>
@@ -1551,7 +1568,7 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/cart-empty-desktop.jpeg" alt="GoKwik cart drawer with console errors">
+                                                <img src="screenshots/deyga-cart-drawer-mobile.jpeg" alt="Deyga GoKwik cart drawer with console errors">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
                                             </div>
                                         </div>
@@ -1591,8 +1608,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/collection-grid-desktop.jpeg" alt="Deyga collection page without visible filters">
+                                                <img src="screenshots/deyga-collection-mobile.jpeg" alt="Deyga collection page without visible filters">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-plum-collection-mobile.jpeg" alt="Plum Goodness collection with concern-based filter pills and badges">
+                                                <div class="finding-screenshot-label competitor-label">Plum — Filter Pills + Badges</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1625,8 +1646,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/collection-grid-desktop.jpeg" alt="Deyga collection page without banner">
+                                                <img src="screenshots/deyga-collection-mobile.jpeg" alt="Deyga collection page without banner">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics collection with banner, filter, sort, BESTSELLER badges">
+                                                <div class="finding-screenshot-label competitor-label">Sugar — Collection Banner</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1658,8 +1683,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/collection-grid-desktop.jpeg" alt="Collection page missing breadcrumbs">
+                                                <img src="screenshots/deyga-collection-mobile.jpeg" alt="Deyga collection page missing breadcrumbs">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-mamaearth-collection-mobile.jpeg" alt="Mamaearth collection with breadcrumbs and category navigation">
+                                                <div class="finding-screenshot-label competitor-label">Mamaearth &mdash; Breadcrumbs</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1691,7 +1720,7 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/collection-grid-desktop.jpeg" alt="Collection page without quick view">
+                                                <img src="screenshots/deyga-collection-mobile.jpeg" alt="Deyga collection page without quick view">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
                                             </div>
                                         </div>
@@ -1731,8 +1760,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/pdp-hero-desktop.jpeg" alt="Deyga PDP without image zoom">
+                                                <img src="screenshots/deyga-pdp-above-fold-mobile.jpeg" alt="Deyga PDP without image zoom">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-minimalist-pdp-mobile.jpeg" alt="Minimalist PDP with zoom icon and semantic ratings">
+                                                <div class="finding-screenshot-label competitor-label">Minimalist &mdash; Zoom Icon</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1765,8 +1798,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/pdp-hero-desktop.jpeg" alt="Deyga PDP without product video">
+                                                <img src="screenshots/deyga-pdp-above-fold-mobile.jpeg" alt="Deyga PDP without product video">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-mcaffeine-pdp-trust-mobile.jpeg" alt="mCaffeine PDP with trust badges and before/after content">
+                                                <div class="finding-screenshot-label competitor-label">mCaffeine &mdash; Trust + Media</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1794,30 +1831,34 @@
                                 <!-- PDP Finding 3: No Buy Now / Dynamic Checkout -->
                                 <div class="finding-card">
                                     <div class="finding-card-header">
-                                        Express checkout buttons (Shop Pay, GPay) can reduce checkout time by 60% and increase impulse purchase completion
+                                        A dedicated Buy Now button reduces checkout steps and increases impulse purchase completion by 15-25%
                                     </div>
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/pdp-hero-desktop.jpeg" alt="Deyga PDP without Buy Now button">
+                                                <img src="screenshots/deyga-pdp-atc-mobile.jpeg" alt="Deyga PDP with only Add to Cart, no Buy Now">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-minimalist-pdp-buynow-mobile.jpeg" alt="Minimalist PDP with ATC area and multiple CTAs">
+                                                <div class="finding-screenshot-label competitor-label">Minimalist &mdash; ATC Area</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
                                             <div class="finding-observations">
                                                 <span class="finding-section-header observations-header">Observations</span>
                                                 <ul>
-                                                    <li>Only "Add to Cart" is available — no Buy Now or express checkout buttons (Shop Pay, GPay, Apple Pay) on the PDP.</li>
-                                                    <li>Impulse buyers who want to purchase immediately must go through the full cart flow, adding friction.</li>
-                                                    <li>GoKwik handles checkout but doesn't provide a PDP-level express checkout shortcut.</li>
+                                                    <li>Only "Add to Cart" is available — no dedicated Buy Now button on the PDP for single-product impulse purchases.</li>
+                                                    <li>Impulse buyers who want to purchase immediately must go through the full cart flow, adding unnecessary friction.</li>
+                                                    <li>GoKwik handles checkout but doesn't provide a PDP-level Buy Now shortcut to skip the cart step.</li>
                                                 </ul>
                                             </div>
                                             <div class="finding-recommendations">
                                                 <span class="finding-section-header recommendations-header">Recommendations</span>
                                                 <ul>
-                                                    <li>Add a Buy Now button alongside Add to Cart — bypasses the cart for single-product purchases.</li>
-                                                    <li>Enable Shopify's dynamic checkout buttons (Shop Pay, GPay) below the ATC button.</li>
-                                                    <li>Test placement: Buy Now directly below ATC, express checkout buttons below that.</li>
+                                                    <li>Add a Buy Now button alongside Add to Cart — bypasses the cart for single-product impulse purchases.</li>
+                                                    <li>Style Buy Now as a secondary CTA (outline or different color) below the primary ATC button.</li>
+                                                    <li>Connect Buy Now directly to GoKwik checkout with product pre-loaded — skip the cart step entirely.</li>
                                                 </ul>
                                                 <span class="finding-benchmark-tag">Standard &mdash; 8/10 top beauty stores have Buy Now or express checkout</span>
                                             </div>
@@ -1833,8 +1874,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/pdp-atc-area-desktop.jpeg" alt="Rebuy floating widget instead of sticky ATC">
+                                                <img src="screenshots/deyga-pdp-variants-mobile.jpeg" alt="Deyga PDP scrolled past ATC area, no sticky bar">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-mcaffeine-pdp-mobile.jpeg" alt="mCaffeine PDP with sticky ATC bar on mobile">
+                                                <div class="finding-screenshot-label competitor-label">mCaffeine &mdash; Sticky ATC</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1867,7 +1912,7 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/pdp-reviews-desktop.jpeg" alt="Deyga PDP reviews section">
+                                                <img src="screenshots/deyga-pdp-reviews-mobile.jpeg" alt="Deyga PDP reviews section on mobile">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
                                             </div>
                                         </div>
@@ -1901,8 +1946,12 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/pdp-hero-desktop.jpeg" alt="Deyga PDP without urgency elements">
+                                                <img src="screenshots/deyga-pdp-atc-mobile.jpeg" alt="Deyga PDP without urgency or stock indicators">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-mamaearth-pdp-mobile.jpeg" alt="Mamaearth PDP with offers, reviews, and urgency signals">
+                                                <div class="finding-screenshot-label competitor-label">Mamaearth &mdash; Offers + Reviews</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1942,7 +1991,7 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/cart-empty-desktop.jpeg" alt="GoKwik cart drawer with errors">
+                                                <img src="screenshots/deyga-cart-drawer-mobile.jpeg" alt="GoKwik cart drawer with integration errors">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
                                             </div>
                                         </div>
@@ -1975,7 +2024,7 @@
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/cart-empty-desktop.jpeg" alt="Cart drawer without cross-sell">
+                                                <img src="screenshots/deyga-cart-drawer-mobile.jpeg" alt="GoKwik cart drawer without cross-sell recommendations">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
                                             </div>
                                         </div>
@@ -2004,13 +2053,17 @@
                                 <!-- Cart Finding 3: No Coupon Field / Express Checkout -->
                                 <div class="finding-card">
                                     <div class="finding-card-header">
-                                        Visible coupon fields and express checkout in the cart reduce checkout abandonment by making the path to purchase frictionless
+                                        Visible coupon fields and payment trust signals in the cart reduce abandonment by 8-12% by building purchase confidence
                                     </div>
                                     <div class="finding-card-body">
                                         <div class="finding-screenshots">
                                             <div class="finding-screenshot">
-                                                <img src="screenshots/cart-empty-desktop.jpeg" alt="Cart drawer without coupon field">
+                                                <img src="screenshots/deyga-gokwik-checkout-mobile.jpeg" alt="GoKwik checkout without coupon field or payment trust icons">
                                                 <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/competitor-mamaearth-pdp-trust-mobile.jpeg" alt="Mamaearth PDP with payment trust badges and icons">
+                                                <div class="finding-screenshot-label competitor-label">Mamaearth &mdash; Payment Trust</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2018,16 +2071,16 @@
                                                 <span class="finding-section-header observations-header">Observations</span>
                                                 <ul>
                                                     <li>No visible coupon or promo code input field in the cart drawer — customers with discount codes must wait until the checkout page to apply them.</li>
-                                                    <li>No express checkout buttons (Shop Pay, GPay, Apple Pay) visible in the cart — all transactions routed through GoKwik's standard flow.</li>
-                                                    <li>The "Trusted by 20L+ Buyers" scrolling trust bar is a nice touch, but lacks payment security icons (Visa, Mastercard, UPI).</li>
+                                                    <li>No payment trust icons (Visa, Mastercard, UPI, RuPay, PhonePe) visible in the cart to reassure buyers at the decision point.</li>
+                                                    <li>The "Trusted by 20L+ Buyers" scrolling trust bar is a nice touch, but adding payment method logos alongside would strengthen purchase confidence.</li>
                                                 </ul>
                                             </div>
                                             <div class="finding-recommendations">
                                                 <span class="finding-section-header recommendations-header">Recommendations</span>
                                                 <ul>
                                                     <li>Add a collapsible promo code field in the cart drawer so coupon users don't have to hunt for it.</li>
-                                                    <li>Add express checkout buttons (Shop Pay, GPay, UPI) in the cart for faster purchase completion.</li>
-                                                    <li>Add payment method icons (Visa, MC, UPI, RuPay) alongside the trust messaging.</li>
+                                                    <li>Add payment method icons (Visa, Mastercard, UPI, RuPay, PhonePe, Paytm) alongside the trust messaging.</li>
+                                                    <li>Display "COD Available" and "Free Shipping above ₹X" badges in the cart to reduce checkout hesitation.</li>
                                                 </ul>
                                                 <span class="finding-benchmark-tag">Growing &mdash; 6/10 top beauty stores show coupon field in cart</span>
                                             </div>
