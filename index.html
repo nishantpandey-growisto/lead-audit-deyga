@@ -38,7 +38,8 @@
             --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
             --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
             --transition-fast: 0.2s ease;
-            --sidebar-width: 260px;
+            --sidebar-width: 220px;
+            --topbar-height: 48px;
         }
 
         /* ============================================
@@ -54,7 +55,7 @@
             -webkit-font-smoothing: antialiased;
         }
         .hidden { display: none !important; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .container { margin: 0; padding: 0 20px; }
         h2 { font-size: 28px; font-weight: 700; line-height: 1.3; }
         h3 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
         .subsection-title {
@@ -64,7 +65,9 @@
             margin-bottom: 14px;
             margin-top: 24px;
         }
-        section { padding: 60px 0; border-bottom: 1px solid #e5e7eb; }
+        section { padding: 36px 0; border-bottom: 1px solid #e5e7eb; }
+        section[data-stage] { display: none; }
+        section[data-stage].stage-visible { display: block; }
 
         /* ============================================
            COVER PAGE
@@ -181,34 +184,74 @@
         }
 
         /* ============================================
-           MAIN LAYOUT: Sidebar + Content
+           MAIN LAYOUT: Top Bar + Sidebar + Content
         ============================================ */
         .main-content {
             display: none;
         }
         .main-content.visible { display: block; }
 
-        /* Mobile Header */
-        .mobile-header {
-            display: none;
+        /* Top Bar */
+        .top-bar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 56px;
+            height: var(--topbar-height);
             background: var(--color-bg-primary);
             border-bottom: 1px solid #e5e7eb;
-            padding: 0 16px;
+            display: flex;
             align-items: center;
             justify-content: space-between;
-            z-index: 1000;
+            padding: 0 20px;
+            z-index: 1001;
         }
-        .mobile-header img { height: 28px; }
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .top-bar-left img { height: 24px; }
+        .top-bar-client {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-primary);
+            padding-left: 14px;
+            border-left: 1px solid #e5e7eb;
+        }
+        .top-bar-stages {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .stage-btn {
+            padding: 7px 18px;
+            font-family: var(--font-family);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            background: none;
+            border: 1.5px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        .stage-btn:hover {
+            color: var(--color-text-dark);
+            background: var(--color-bg-secondary);
+        }
+        .stage-btn.active {
+            color: var(--color-text-light);
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            font-weight: 600;
+        }
         .hamburger {
+            display: none;
             background: none;
             border: none;
             cursor: pointer;
-            display: flex;
             flex-direction: column;
             gap: 5px;
             padding: 8px;
@@ -224,45 +267,43 @@
         /* Sidebar */
         .sidebar {
             position: fixed;
-            top: 0;
+            top: var(--topbar-height);
             left: 0;
             width: var(--sidebar-width);
-            height: 100vh;
+            height: calc(100vh - var(--topbar-height));
             background: var(--color-bg-primary);
             border-right: 1px solid #e5e7eb;
             overflow-y: auto;
             z-index: 900;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
             transition: transform 0.3s ease;
         }
         .sidebar-overlay {
             display: none;
             position: fixed;
-            top: 0;
+            top: var(--topbar-height);
             left: 0;
             right: 0;
             bottom: 0;
             background: rgba(0,0,0,0.4);
             z-index: 899;
         }
-        .sidebar-logo {
-            padding: 24px 24px 16px;
-            border-bottom: 1px solid #e5e7eb;
+        .sidebar-stage-label {
+            padding: 16px 18px 8px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-text-muted);
         }
-        .sidebar-logo img { height: 30px; }
-        .sidebar-client {
-            padding: 16px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--color-primary);
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .sidebar-nav { list-style: none; padding: 12px 0; }
+        .sidebar-nav { list-style: none; padding: 4px 0; }
+        .sidebar-nav li { display: none; }
+        .sidebar-nav li.nav-visible { display: block; }
         .sidebar-nav li a {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 24px;
+            gap: 10px;
+            padding: 10px 18px;
             font-size: 13px;
             font-weight: 500;
             color: var(--color-text-muted);
@@ -282,15 +323,16 @@
         }
         .nav-number {
             display: inline-block;
-            width: 24px;
-            height: 24px;
-            line-height: 24px;
+            width: 22px;
+            height: 22px;
+            line-height: 22px;
             text-align: center;
             border-radius: 6px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             background: var(--color-bg-tertiary);
             color: var(--color-text-muted);
+            flex-shrink: 0;
         }
         .sidebar-nav li a.active .nav-number {
             background: var(--color-primary);
@@ -300,6 +342,7 @@
         /* Content Area */
         .content-area {
             margin-left: var(--sidebar-width);
+            padding-top: var(--topbar-height);
             min-height: 100vh;
         }
 
@@ -307,11 +350,11 @@
         .section-header {
             display: flex;
             align-items: flex-start;
-            gap: 20px;
-            margin-bottom: 36px;
+            gap: 14px;
+            margin-bottom: 24px;
         }
         .section-number {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 700;
             color: var(--color-secondary);
             line-height: 1;
@@ -935,8 +978,14 @@
             .sidebar { transform: translateX(-100%); }
             .sidebar.open { transform: translateX(0); }
             .sidebar-overlay.active { display: block; }
-            .mobile-header { display: flex; }
-            .content-area { margin-left: 0; padding-top: 56px; }
+            .hamburger { display: flex; }
+            .top-bar-client { display: none; }
+            .content-area { margin-left: 0; padding-top: var(--topbar-height); }
+        }
+        @media (max-width: 640px) {
+            .top-bar-stages { gap: 2px; }
+            .stage-btn { padding: 6px 10px; font-size: 11px; }
+            .top-bar { padding: 0 12px; }
         }
         @media (max-width: 900px) {
             .finding-card-body { grid-template-columns: 1fr; }
@@ -963,14 +1012,15 @@
         @media (max-width: 480px) {
             .traffic-grid { grid-template-columns: 1fr; }
             .cwv-grid { grid-template-columns: 1fr; }
-            .container { padding: 0 16px; }
-            section { padding: 40px 0; }
+            .container { padding: 0 12px; }
+            section { padding: 28px 0; }
         }
         @media print {
-            .cover-page, .login-screen, .sidebar, .mobile-header { display: none !important; }
+            .cover-page, .login-screen, .sidebar, .top-bar { display: none !important; }
             .main-content { display: block !important; }
-            .content-area { margin-left: 0; }
+            .content-area { margin-left: 0; padding-top: 0; }
             body { background: white; font-size: 11pt; }
+            section[data-stage] { display: block !important; }
             section { padding: 30px 0; page-break-inside: avoid; }
             .finding-card, .info-card, .tech-card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
             .audit-table, .competition-table { box-shadow: none; border: 1px solid #ddd; }
@@ -1027,33 +1077,38 @@
     ============================================ -->
     <div class="main-content" id="mainContent">
 
-        <!-- Mobile Header -->
-        <div class="mobile-header">
-            <img src="growisto-logo.png" alt="Growisto">
-            <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
+        <!-- Top Bar -->
+        <div class="top-bar" id="topBar">
+            <div class="top-bar-left">
+                <img src="growisto-logo.png" alt="Growisto">
+                <span class="top-bar-client">Deyga Organics</span>
+                <button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+            <div class="top-bar-stages" id="topBarStages">
+                <button class="stage-btn active" onclick="switchStage('intro', this)">Intro</button>
+                <button class="stage-btn" onclick="switchStage('audit', this)">Audit</button>
+                <button class="stage-btn" onclick="switchStage('nextsteps', this)">Methodology & Next Steps</button>
+            </div>
         </div>
         <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar Navigation (contextual — shows items for active stage) -->
         <nav class="sidebar" id="sidebar">
-            <div class="sidebar-logo">
-                <img src="growisto-logo.png" alt="Growisto">
-            </div>
-            <div class="sidebar-client">Deyga Organics</div>
+            <div class="sidebar-stage-label" id="sidebarStageLabel">Intro</div>
             <ul class="sidebar-nav">
-                <li><a href="#sec-intro" class="active"><span class="nav-number">01</span> Introduction</a></li>
-                <li><a href="#sec-overview"><span class="nav-number">02</span> Audit Overview</a></li>
-                <li><a href="#sec-traffic"><span class="nav-number">03</span> Traffic Analytics</a></li>
-                <li><a href="#sec-conversion"><span class="nav-number">04</span> Conversion Question</a></li>
-                <li><a href="#sec-performance"><span class="nav-number">05</span> Performance Benchmarks</a></li>
-                <li><a href="#sec-cwv"><span class="nav-number">06</span> Core Web Vitals</a></li>
-                <li><a href="#sec-pagespeed-work"><span class="nav-number">07</span> PageSpeed: Our Work</a></li>
-                <li><a href="#sec-ux"><span class="nav-number">08</span> UX & Conversion Findings</a></li>
-                <li><a href="#sec-tech"><span class="nav-number">09</span> Technology Assessment</a></li>
-                <li><a href="#sec-apps"><span class="nav-number">10</span> App Ecosystem</a></li>
-                <li><a href="#sec-methodology"><span class="nav-number">11</span> Methodology & Next Steps</a></li>
+                <li data-nav-stage="intro" class="nav-visible"><a href="#sec-intro" class="active"><span class="nav-number">01</span> Introduction</a></li>
+                <li data-nav-stage="intro" class="nav-visible"><a href="#sec-overview"><span class="nav-number">02</span> Audit Overview</a></li>
+                <li data-nav-stage="intro" class="nav-visible"><a href="#sec-traffic"><span class="nav-number">03</span> Traffic Analytics</a></li>
+                <li data-nav-stage="intro" class="nav-visible"><a href="#sec-conversion"><span class="nav-number">04</span> Conversion Question</a></li>
+                <li data-nav-stage="audit"><a href="#sec-performance"><span class="nav-number">01</span> Performance Benchmarks</a></li>
+                <li data-nav-stage="audit"><a href="#sec-cwv"><span class="nav-number">02</span> Core Web Vitals</a></li>
+                <li data-nav-stage="audit"><a href="#sec-pagespeed-work"><span class="nav-number">03</span> PageSpeed: Our Work</a></li>
+                <li data-nav-stage="audit"><a href="#sec-ux"><span class="nav-number">04</span> UX & Conversion Findings</a></li>
+                <li data-nav-stage="audit"><a href="#sec-tech"><span class="nav-number">05</span> Technology Assessment</a></li>
+                <li data-nav-stage="audit"><a href="#sec-apps"><span class="nav-number">06</span> App Ecosystem</a></li>
+                <li data-nav-stage="nextsteps"><a href="#sec-methodology"><span class="nav-number">01</span> Methodology & Next Steps</a></li>
             </ul>
         </nav>
 
@@ -1061,7 +1116,7 @@
         <div class="content-area">
 
             <!-- SEC 01: INTRODUCTION (Google Slides Embed) -->
-            <section id="sec-intro">
+            <section id="sec-intro" data-stage="intro">
                 <div class="container">
                     <div class="section-header">
                         <span class="section-number">01</span>
@@ -1078,7 +1133,7 @@
             </section>
 
             <!-- SEC 02: AUDIT OVERVIEW -->
-            <section id="sec-overview">
+            <section id="sec-overview" data-stage="intro">
                 <div class="container">
                     <div class="section-header">
                         <span class="section-number">02</span>
@@ -1117,7 +1172,7 @@
             </section>
 
             <!-- SEC 03: TRAFFIC ANALYTICS -->
-            <section id="sec-traffic">
+            <section id="sec-traffic" data-stage="intro">
                 <div class="container">
                     <div class="section-header">
                         <span class="section-number">03</span>
@@ -1237,7 +1292,7 @@
             </section>
 
             <!-- SEC 04: THE CONVERSION QUESTION -->
-            <section id="sec-conversion">
+            <section id="sec-conversion" data-stage="intro">
                 <div class="container">
                     <div class="section-header">
                         <span class="section-number">04</span>
@@ -1292,10 +1347,10 @@
             </section>
 
             <!-- SEC 05: PERFORMANCE BENCHMARKS -->
-            <section id="sec-performance">
+            <section id="sec-performance" data-stage="audit">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">05</span>
+                        <span class="section-number">01</span>
                         <div class="section-title-group">
                             <h2>Performance Benchmarks</h2>
                             <p>PageSpeed comparison: Deyga Organics vs top Beauty & Personal Care competitors</p>
@@ -1357,10 +1412,10 @@
             </section>
 
             <!-- SEC 06: CORE WEB VITALS -->
-            <section id="sec-cwv">
+            <section id="sec-cwv" data-stage="audit">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">06</span>
+                        <span class="section-number">02</span>
                         <div class="section-title-group">
                             <h2>Core Web Vitals</h2>
                             <p>Google's user experience quality signals for Deyga Organics</p>
@@ -1408,10 +1463,10 @@
             </section>
 
             <!-- SEC 07: PAGESPEED — OUR WORK (Google Slides Embed) -->
-            <section id="sec-pagespeed-work">
+            <section id="sec-pagespeed-work" data-stage="audit">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">07</span>
+                        <span class="section-number">03</span>
                         <div class="section-title-group">
                             <h2>PageSpeed: Our Work</h2>
                             <p>Real results from our page speed optimization projects</p>
@@ -1425,10 +1480,10 @@
             </section>
 
             <!-- SEC 08: UX & CONVERSION FINDINGS (Tabbed) -->
-            <section id="sec-ux">
+            <section id="sec-ux" data-stage="audit">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">08</span>
+                        <span class="section-number">04</span>
                         <div class="section-title-group">
                             <h2>UX & Conversion Findings</h2>
                             <p>Page-by-page analysis with visual comparisons against top Beauty & Personal Care stores</p>
@@ -2207,10 +2262,10 @@
             </section>
 
             <!-- SEC 09: TECHNOLOGY ASSESSMENT -->
-            <section id="sec-tech">
+            <section id="sec-tech" data-stage="audit">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">09</span>
+                        <span class="section-number">05</span>
                         <div class="section-title-group">
                             <h2>Technology Assessment</h2>
                             <p>Platform, theme, and architecture insights</p>
@@ -2286,10 +2341,10 @@
             </section>
 
             <!-- SEC 10: APP ECOSYSTEM -->
-            <section id="sec-apps">
+            <section id="sec-apps" data-stage="audit">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">10</span>
+                        <span class="section-number">06</span>
                         <div class="section-title-group">
                             <h2>App Ecosystem</h2>
                             <p>What's installed vs what's missing from best-in-class Beauty & Personal Care stores</p>
@@ -2416,10 +2471,10 @@
             </section>
 
             <!-- SEC 11: METHODOLOGY & NEXT STEPS (Google Slides Embed) -->
-            <section id="sec-methodology">
+            <section id="sec-methodology" data-stage="nextsteps">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">11</span>
+                        <span class="section-number">01</span>
                         <div class="section-title-group">
                             <h2>Methodology & Next Steps</h2>
                             <p>How we work, our process, and what comes next</p>
@@ -2462,7 +2517,9 @@
     ============================================ -->
     <script>
         // Password Protection
-        const correctPassword = 'deyga2026';
+        var correctPassword = 'deyga2026';
+        var currentStage = 'intro';
+        var scrollSpyObserver = null;
 
         function showLogin() {
             document.getElementById('coverPage').classList.add('hidden');
@@ -2471,12 +2528,12 @@
         }
 
         function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
+            var input = document.getElementById('passwordInput').value;
             if (input === correctPassword) {
                 sessionStorage.setItem('audit_authenticated', 'true');
                 document.getElementById('loginScreen').classList.add('hidden');
                 document.getElementById('mainContent').classList.add('visible');
-                initScrollSpy();
+                switchStage('intro');
             } else {
                 document.getElementById('errorMsg').style.display = 'block';
                 document.getElementById('passwordInput').value = '';
@@ -2493,10 +2550,75 @@
             document.getElementById('coverPage').classList.add('hidden');
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('mainContent').classList.add('visible');
-            requestAnimationFrame(initScrollSpy);
+            requestAnimationFrame(function() { switchStage('intro'); });
         }
 
-        // Tab Switching
+        // Stage Switching
+        function switchStage(stage, btn) {
+            currentStage = stage;
+
+            // Update top bar active state
+            document.querySelectorAll('.stage-btn').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            if (btn) {
+                btn.classList.add('active');
+            } else {
+                // Find the matching button
+                document.querySelectorAll('.stage-btn').forEach(function(b) {
+                    if (b.textContent.trim() === getStageLabel(stage)) {
+                        b.classList.add('active');
+                    }
+                });
+                // Fallback: match by index
+                if (!document.querySelector('.stage-btn.active')) {
+                    var idx = stage === 'intro' ? 0 : stage === 'audit' ? 1 : 2;
+                    document.querySelectorAll('.stage-btn')[idx].classList.add('active');
+                }
+            }
+
+            // Show/hide sections
+            document.querySelectorAll('section[data-stage]').forEach(function(sec) {
+                if (sec.getAttribute('data-stage') === stage) {
+                    sec.classList.add('stage-visible');
+                } else {
+                    sec.classList.remove('stage-visible');
+                }
+            });
+
+            // Update sidebar nav items
+            document.querySelectorAll('.sidebar-nav li[data-nav-stage]').forEach(function(li) {
+                if (li.getAttribute('data-nav-stage') === stage) {
+                    li.classList.add('nav-visible');
+                } else {
+                    li.classList.remove('nav-visible');
+                }
+            });
+
+            // Update sidebar stage label
+            var stageLabels = { intro: 'Intro', audit: 'Audit', nextsteps: 'Methodology & Next Steps' };
+            document.getElementById('sidebarStageLabel').textContent = stageLabels[stage] || stage;
+
+            // Scroll content area to top
+            document.querySelector('.content-area').scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            // Re-init scroll spy for visible sections
+            initScrollSpy();
+
+            // Close mobile sidebar if open
+            if (window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+            }
+        }
+
+        function getStageLabel(stage) {
+            var labels = { intro: 'Intro', audit: 'Audit', nextsteps: 'Methodology & Next Steps' };
+            return labels[stage] || '';
+        }
+
+        // Tab Switching (UX Findings)
         function showTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(function(tab) {
                 tab.classList.remove('active');
@@ -2525,14 +2647,23 @@
             });
         });
 
-        // Scroll-Spy (IntersectionObserver)
+        // Scroll-Spy (IntersectionObserver) — only tracks visible stage sections
         function initScrollSpy() {
-            var sections = document.querySelectorAll('section[id]');
-            var navLinks = document.querySelectorAll('.sidebar-nav a');
+            // Disconnect previous observer
+            if (scrollSpyObserver) {
+                scrollSpyObserver.disconnect();
+            }
 
-            if (!sections.length || !navLinks.length) return;
+            var visibleSections = document.querySelectorAll('section[data-stage="' + currentStage + '"]');
+            var navLinks = document.querySelectorAll('.sidebar-nav li.nav-visible a');
 
-            var observer = new IntersectionObserver(function(entries) {
+            if (!visibleSections.length || !navLinks.length) return;
+
+            // Set first item active by default
+            navLinks.forEach(function(l) { l.classList.remove('active'); });
+            navLinks[0].classList.add('active');
+
+            scrollSpyObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         var id = entry.target.getAttribute('id');
@@ -2545,12 +2676,12 @@
                     }
                 });
             }, {
-                rootMargin: '-20% 0px -70% 0px',
+                rootMargin: '-10% 0px -80% 0px',
                 threshold: 0
             });
 
-            sections.forEach(function(section) {
-                observer.observe(section);
+            visibleSections.forEach(function(section) {
+                scrollSpyObserver.observe(section);
             });
         }
     </script>
