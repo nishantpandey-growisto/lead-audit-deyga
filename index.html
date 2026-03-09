@@ -38,8 +38,7 @@
             --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
             --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
             --transition-fast: 0.2s ease;
-            --sidebar-width: 220px;
-            --topbar-height: 48px;
+            --sidebar-width: 260px;
         }
 
         /* ============================================
@@ -55,7 +54,7 @@
             -webkit-font-smoothing: antialiased;
         }
         .hidden { display: none !important; }
-        .container { margin: 0; padding: 0 20px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
         h2 { font-size: 28px; font-weight: 700; line-height: 1.3; }
         h3 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
         .subsection-title {
@@ -65,9 +64,7 @@
             margin-bottom: 14px;
             margin-top: 24px;
         }
-        section { padding: 36px 0; border-bottom: 1px solid #e5e7eb; }
-        section[data-stage] { display: none; }
-        section[data-stage].stage-visible { display: block; }
+        section { padding: 60px 0; border-bottom: 1px solid #e5e7eb; }
 
         /* ============================================
            COVER PAGE
@@ -184,74 +181,34 @@
         }
 
         /* ============================================
-           MAIN LAYOUT: Top Bar + Sidebar + Content
+           MAIN LAYOUT: Sidebar + Content
         ============================================ */
         .main-content {
             display: none;
         }
         .main-content.visible { display: block; }
 
-        /* Top Bar */
-        .top-bar {
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: var(--topbar-height);
+            height: 56px;
             background: var(--color-bg-primary);
             border-bottom: 1px solid #e5e7eb;
-            display: flex;
+            padding: 0 16px;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-            z-index: 1001;
+            z-index: 1000;
         }
-        .top-bar-left {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .top-bar-left img { height: 24px; }
-        .top-bar-client {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--color-primary);
-            padding-left: 14px;
-            border-left: 1px solid #e5e7eb;
-        }
-        .top-bar-stages {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .stage-btn {
-            padding: 7px 18px;
-            font-family: var(--font-family);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--color-text-muted);
-            background: none;
-            border: 1.5px solid transparent;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            white-space: nowrap;
-        }
-        .stage-btn:hover {
-            color: var(--color-text-dark);
-            background: var(--color-bg-secondary);
-        }
-        .stage-btn.active {
-            color: var(--color-text-light);
-            background: var(--color-primary);
-            border-color: var(--color-primary);
-            font-weight: 600;
-        }
+        .mobile-header img { height: 28px; }
         .hamburger {
-            display: none;
             background: none;
             border: none;
             cursor: pointer;
+            display: flex;
             flex-direction: column;
             gap: 5px;
             padding: 8px;
@@ -267,43 +224,45 @@
         /* Sidebar */
         .sidebar {
             position: fixed;
-            top: var(--topbar-height);
+            top: 0;
             left: 0;
             width: var(--sidebar-width);
-            height: calc(100vh - var(--topbar-height));
+            height: 100vh;
             background: var(--color-bg-primary);
             border-right: 1px solid #e5e7eb;
             overflow-y: auto;
             z-index: 900;
-            padding-bottom: 20px;
+            padding-bottom: 40px;
             transition: transform 0.3s ease;
         }
         .sidebar-overlay {
             display: none;
             position: fixed;
-            top: var(--topbar-height);
+            top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             background: rgba(0,0,0,0.4);
             z-index: 899;
         }
-        .sidebar-stage-label {
-            padding: 16px 18px 8px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--color-text-muted);
+        .sidebar-logo {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid #e5e7eb;
         }
-        .sidebar-nav { list-style: none; padding: 4px 0; }
-        .sidebar-nav li { display: none; }
-        .sidebar-nav li.nav-visible { display: block; }
+        .sidebar-logo img { height: 30px; }
+        .sidebar-client {
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .sidebar-nav { list-style: none; padding: 12px 0; }
         .sidebar-nav li a {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 18px;
+            gap: 12px;
+            padding: 12px 24px;
             font-size: 13px;
             font-weight: 500;
             color: var(--color-text-muted);
@@ -323,16 +282,15 @@
         }
         .nav-number {
             display: inline-block;
-            width: 22px;
-            height: 22px;
-            line-height: 22px;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
             text-align: center;
             border-radius: 6px;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
             background: var(--color-bg-tertiary);
             color: var(--color-text-muted);
-            flex-shrink: 0;
         }
         .sidebar-nav li a.active .nav-number {
             background: var(--color-primary);
@@ -342,7 +300,6 @@
         /* Content Area */
         .content-area {
             margin-left: var(--sidebar-width);
-            padding-top: var(--topbar-height);
             min-height: 100vh;
         }
 
@@ -350,11 +307,11 @@
         .section-header {
             display: flex;
             align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 24px;
+            gap: 20px;
+            margin-bottom: 36px;
         }
         .section-number {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 700;
             color: var(--color-secondary);
             line-height: 1;
@@ -631,11 +588,11 @@
             gap: 10px;
             margin-bottom: 30px;
             background: var(--color-bg-tertiary);
-            position: sticky;
-            top: var(--topbar-height);
-            z-index: 100;
             padding: 8px;
             border-radius: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .tab-btn {
             padding: 12px 24px;
@@ -676,10 +633,7 @@
             overflow: hidden;
             box-shadow: var(--shadow-md);
             border: 1px solid #e5e7eb;
-            margin-bottom: 56px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 32px;
         }
         .finding-card-header {
             background: var(--color-primary);
@@ -692,15 +646,16 @@
         }
         .finding-card-body {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 0;
+            min-height: 400px;
         }
         .finding-screenshots {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
             padding: 24px;
-            border-bottom: 1px solid #e5e7eb;
+            border-right: 1px solid #e5e7eb;
             align-content: start;
         }
         .finding-screenshot {
@@ -725,6 +680,15 @@
         .finding-screenshot-label.client-label { color: var(--color-danger); }
         .finding-screenshot-label.competitor-label { color: var(--color-success); }
         .finding-screenshot-label.benchmark-label { color: var(--color-success); }
+        .finding-screenshot-url {
+            text-align: center;
+            font-size: 10px;
+            color: var(--color-text-muted);
+            opacity: 0.7;
+            font-family: monospace;
+            padding: 0 4px 4px;
+            word-break: break-all;
+        }
         .finding-analysis {
             padding: 24px;
             display: flex;
@@ -983,17 +947,14 @@
             .sidebar { transform: translateX(-100%); }
             .sidebar.open { transform: translateX(0); }
             .sidebar-overlay.active { display: block; }
-            .hamburger { display: flex; }
-            .top-bar-client { display: none; }
-            .content-area { margin-left: 0; padding-top: var(--topbar-height); }
-        }
-        @media (max-width: 640px) {
-            .top-bar-stages { gap: 2px; }
-            .stage-btn { padding: 6px 10px; font-size: 11px; }
-            .top-bar { padding: 0 12px; }
+            .mobile-header { display: flex; }
+            .content-area { margin-left: 0; padding-top: 56px; }
+            .tab-buttons { top: 56px; }
         }
         @media (max-width: 900px) {
-            .finding-card { max-width: 100%; }
+            .finding-card-body { grid-template-columns: 1fr; }
+            .finding-screenshots { border-right: none; border-bottom: 1px solid #e5e7eb; }
+            .finding-screenshots { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 480px) {
             .finding-screenshots { grid-template-columns: 1fr; }
@@ -1015,15 +976,14 @@
         @media (max-width: 480px) {
             .traffic-grid { grid-template-columns: 1fr; }
             .cwv-grid { grid-template-columns: 1fr; }
-            .container { padding: 0 12px; }
-            section { padding: 28px 0; }
+            .container { padding: 0 16px; }
+            section { padding: 40px 0; }
         }
         @media print {
-            .cover-page, .login-screen, .sidebar, .top-bar { display: none !important; }
+            .cover-page, .login-screen, .sidebar, .mobile-header { display: none !important; }
             .main-content { display: block !important; }
-            .content-area { margin-left: 0; padding-top: 0; }
+            .content-area { margin-left: 0; }
             body { background: white; font-size: 11pt; }
-            section[data-stage] { display: block !important; }
             section { padding: 30px 0; page-break-inside: avoid; }
             .finding-card, .info-card, .tech-card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
             .audit-table, .competition-table { box-shadow: none; border: 1px solid #ddd; }
@@ -1080,38 +1040,33 @@
     ============================================ -->
     <div class="main-content" id="mainContent">
 
-        <!-- Top Bar -->
-        <div class="top-bar" id="topBar">
-            <div class="top-bar-left">
-                <img src="growisto-logo.png" alt="Growisto">
-                <span class="top-bar-client">Deyga Organics</span>
-                <button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Toggle navigation">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-            <div class="top-bar-stages" id="topBarStages">
-                <button class="stage-btn active" onclick="switchStage('intro', this)">Intro</button>
-                <button class="stage-btn" onclick="switchStage('audit', this)">Audit</button>
-                <button class="stage-btn" onclick="switchStage('nextsteps', this)">Methodology & Next Steps</button>
-            </div>
+        <!-- Mobile Header -->
+        <div class="mobile-header">
+            <img src="growisto-logo.png" alt="Growisto">
+            <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
         </div>
         <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-        <!-- Sidebar Navigation (contextual — shows items for active stage) -->
+        <!-- Sidebar Navigation -->
         <nav class="sidebar" id="sidebar">
-            <div class="sidebar-stage-label" id="sidebarStageLabel">Intro</div>
+            <div class="sidebar-logo">
+                <img src="growisto-logo.png" alt="Growisto">
+            </div>
+            <div class="sidebar-client">Deyga Organics</div>
             <ul class="sidebar-nav">
-                <li data-nav-stage="intro" class="nav-visible"><a href="#sec-intro" class="active"><span class="nav-number">01</span> Introduction</a></li>
-                <li data-nav-stage="intro" class="nav-visible"><a href="#sec-overview"><span class="nav-number">02</span> Audit Overview</a></li>
-                <li data-nav-stage="intro" class="nav-visible"><a href="#sec-traffic"><span class="nav-number">03</span> Traffic Analytics</a></li>
-                <li data-nav-stage="intro" class="nav-visible"><a href="#sec-conversion"><span class="nav-number">04</span> Conversion Question</a></li>
-                <li data-nav-stage="audit"><a href="#sec-performance"><span class="nav-number">01</span> Performance Benchmarks</a></li>
-                <li data-nav-stage="audit"><a href="#sec-cwv"><span class="nav-number">02</span> Core Web Vitals</a></li>
-                <li data-nav-stage="audit"><a href="#sec-pagespeed-work"><span class="nav-number">03</span> PageSpeed: Our Work</a></li>
-                <li data-nav-stage="audit"><a href="#sec-ux"><span class="nav-number">04</span> UX & Conversion Findings</a></li>
-                <li data-nav-stage="audit"><a href="#sec-tech"><span class="nav-number">05</span> Technology Assessment</a></li>
-                <li data-nav-stage="audit"><a href="#sec-apps"><span class="nav-number">06</span> App Ecosystem</a></li>
-                <li data-nav-stage="nextsteps"><a href="#sec-methodology"><span class="nav-number">01</span> Methodology & Next Steps</a></li>
+                <li><a href="#sec-intro" class="active"><span class="nav-number">01</span> Introduction</a></li>
+                <li><a href="#sec-overview"><span class="nav-number">02</span> Audit Overview</a></li>
+                <li><a href="#sec-traffic"><span class="nav-number">03</span> Traffic Analytics</a></li>
+                <li><a href="#sec-conversion"><span class="nav-number">04</span> Conversion Question</a></li>
+                <li><a href="#sec-performance"><span class="nav-number">05</span> Performance Benchmarks</a></li>
+                <li><a href="#sec-cwv"><span class="nav-number">06</span> Core Web Vitals</a></li>
+                <li><a href="#sec-pagespeed-work"><span class="nav-number">07</span> PageSpeed: Our Work</a></li>
+                <li><a href="#sec-ux"><span class="nav-number">08</span> UX & Conversion Findings</a></li>
+                <li><a href="#sec-tech"><span class="nav-number">09</span> Technology Assessment</a></li>
+                <li><a href="#sec-apps"><span class="nav-number">10</span> App Ecosystem</a></li>
+                <li><a href="#sec-methodology"><span class="nav-number">11</span> Methodology & Next Steps</a></li>
             </ul>
         </nav>
 
@@ -1119,7 +1074,7 @@
         <div class="content-area">
 
             <!-- SEC 01: INTRODUCTION (Google Slides Embed) -->
-            <section id="sec-intro" data-stage="intro">
+            <section id="sec-intro">
                 <div class="container">
                     <div class="section-header">
                         <span class="section-number">01</span>
@@ -1136,7 +1091,7 @@
             </section>
 
             <!-- SEC 02: AUDIT OVERVIEW -->
-            <section id="sec-overview" data-stage="intro">
+            <section id="sec-overview">
                 <div class="container">
                     <div class="section-header">
                         <span class="section-number">02</span>
@@ -1175,7 +1130,7 @@
             </section>
 
             <!-- SEC 03: TRAFFIC ANALYTICS -->
-            <section id="sec-traffic" data-stage="intro">
+            <section id="sec-traffic">
                 <div class="container">
                     <div class="section-header">
                         <span class="section-number">03</span>
@@ -1295,7 +1250,7 @@
             </section>
 
             <!-- SEC 04: THE CONVERSION QUESTION -->
-            <section id="sec-conversion" data-stage="intro">
+            <section id="sec-conversion">
                 <div class="container">
                     <div class="section-header">
                         <span class="section-number">04</span>
@@ -1350,10 +1305,10 @@
             </section>
 
             <!-- SEC 05: PERFORMANCE BENCHMARKS -->
-            <section id="sec-performance" data-stage="audit">
+            <section id="sec-performance">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">01</span>
+                        <span class="section-number">05</span>
                         <div class="section-title-group">
                             <h2>Performance Benchmarks</h2>
                             <p>PageSpeed comparison: Deyga Organics vs top Beauty & Personal Care competitors</p>
@@ -1415,10 +1370,10 @@
             </section>
 
             <!-- SEC 06: CORE WEB VITALS -->
-            <section id="sec-cwv" data-stage="audit">
+            <section id="sec-cwv">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">02</span>
+                        <span class="section-number">06</span>
                         <div class="section-title-group">
                             <h2>Core Web Vitals</h2>
                             <p>Google's user experience quality signals for Deyga Organics</p>
@@ -1466,10 +1421,10 @@
             </section>
 
             <!-- SEC 07: PAGESPEED — OUR WORK (Google Slides Embed) -->
-            <section id="sec-pagespeed-work" data-stage="audit">
+            <section id="sec-pagespeed-work">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">03</span>
+                        <span class="section-number">07</span>
                         <div class="section-title-group">
                             <h2>PageSpeed: Our Work</h2>
                             <p>Real results from our page speed optimization projects</p>
@@ -1483,10 +1438,10 @@
             </section>
 
             <!-- SEC 08: UX & CONVERSION FINDINGS (Tabbed) -->
-            <section id="sec-ux" data-stage="audit">
+            <section id="sec-ux">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">04</span>
+                        <span class="section-number">08</span>
                         <div class="section-title-group">
                             <h2>UX & Conversion Findings</h2>
                             <p>Page-by-page analysis with visual comparisons against top Beauty & Personal Care stores</p>
@@ -1515,10 +1470,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-homepage-popup-fresh.jpeg" alt="Deyga spin-to-win popup appearing on first page load">
                                                 <div class="finding-screenshot-label client-label">Deyga — Popup on First Load</div>
+                                                <div class="finding-screenshot-url">deyga.in</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-mamaearth-homepage-mobile.jpeg" alt="Mamaearth homepage with clean hero and no popup on first visit">
                                                 <div class="finding-screenshot-label competitor-label">Mamaearth — No Popup, Clean Entry</div>
+                                                <div class="finding-screenshot-url">mamaearth.com</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1554,10 +1511,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-hero-buyonlyifyouwant.jpeg" alt="Deyga hero slide reading BUY ONLY IF YOU WANT with delivery delay warning">
                                                 <div class="finding-screenshot-label client-label">Deyga — "Buy Only If You Want" Hero</div>
+                                                <div class="finding-screenshot-url">deyga.in</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-mcaffeine-pdp-trust-mobile.jpeg" alt="mCaffeine homepage with clear benefit-driven trust messaging">
                                                 <div class="finding-screenshot-label competitor-label">mCaffeine — Benefit-Driven Messaging</div>
+                                                <div class="finding-screenshot-url">mcaffeine.com</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1594,10 +1553,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-hp-product-cards-atc.jpeg" alt="Deyga product cards with Add to Cart button but no variant selector or wishlist icon">
                                                 <div class="finding-screenshot-label client-label">Deyga — ATC Button, No Variants</div>
+                                                <div class="finding-screenshot-url">deyga.in</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics product cards with shade swatches, ratings, and quick add">
                                                 <div class="finding-screenshot-label competitor-label">Sugar — Shade Swatches + Ratings on Cards</div>
+                                                <div class="finding-screenshot-url">sugarcosmetics.com</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1643,6 +1604,7 @@
                                                     <div style="color: #69db7c;">&#10003; Open Graph tags present (but image URL uses HTTP)</div>
                                                 </div>
                                                 <div class="finding-screenshot-label client-label">Deyga — Source Code Evidence</div>
+                                                <div class="finding-screenshot-url">deyga.in (view-source)</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1687,6 +1649,7 @@
                                                     <div style="color: #ffa07a; margin-top: 4px;">Total: 15+ errors per page load across 4 different scripts</div>
                                                 </div>
                                                 <div class="finding-screenshot-label client-label">Deyga — Console Error Log (All Pages)</div>
+                                                <div class="finding-screenshot-url">deyga.in (console)</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1729,10 +1692,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page showing only Sort dropdown, no filter controls">
                                                 <div class="finding-screenshot-label client-label">Deyga — Sort Only, No Filters</div>
+                                                <div class="finding-screenshot-url">deyga.in/collections/all</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-plum-collection-filters.jpeg" alt="Plum Goodness collection with expanded filter sidebar showing concern, price, and product type filters">
                                                 <div class="finding-screenshot-label competitor-label">Plum — Expanded Filter Controls</div>
+                                                <div class="finding-screenshot-url">plumgoodness.com/collections</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1768,10 +1733,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page jumping straight to product grid with no banner or description">
                                                 <div class="finding-screenshot-label client-label">Deyga — No Banner, Straight to Grid</div>
+                                                <div class="finding-screenshot-url">deyga.in/collections/all</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics collection with hero banner, BESTSELLER badges, shade swatches, and ratings">
                                                 <div class="finding-screenshot-label competitor-label">Sugar — Banner + Badges + Swatches</div>
+                                                <div class="finding-screenshot-url">sugarcosmetics.com/collections</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1805,10 +1772,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page with no breadcrumb navigation visible">
                                                 <div class="finding-screenshot-label client-label">Deyga — No Breadcrumbs Visible</div>
+                                                <div class="finding-screenshot-url">deyga.in/collections/all</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-mamaearth-collection-mobile.jpeg" alt="Mamaearth collection showing breadcrumb trail: Home > Face Care > Face Wash">
                                                 <div class="finding-screenshot-label competitor-label">Mamaearth — Breadcrumb Navigation</div>
+                                                <div class="finding-screenshot-url">mamaearth.com/collections</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1842,10 +1811,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page with product cards but no Quick View option">
                                                 <div class="finding-screenshot-label client-label">Deyga — No Quick View on Cards</div>
+                                                <div class="finding-screenshot-url">deyga.in/collections/all</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics collection with rich product cards showing shade options, ratings, and quick add">
                                                 <div class="finding-screenshot-label competitor-label">Sugar — Rich Cards with Shade Preview</div>
+                                                <div class="finding-screenshot-url">sugarcosmetics.com/collections</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1886,10 +1857,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-pdp-above-fold-mobile.jpeg" alt="Deyga PDP product image without any zoom icon or pinch-to-zoom capability">
                                                 <div class="finding-screenshot-label client-label">Deyga — No Zoom on Product Images</div>
+                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-minimalist-pdp-mobile.jpeg" alt="Minimalist PDP with zoom icon overlay on product image and detailed ingredient display">
                                                 <div class="finding-screenshot-label competitor-label">Minimalist — Zoom Icon on Images</div>
+                                                <div class="finding-screenshot-url">beminimalist.co/products</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1924,10 +1897,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-pdp-above-fold-mobile.jpeg" alt="Deyga PDP showing 8 static product images, no video indicator in the image carousel">
                                                 <div class="finding-screenshot-label client-label">Deyga — Static Images Only, No Video</div>
+                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-mamaearth-pdp-mobile.jpeg" alt="Mamaearth PDP with rich media, trust badges, offers section, and ingredient transparency">
                                                 <div class="finding-screenshot-label competitor-label">Mamaearth — Rich Media + Trust Signals</div>
+                                                <div class="finding-screenshot-url">mamaearth.com/products</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -1963,10 +1938,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-pdp-atc-area-nobuynow.jpeg" alt="Deyga PDP ATC area showing only Add to Cart button with size variants, no Buy Now option">
                                                 <div class="finding-screenshot-label client-label">Deyga — Only "Add to Cart", No Buy Now</div>
+                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-sugar-pdp-atc-area.jpeg" alt="Sugar Cosmetics PDP with BNPL Buy Now option via Sugar Pay Later alongside Add to Cart">
                                                 <div class="finding-screenshot-label competitor-label">Sugar — BNPL "Buy Now" + ATC</div>
+                                                <div class="finding-screenshot-url">sugarcosmetics.com/products</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2002,10 +1979,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-pdp-variants-mobile.jpeg" alt="Deyga PDP scrolled past ATC area showing reviews section, no sticky bar visible at bottom">
                                                 <div class="finding-screenshot-label client-label">Deyga — ATC Scrolls Out of View</div>
+                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-mcaffeine-pdp-sticky-atc.jpeg" alt="mCaffeine PDP with fixed sticky ATC bar at bottom showing Add to Cart button and quantity selector">
                                                 <div class="finding-screenshot-label competitor-label">mCaffeine — Sticky ATC Bar at Bottom</div>
+                                                <div class="finding-screenshot-url">mcaffeine.com/products</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2056,6 +2035,7 @@
                                                     <div style="color: #ffa07a;">&#9888; No rich product cards in Google Shopping results</div>
                                                 </div>
                                                 <div class="finding-screenshot-label client-label">Deyga PDP — Page Source Schema Analysis</div>
+                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm (view-source)</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2092,10 +2072,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-pdp-atc-mobile.jpeg" alt="Deyga PDP ATC area showing price and Add to Cart but no stock level, urgency timer, or scarcity messaging">
                                                 <div class="finding-screenshot-label client-label">Deyga — No Stock or Urgency Signals</div>
+                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-mamaearth-pdp-mobile.jpeg" alt="Mamaearth PDP showing offer countdown, bank offers, free gift thresholds, and trust badges creating urgency">
                                                 <div class="finding-screenshot-label competitor-label">Mamaearth — Offers + Urgency + Trust</div>
+                                                <div class="finding-screenshot-url">mamaearth.com/products</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2138,6 +2120,7 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-cart-drawer-mobile.jpeg" alt="GoKwik cart drawer slide-out showing product, quantity, and checkout button">
                                                 <div class="finding-screenshot-label client-label">Deyga — GoKwik Cart Drawer</div>
+                                                <div class="finding-screenshot-url">deyga.in (cart drawer)</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <!-- Console error evidence: GoKwik-specific errors in cart/checkout flow -->
@@ -2156,6 +2139,7 @@
                                                     <div style="color: #ffa07a; margin-top: 6px;">&#9888; Any GoKwik error = potential checkout failure</div>
                                                 </div>
                                                 <div class="finding-screenshot-label client-label">Console Errors — GoKwik Integration</div>
+                                                <div class="finding-screenshot-url">deyga.in (console)</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2190,10 +2174,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-cart-drawer-mobile.jpeg" alt="Deyga GoKwik cart drawer showing only product line item, quantity, and checkout — no cross-sell or recommendations">
                                                 <div class="finding-screenshot-label client-label">Deyga — Cart Drawer, No Cross-Sell</div>
+                                                <div class="finding-screenshot-url">deyga.in (cart drawer)</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/competitor/competitor-mamaearth-pdp-mobile.jpeg" alt="Mamaearth showing product recommendations, combo offers, and free gift progress bar alongside cart">
                                                 <div class="finding-screenshot-label competitor-label">Mamaearth — Recommendations + Combos</div>
+                                                <div class="finding-screenshot-url">mamaearth.com (cart)</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2229,10 +2215,12 @@
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-cart-drawer-mobile.jpeg" alt="Deyga GoKwik cart drawer showing product and checkout button, but no coupon field, payment icons, or trust badges">
                                                 <div class="finding-screenshot-label client-label">Deyga — No Coupon/Trust in Cart Drawer</div>
+                                                <div class="finding-screenshot-url">deyga.in (cart drawer)</div>
                                             </div>
                                             <div class="finding-screenshot">
                                                 <img src="media/screenshots/client/deyga-gokwik-checkout-mobile.jpeg" alt="GoKwik checkout page showing coupon field is available at checkout stage, but not in the cart drawer">
                                                 <div class="finding-screenshot-label client-label">GoKwik Checkout — Coupon Available Here</div>
+                                                <div class="finding-screenshot-url">deyga.in (GoKwik checkout)</div>
                                             </div>
                                         </div>
                                         <div class="finding-analysis">
@@ -2265,10 +2253,10 @@
             </section>
 
             <!-- SEC 09: TECHNOLOGY ASSESSMENT -->
-            <section id="sec-tech" data-stage="audit">
+            <section id="sec-tech">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">05</span>
+                        <span class="section-number">09</span>
                         <div class="section-title-group">
                             <h2>Technology Assessment</h2>
                             <p>Platform, theme, and architecture insights</p>
@@ -2344,10 +2332,10 @@
             </section>
 
             <!-- SEC 10: APP ECOSYSTEM -->
-            <section id="sec-apps" data-stage="audit">
+            <section id="sec-apps">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">06</span>
+                        <span class="section-number">10</span>
                         <div class="section-title-group">
                             <h2>App Ecosystem</h2>
                             <p>What's installed vs what's missing from best-in-class Beauty & Personal Care stores</p>
@@ -2474,10 +2462,10 @@
             </section>
 
             <!-- SEC 11: METHODOLOGY & NEXT STEPS (Google Slides Embed) -->
-            <section id="sec-methodology" data-stage="nextsteps">
+            <section id="sec-methodology">
                 <div class="container">
                     <div class="section-header">
-                        <span class="section-number">01</span>
+                        <span class="section-number">11</span>
                         <div class="section-title-group">
                             <h2>Methodology & Next Steps</h2>
                             <p>How we work, our process, and what comes next</p>
@@ -2520,9 +2508,7 @@
     ============================================ -->
     <script>
         // Password Protection
-        var correctPassword = 'deyga2026';
-        var currentStage = 'intro';
-        var scrollSpyObserver = null;
+        const correctPassword = 'deyga2026';
 
         function showLogin() {
             document.getElementById('coverPage').classList.add('hidden');
@@ -2531,12 +2517,12 @@
         }
 
         function checkPassword() {
-            var input = document.getElementById('passwordInput').value;
+            const input = document.getElementById('passwordInput').value;
             if (input === correctPassword) {
                 sessionStorage.setItem('audit_authenticated', 'true');
                 document.getElementById('loginScreen').classList.add('hidden');
                 document.getElementById('mainContent').classList.add('visible');
-                switchStage('intro');
+                initScrollSpy();
             } else {
                 document.getElementById('errorMsg').style.display = 'block';
                 document.getElementById('passwordInput').value = '';
@@ -2553,75 +2539,10 @@
             document.getElementById('coverPage').classList.add('hidden');
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('mainContent').classList.add('visible');
-            requestAnimationFrame(function() { switchStage('intro'); });
+            requestAnimationFrame(initScrollSpy);
         }
 
-        // Stage Switching
-        function switchStage(stage, btn) {
-            currentStage = stage;
-
-            // Update top bar active state
-            document.querySelectorAll('.stage-btn').forEach(function(b) {
-                b.classList.remove('active');
-            });
-            if (btn) {
-                btn.classList.add('active');
-            } else {
-                // Find the matching button
-                document.querySelectorAll('.stage-btn').forEach(function(b) {
-                    if (b.textContent.trim() === getStageLabel(stage)) {
-                        b.classList.add('active');
-                    }
-                });
-                // Fallback: match by index
-                if (!document.querySelector('.stage-btn.active')) {
-                    var idx = stage === 'intro' ? 0 : stage === 'audit' ? 1 : 2;
-                    document.querySelectorAll('.stage-btn')[idx].classList.add('active');
-                }
-            }
-
-            // Show/hide sections
-            document.querySelectorAll('section[data-stage]').forEach(function(sec) {
-                if (sec.getAttribute('data-stage') === stage) {
-                    sec.classList.add('stage-visible');
-                } else {
-                    sec.classList.remove('stage-visible');
-                }
-            });
-
-            // Update sidebar nav items
-            document.querySelectorAll('.sidebar-nav li[data-nav-stage]').forEach(function(li) {
-                if (li.getAttribute('data-nav-stage') === stage) {
-                    li.classList.add('nav-visible');
-                } else {
-                    li.classList.remove('nav-visible');
-                }
-            });
-
-            // Update sidebar stage label
-            var stageLabels = { intro: 'Intro', audit: 'Audit', nextsteps: 'Methodology & Next Steps' };
-            document.getElementById('sidebarStageLabel').textContent = stageLabels[stage] || stage;
-
-            // Scroll content area to top
-            document.querySelector('.content-area').scrollTop = 0;
-            window.scrollTo({ top: 0, behavior: 'instant' });
-
-            // Re-init scroll spy for visible sections
-            initScrollSpy();
-
-            // Close mobile sidebar if open
-            if (window.innerWidth <= 1024) {
-                document.getElementById('sidebar').classList.remove('open');
-                document.getElementById('sidebarOverlay').classList.remove('active');
-            }
-        }
-
-        function getStageLabel(stage) {
-            var labels = { intro: 'Intro', audit: 'Audit', nextsteps: 'Methodology & Next Steps' };
-            return labels[stage] || '';
-        }
-
-        // Tab Switching (UX Findings)
+        // Tab Switching
         function showTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(function(tab) {
                 tab.classList.remove('active');
@@ -2650,23 +2571,14 @@
             });
         });
 
-        // Scroll-Spy (IntersectionObserver) — only tracks visible stage sections
+        // Scroll-Spy (IntersectionObserver)
         function initScrollSpy() {
-            // Disconnect previous observer
-            if (scrollSpyObserver) {
-                scrollSpyObserver.disconnect();
-            }
+            var sections = document.querySelectorAll('section[id]');
+            var navLinks = document.querySelectorAll('.sidebar-nav a');
 
-            var visibleSections = document.querySelectorAll('section[data-stage="' + currentStage + '"]');
-            var navLinks = document.querySelectorAll('.sidebar-nav li.nav-visible a');
+            if (!sections.length || !navLinks.length) return;
 
-            if (!visibleSections.length || !navLinks.length) return;
-
-            // Set first item active by default
-            navLinks.forEach(function(l) { l.classList.remove('active'); });
-            navLinks[0].classList.add('active');
-
-            scrollSpyObserver = new IntersectionObserver(function(entries) {
+            var observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         var id = entry.target.getAttribute('id');
@@ -2679,12 +2591,12 @@
                     }
                 });
             }, {
-                rootMargin: '-10% 0px -80% 0px',
+                rootMargin: '-20% 0px -70% 0px',
                 threshold: 0
             });
 
-            visibleSections.forEach(function(section) {
-                scrollSpyObserver.observe(section);
+            sections.forEach(function(section) {
+                observer.observe(section);
             });
         }
     </script>
