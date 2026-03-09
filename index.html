@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deyga Organics — Website & Conversion Audit | Growisto</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS VARIABLES
+        ============================================ */
+        :root {
+            --color-primary: #367588;
+            --color-primary-dark: #2a5d6d;
+            --color-primary-light: #5a9aad;
+            --color-secondary: #b8dbd9;
+            --color-secondary-light: #e8f4f3;
+            --color-tertiary: #e35d34;
+            --color-tertiary-dark: #c94d28;
+            --color-accent: #4a7c59;
+            --color-text-dark: #1d1d20;
+            --color-text-muted: #5a5a5f;
+            --color-text-light: #ffffff;
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #f8f9fa;
+            --color-bg-tertiary: #f0f2f5;
+            --color-success: #10b981;
+            --color-success-bg: #d1fae5;
+            --color-warning: #f59e0b;
+            --color-warning-bg: #fef3c7;
+            --color-danger: #ef4444;
+            --color-danger-bg: #fee2e2;
+            --font-family: 'Poppins', sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
+            --transition-fast: 0.2s ease;
+            --sidebar-width: 260px;
+        }
+
+        /* ============================================
+           BASE RESETS
+        ============================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family);
+            background: var(--color-bg-secondary);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .hidden { display: none !important; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        h2 { font-size: 28px; font-weight: 700; line-height: 1.3; }
+        h3 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+        .subsection-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 14px;
+            margin-top: 24px;
+        }
+        section { padding: 60px 0; border-bottom: 1px solid #e5e7eb; }
+
+        /* ============================================
+           COVER PAGE
+        ============================================ */
+        .cover-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 50%, var(--color-primary-dark) 100%);
+            color: var(--color-text-light);
+            text-align: center;
+            padding: 40px 24px;
+            position: relative;
+        }
+        .cover-logo { margin-bottom: 50px; }
+        .cover-logo img { height: 48px; }
+        .cover-content { max-width: 700px; }
+        .cover-label {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        .cover-title { font-size: 42px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+        .cover-subtitle { font-size: 16px; opacity: 0.85; margin-bottom: 40px; line-height: 1.6; }
+        .cover-client { font-size: 26px; font-weight: 600; margin-bottom: 8px; }
+        .cover-meta { font-size: 14px; opacity: 0.7; margin-bottom: 50px; }
+        .cover-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 50px;
+            color: var(--color-text-light);
+            font-family: var(--font-family);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        .cover-btn:hover { background: rgba(255,255,255,0.3); border-color: #fff; }
+        .cover-btn svg { width: 20px; height: 20px; }
+        .cover-footer {
+            position: absolute;
+            bottom: 30px;
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        /* ============================================
+           LOGIN SCREEN
+        ============================================ */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--color-bg-secondary);
+            padding: 24px;
+        }
+        .login-box {
+            background: var(--color-bg-primary);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .login-logo { margin-bottom: 30px; }
+        .login-logo img { height: 36px; }
+        .login-box h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        .login-box .subtitle { font-size: 14px; color: var(--color-text-muted); margin-bottom: 30px; }
+        .login-box input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: var(--font-family);
+            font-size: 14px;
+            margin-bottom: 16px;
+            outline: none;
+            transition: border-color var(--transition-fast);
+        }
+        .login-box input:focus { border-color: var(--color-primary); }
+        .login-box button {
+            width: 100%;
+            padding: 14px;
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-family);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+        .login-box button:hover { background: var(--color-primary-dark); }
+        .error-message {
+            display: none;
+            color: var(--color-danger);
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        /* ============================================
+           MAIN LAYOUT: Sidebar + Content
+        ============================================ */
+        .main-content {
+            display: none;
+        }
+        .main-content.visible { display: block; }
+
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--color-bg-primary);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0 16px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+        .mobile-header img { height: 28px; }
+        .hamburger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--color-text-dark);
+            border-radius: 2px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--color-bg-primary);
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+            z-index: 900;
+            padding-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 899;
+        }
+        .sidebar-logo {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .sidebar-logo img { height: 30px; }
+        .sidebar-client {
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .sidebar-nav { list-style: none; padding: 12px 0; }
+        .sidebar-nav li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            border-left: 3px solid transparent;
+        }
+        .sidebar-nav li a:hover {
+            color: var(--color-text-dark);
+            background: var(--color-bg-secondary);
+        }
+        .sidebar-nav li a.active {
+            color: var(--color-primary);
+            background: var(--color-secondary-light);
+            border-left-color: var(--color-primary);
+            font-weight: 600;
+        }
+        .nav-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            background: var(--color-bg-tertiary);
+            color: var(--color-text-muted);
+        }
+        .sidebar-nav li a.active .nav-number {
+            background: var(--color-primary);
+            color: var(--color-text-light);
+        }
+
+        /* Content Area */
+        .content-area {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+        .section-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--color-secondary);
+            line-height: 1;
+        }
+        .section-title-group h2 { margin-bottom: 4px; }
+        .section-title-group p { font-size: 14px; color: var(--color-text-muted); }
+
+        /* ============================================
+           TRAFFIC ANALYTICS
+        ============================================ */
+        .traffic-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .traffic-card {
+            background: var(--color-bg-primary);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        .traffic-card h5 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-muted);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .traffic-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            margin-bottom: 4px;
+        }
+        .traffic-label {
+            font-size: 11px;
+            color: var(--color-text-muted);
+        }
+
+        /* Traffic Source Bars */
+        .traffic-source-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .traffic-source-name {
+            font-size: 13px;
+            font-weight: 500;
+            min-width: 120px;
+            color: var(--color-text-dark);
+        }
+        .traffic-bar-track {
+            flex: 1;
+            height: 28px;
+            background: var(--color-bg-tertiary);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .traffic-bar-fill {
+            height: 100%;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            min-width: 40px;
+        }
+
+        /* Device Split */
+        .device-split {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--color-bg-primary);
+            padding: 20px 24px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 24px;
+        }
+        .device-split-bar {
+            flex: 1;
+            display: flex;
+            height: 36px;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        .device-mobile {
+            background: var(--color-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .device-desktop {
+            background: var(--color-secondary);
+            color: var(--color-primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .device-label {
+            font-size: 13px;
+            text-align: center;
+            color: var(--color-text-muted);
+            min-width: 70px;
+        }
+        .device-label strong { color: var(--color-text-dark); font-size: 16px; display: block; }
+
+        /* ============================================
+           FUNNEL TEASER
+        ============================================ */
+        .funnel-teaser-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+        }
+        .funnel-teaser-table th {
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 14px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+        }
+        .funnel-teaser-table td {
+            padding: 14px 20px;
+            font-size: 14px;
+            border-bottom: 1px solid #e5e7eb;
+            background: var(--color-bg-primary);
+        }
+        .funnel-teaser-table tr:last-child td { border-bottom: none; }
+        .funnel-unknown {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            text-align: center;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            color: var(--color-text-light);
+            padding: 36px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .cta-box h4 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .cta-box p { font-size: 14px; opacity: 0.9; line-height: 1.7; max-width: 700px; margin: 0 auto; }
+
+        /* ============================================
+           COMPETITION TABLE
+        ============================================ */
+        .competition-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+        }
+        .competition-table th {
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 14px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .competition-table th:first-child { text-align: left; }
+        .competition-table td {
+            padding: 14px 16px;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+            background: var(--color-bg-primary);
+            font-weight: 500;
+        }
+        .competition-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+        .competition-table tr:last-child td { border-bottom: none; }
+        .competition-table tr.client-row td {
+            background: var(--color-secondary-light);
+            font-weight: 700;
+        }
+        .score-cell-good {
+            background: var(--color-success-bg) !important;
+            color: #065f46;
+            font-weight: 700;
+        }
+        .score-cell-moderate {
+            background: var(--color-warning-bg) !important;
+            color: #92400e;
+            font-weight: 700;
+        }
+        .score-cell-poor {
+            background: var(--color-danger-bg) !important;
+            color: #991b1b;
+            font-weight: 700;
+        }
+
+        /* ============================================
+           CORE WEB VITALS
+        ============================================ */
+        .cwv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .cwv-card {
+            background: var(--color-bg-primary);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        .cwv-card h5 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-muted);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .cwv-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .cwv-value.good { color: var(--color-success); }
+        .cwv-value.moderate { color: var(--color-warning); }
+        .cwv-value.poor { color: var(--color-danger); }
+        .cwv-target {
+            font-size: 11px;
+            color: var(--color-text-muted);
+        }
+        .cwv-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .cwv-status.pass { background: var(--color-success-bg); color: #065f46; }
+        .cwv-status.fail { background: var(--color-danger-bg); color: #991b1b; }
+        .cwv-status.needs-work { background: var(--color-warning-bg); color: #92400e; }
+
+        /* ============================================
+           TABS (UX Findings)
+        ============================================ */
+        .tab-container { margin-bottom: 30px; }
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: var(--color-bg-tertiary);
+            padding: 8px;
+            border-radius: 16px;
+        }
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-family);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            color: var(--color-text-muted);
+        }
+        .tab-btn.active {
+            background: var(--color-bg-primary);
+            color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .tab-btn:hover:not(.active) { color: var(--color-text-dark); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ============================================
+           FINDING CARDS
+        ============================================ */
+        .finding-cards { margin-top: 20px; }
+        .finding-cards-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--color-secondary);
+        }
+        .finding-card {
+            background: var(--color-bg-primary);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 32px;
+        }
+        .finding-card-header {
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 20px 28px;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+        .finding-card-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 400px;
+        }
+        .finding-screenshots {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 24px;
+            border-right: 1px solid #e5e7eb;
+            align-content: start;
+        }
+        .finding-screenshot {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .finding-screenshot img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            object-fit: cover;
+            max-height: 320px;
+            background: #f0f0f0;
+        }
+        .finding-screenshot-label {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 0;
+        }
+        .finding-screenshot-label.client-label { color: var(--color-danger); }
+        .finding-screenshot-label.benchmark-label { color: var(--color-success); }
+        .finding-analysis {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .finding-section-header {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .finding-section-header.observations-header {
+            background: var(--color-warning-bg);
+            color: #92400e;
+        }
+        .finding-section-header.recommendations-header {
+            background: var(--color-success-bg);
+            color: #065f46;
+        }
+        .finding-observations ul,
+        .finding-recommendations ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .finding-observations li,
+        .finding-recommendations li {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            margin-bottom: 8px;
+        }
+        .finding-benchmark-tag {
+            display: inline-block;
+            background: var(--color-secondary-light);
+            color: var(--color-primary-dark);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 4px;
+        }
+        .placeholder-img {
+            width: 100%;
+            height: 280px;
+            border-radius: 8px;
+            border: 2px dashed #ccc;
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* ============================================
+           AUDIT TABLES
+        ============================================ */
+        .audit-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+        .audit-table th {
+            background: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 14px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+        }
+        .audit-table td {
+            padding: 12px 20px;
+            font-size: 13px;
+            border-bottom: 1px solid #e5e7eb;
+            background: var(--color-bg-primary);
+        }
+        .audit-table tr:last-child td { border-bottom: none; }
+        .audit-table tr:hover td { background: var(--color-bg-secondary); }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .status-pass { background: var(--color-success-bg); color: #065f46; }
+        .status-fail { background: var(--color-danger-bg); color: #991b1b; }
+        .status-partial { background: var(--color-warning-bg); color: #92400e; }
+
+        /* ============================================
+           TECH ASSESSMENT
+        ============================================ */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .tech-card {
+            background: var(--color-bg-primary);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e5e7eb;
+        }
+        .tech-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+        }
+        .tech-card p, .tech-card li {
+            font-size: 13px;
+            color: var(--color-text-dark);
+            line-height: 1.6;
+        }
+        .tech-card ul { list-style: disc; padding-left: 20px; }
+        .tech-card li { margin-bottom: 6px; }
+
+        /* ============================================
+           APP ECOSYSTEM
+        ============================================ */
+        .app-ecosystem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .app-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid;
+        }
+        .app-column.present h4 { color: var(--color-success); border-color: var(--color-success); }
+        .app-column.missing h4 { color: var(--color-danger); border-color: var(--color-danger); }
+        .app-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--color-bg-primary);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #e5e7eb;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .app-item .app-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .app-item.present .app-icon { background: var(--color-success-bg); }
+        .app-item.missing .app-icon { background: var(--color-danger-bg); }
+        .app-item-details { flex: 1; }
+        .app-item-details .app-name { font-weight: 600; color: var(--color-text-dark); }
+        .app-item-details .app-category { font-size: 11px; color: var(--color-text-muted); }
+
+        /* ============================================
+           GOOGLE SLIDES EMBED
+        ============================================ */
+        .slides-embed-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: var(--color-bg-tertiary);
+        }
+        .slides-embed-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+        .slides-placeholder {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: var(--color-text-muted); font-size: 14px; text-align: center; gap: 12px;
+        }
+        .slides-placeholder svg { width: 48px; height: 48px; opacity: 0.4; }
+
+        /* ============================================
+           INFO CARDS / INSIGHT BOX
+        ============================================ */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        .info-card {
+            background: var(--color-bg-primary);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e5e7eb;
+        }
+        .info-card h4 { font-size: 16px; font-weight: 600; color: var(--color-primary); margin-bottom: 16px; }
+        .info-card ul { list-style: none; }
+        .info-card li {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px;
+        }
+        .info-card li:last-child { border-bottom: none; }
+        .insight-box {
+            background: var(--color-secondary-light);
+            border: 1px solid var(--color-secondary);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 30px;
+        }
+        .insight-box h4 { color: var(--color-primary-dark); font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+        .insight-box p { color: var(--color-text-dark); font-size: 14px; line-height: 1.7; }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .report-footer {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            color: var(--color-text-light);
+            padding: 60px 0 40px;
+        }
+        .footer-content {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            flex-wrap: wrap; gap: 40px; margin-bottom: 40px;
+        }
+        .footer-brand img { height: 40px; margin-bottom: 15px; }
+        .footer-brand p { font-size: 14px; opacity: 0.9; max-width: 300px; line-height: 1.7; }
+        .footer-contact h4 { font-size: 14px; font-weight: 600; margin-bottom: 15px; opacity: 0.9; }
+        .footer-contact p { font-size: 13px; opacity: 0.8; margin-bottom: 8px; }
+        .footer-bottom {
+            padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex; justify-content: space-between; flex-wrap: wrap;
+            gap: 20px; font-size: 12px; opacity: 0.7;
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; }
+            .mobile-header { display: flex; }
+            .content-area { margin-left: 0; padding-top: 56px; }
+        }
+        @media (max-width: 900px) {
+            .finding-card-body { grid-template-columns: 1fr; }
+            .finding-screenshots { border-right: none; border-bottom: 1px solid #e5e7eb; }
+        }
+        @media (max-width: 768px) {
+            .cover-title { font-size: 28px; }
+            .cover-client { font-size: 22px; }
+            .section-header { flex-direction: column; gap: 10px; }
+            .section-number { font-size: 36px; }
+            .traffic-grid { grid-template-columns: repeat(2, 1fr); }
+            .cwv-grid { grid-template-columns: repeat(2, 1fr); }
+            .tab-buttons { flex-direction: column; }
+            .app-ecosystem-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; }
+            .device-split { flex-direction: column; }
+            .competition-table { font-size: 12px; }
+            .competition-table th, .competition-table td { padding: 10px 8px; }
+        }
+        @media (max-width: 480px) {
+            .traffic-grid { grid-template-columns: 1fr; }
+            .cwv-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 16px; }
+            section { padding: 40px 0; }
+        }
+        @media print {
+            .cover-page, .login-screen, .sidebar, .mobile-header { display: none !important; }
+            .main-content { display: block !important; }
+            .content-area { margin-left: 0; }
+            body { background: white; font-size: 11pt; }
+            section { padding: 30px 0; page-break-inside: avoid; }
+            .finding-card, .info-card, .tech-card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+            .audit-table, .competition-table { box-shadow: none; border: 1px solid #ddd; }
+            .tab-buttons { display: none; }
+            .tab-content { display: block !important; margin-bottom: 30px; }
+            .report-footer { background: #333; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         COVER PAGE
+    ============================================ -->
+    <div class="cover-page" id="coverPage">
+        <div class="cover-logo">
+            <img src="growisto-logo-white.png" alt="Growisto">
+        </div>
+        <div class="cover-content">
+            <span class="cover-label">E-Commerce Audit</span>
+            <h1 class="cover-title">Website & Conversion Audit</h1>
+            <p class="cover-subtitle">UX Analysis | Performance | Technology | Competitive Benchmarking</p>
+            <p class="cover-client">Deyga Organics</p>
+            <p class="cover-meta">Prepared by Growisto | March 2026</p>
+            <button class="cover-btn" onclick="showLogin()">
+                View Audit
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </button>
+        </div>
+        <div class="cover-footer">
+            Confidential | Prepared for Deyga Organics
+        </div>
+    </div>
+
+    <!-- ============================================
+         LOGIN SCREEN
+    ============================================ -->
+    <div class="login-screen hidden" id="loginScreen">
+        <div class="login-box">
+            <div class="login-logo">
+                <img src="growisto-logo.png" alt="Growisto">
+            </div>
+            <h1>Deyga Organics Audit</h1>
+            <p class="subtitle">Enter the access password to view the full audit</p>
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button onclick="checkPassword()">Access Audit</button>
+            <p class="error-message" id="errorMsg">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- ============================================
+         MAIN CONTENT (Sidebar + Content)
+    ============================================ -->
+    <div class="main-content" id="mainContent">
+
+        <!-- Mobile Header -->
+        <div class="mobile-header">
+            <img src="growisto-logo.png" alt="Growisto">
+            <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img src="growisto-logo.png" alt="Growisto">
+            </div>
+            <div class="sidebar-client">Deyga Organics</div>
+            <ul class="sidebar-nav">
+                <li><a href="#sec-overview" class="active"><span class="nav-number">01</span> Audit Overview</a></li>
+                <li><a href="#sec-traffic"><span class="nav-number">02</span> Traffic Analytics</a></li>
+                <li><a href="#sec-conversion"><span class="nav-number">03</span> Conversion Question</a></li>
+                <li><a href="#sec-performance"><span class="nav-number">04</span> Performance Benchmarks</a></li>
+                <li><a href="#sec-cwv"><span class="nav-number">05</span> Core Web Vitals</a></li>
+                <li><a href="#sec-ux"><span class="nav-number">06</span> UX & Conversion Findings</a></li>
+                <li><a href="#sec-tech"><span class="nav-number">07</span> Technology Assessment</a></li>
+                <li><a href="#sec-apps"><span class="nav-number">08</span> App Ecosystem</a></li>
+                <li><a href="#sec-about"><span class="nav-number">09</span> About Growisto</a></li>
+            </ul>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content-area">
+
+            <!-- SEC 01: AUDIT OVERVIEW -->
+            <section id="sec-overview">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">01</span>
+                        <div class="section-title-group">
+                            <h2>Audit Overview</h2>
+                            <p>What we analyzed and how this audit is structured</p>
+                        </div>
+                    </div>
+
+                    <div class="insight-box">
+                        <h4>What This Audit Covers</h4>
+                        <p>We conducted a comprehensive analysis of <strong>deyga.in</strong> across 4 key dimensions that impact your online revenue: <strong>User Experience & Conversion Design</strong>, <strong>Site Performance & Speed</strong>, <strong>Technology Stack & App Ecosystem</strong>, and <strong>Competitive Benchmarking</strong> against 3 leading Beauty & Personal Care stores.</p>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Audit Dimensions</h4>
+                            <ul>
+                                <li><span>UX & Conversion Design</span><span>18 findings</span></li>
+                                <li><span>Performance & Speed</span><span>Mobile + Desktop</span></li>
+                                <li><span>Technology Stack</span><span>Platform & Apps</span></li>
+                                <li><span>Competitive Benchmark</span><span>vs 3 stores</span></li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <h4>Pages Analyzed</h4>
+                            <ul>
+                                <li><span>Homepage</span><span>5 findings</span></li>
+                                <li><span>Collection Pages</span><span>4 findings</span></li>
+                                <li><span>Product Pages (PDP)</span><span>6 findings</span></li>
+                                <li><span>Cart & Checkout</span><span>3 findings</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEC 02: TRAFFIC ANALYTICS -->
+            <section id="sec-traffic">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">02</span>
+                        <div class="section-title-group">
+                            <h2>Traffic Analytics</h2>
+                            <p>Website traffic overview from SimilarWeb estimates</p>
+                        </div>
+                    </div>
+
+                    <div class="traffic-grid">
+                        <div class="traffic-card">
+                            <h5>Monthly Visits</h5>
+                            <div class="traffic-value">336.9K</div>
+                            <div class="traffic-label">Last month estimate</div>
+                        </div>
+                        <div class="traffic-card">
+                            <h5>Bounce Rate</h5>
+                            <div class="traffic-value">39.96%</div>
+                            <div class="traffic-label">Single-page sessions</div>
+                        </div>
+                        <div class="traffic-card">
+                            <h5>Pages / Visit</h5>
+                            <div class="traffic-value">3.11</div>
+                            <div class="traffic-label">Avg pages viewed</div>
+                        </div>
+                        <div class="traffic-card">
+                            <h5>Avg Duration</h5>
+                            <div class="traffic-value">2:49</div>
+                            <div class="traffic-label">Time on site</div>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Traffic Sources</h3>
+                    <div style="background: var(--color-bg-primary); padding: 24px; border-radius: 16px; border: 1px solid #e5e7eb; margin-bottom: 24px;">
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">Direct</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 37%; background: var(--color-primary);">37%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">Organic Search</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 25%; background: var(--color-success);">25%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">Social</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 16%; background: var(--color-tertiary);">16%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">Paid Search</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 13%; background: var(--color-warning);">13%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">Referral</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 6%; background: var(--color-primary-light);">6%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">Email</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 3%; background: #8b5cf6;">3%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Device Split</h3>
+                    <div class="device-split">
+                        <div class="device-label">Mobile<br><strong>85%</strong></div>
+                        <div class="device-split-bar">
+                            <div class="device-mobile" style="width: 85%;">85%</div>
+                            <div class="device-desktop" style="width: 15%;">15%</div>
+                        </div>
+                        <div class="device-label">Desktop<br><strong>15%</strong></div>
+                    </div>
+
+                    <h3 class="subsection-title">Top Countries</h3>
+                    <div style="background: var(--color-bg-primary); padding: 24px; border-radius: 16px; border: 1px solid #e5e7eb;">
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">India</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 70%; background: var(--color-success);">69.8%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">United States</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 10%; background: var(--color-primary);">10.2%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">United Kingdom</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 3.3%; background: var(--color-primary-light);">3.3%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">Vietnam</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 3%; background: var(--color-warning);">3.0%</div>
+                            </div>
+                        </div>
+                        <div class="traffic-source-bar">
+                            <span class="traffic-source-name">Pakistan</span>
+                            <div class="traffic-bar-track">
+                                <div class="traffic-bar-fill" style="width: 2.2%; background: var(--color-tertiary);">2.2%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEC 03: THE CONVERSION QUESTION -->
+            <section id="sec-conversion">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">03</span>
+                        <div class="section-title-group">
+                            <h2>The Conversion Question</h2>
+                            <p>What we can't measure yet — and why it matters</p>
+                        </div>
+                    </div>
+
+                    <table class="funnel-teaser-table">
+                        <thead>
+                            <tr>
+                                <th>Funnel Stage</th>
+                                <th>Metric</th>
+                                <th>Deyga Organics</th>
+                                <th>Industry Benchmark</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Product Views</td>
+                                <td>PDP View Rate</td>
+                                <td class="funnel-unknown">?</td>
+                                <td>89.6%</td>
+                            </tr>
+                            <tr>
+                                <td>Add to Cart</td>
+                                <td>ATC Rate</td>
+                                <td class="funnel-unknown">?</td>
+                                <td>11.95%</td>
+                            </tr>
+                            <tr>
+                                <td>Checkout</td>
+                                <td>Cart &rarr; Checkout</td>
+                                <td class="funnel-unknown">?</td>
+                                <td>29.8%</td>
+                            </tr>
+                            <tr>
+                                <td>Purchase</td>
+                                <td>Conversion Rate</td>
+                                <td class="funnel-unknown">?</td>
+                                <td>1.44%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="cta-box">
+                        <h4>We need GA4 access to unlock these numbers</h4>
+                        <p>With Google Analytics 4 viewer access, we can map your exact conversion funnel, identify where visitors drop off, and quantify the revenue opportunity at each stage. This turns assumptions into a precise, data-backed growth plan.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEC 04: PERFORMANCE BENCHMARKS -->
+            <section id="sec-performance">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">04</span>
+                        <div class="section-title-group">
+                            <h2>Performance Benchmarks</h2>
+                            <p>PageSpeed comparison: Deyga Organics vs top Beauty & Personal Care competitors</p>
+                        </div>
+                    </div>
+
+                    <table class="competition-table">
+                        <thead>
+                            <tr>
+                                <th>Store</th>
+                                <th>Mobile Score</th>
+                                <th>Desktop Score</th>
+                                <th>Mobile LCP</th>
+                                <th>Mobile CLS</th>
+                                <th>Mobile TBT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="client-row">
+                                <td>Deyga Organics</td>
+                                <td class="score-cell-good">81</td>
+                                <td class="score-cell-moderate">66</td>
+                                <td class="score-cell-good">1.9s</td>
+                                <td class="score-cell-moderate">0.164</td>
+                                <td class="score-cell-good">10ms</td>
+                            </tr>
+                            <tr>
+                                <td>Mamaearth</td>
+                                <td class="score-cell-good">91</td>
+                                <td class="score-cell-good">96</td>
+                                <td class="score-cell-moderate">2.6s</td>
+                                <td class="score-cell-good">0.022</td>
+                                <td class="score-cell-good">30ms</td>
+                            </tr>
+                            <tr>
+                                <td>mCaffeine</td>
+                                <td class="score-cell-moderate">61</td>
+                                <td class="score-cell-good">82</td>
+                                <td class="score-cell-poor">15.8s</td>
+                                <td class="score-cell-good">0.016</td>
+                                <td class="score-cell-moderate">240ms</td>
+                            </tr>
+                            <tr>
+                                <td>Minimalist</td>
+                                <td class="score-cell-moderate">51</td>
+                                <td class="score-cell-moderate">78</td>
+                                <td class="score-cell-poor">7.4s</td>
+                                <td class="score-cell-poor">1.207</td>
+                                <td class="score-cell-good">0ms</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="insight-box">
+                        <h4>What This Means</h4>
+                        <p>Deyga leads its category with a strong mobile PageSpeed score of 81 — significantly ahead of mCaffeine (61) and Minimalist (51), and within striking distance of Mamaearth (91). This is a genuine competitive advantage worth protecting. However, the desktop score of 66 lags behind all three competitors, and a CLS of 0.164 exceeds Google's "good" threshold. On the positive side, Deyga's LCP of 1.9s is the best in this comparison — beating even Mamaearth — meaning pages load visually fast for shoppers.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEC 05: CORE WEB VITALS -->
+            <section id="sec-cwv">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">05</span>
+                        <div class="section-title-group">
+                            <h2>Core Web Vitals</h2>
+                            <p>Google's user experience quality signals for Deyga Organics</p>
+                        </div>
+                    </div>
+
+                    <div class="cwv-grid">
+                        <div class="cwv-card">
+                            <h5>LCP</h5>
+                            <div class="cwv-value good">1.9s</div>
+                            <div class="cwv-target">Target: &le; 2.5s</div>
+                            <span class="cwv-status pass">Good</span>
+                        </div>
+                        <div class="cwv-card">
+                            <h5>FCP</h5>
+                            <div class="cwv-value good">1.6s</div>
+                            <div class="cwv-target">Target: &le; 1.8s</div>
+                            <span class="cwv-status pass">Good</span>
+                        </div>
+                        <div class="cwv-card">
+                            <h5>TBT</h5>
+                            <div class="cwv-value good">10ms</div>
+                            <div class="cwv-target">Target: &le; 200ms</div>
+                            <span class="cwv-status pass">Good</span>
+                        </div>
+                        <div class="cwv-card">
+                            <h5>CLS</h5>
+                            <div class="cwv-value moderate">0.164</div>
+                            <div class="cwv-target">Target: &le; 0.1</div>
+                            <span class="cwv-status needs-work">Needs Improvement</span>
+                        </div>
+                        <div class="cwv-card">
+                            <h5>INP</h5>
+                            <div class="cwv-value good">~120ms</div>
+                            <div class="cwv-target">Target: &le; 200ms</div>
+                            <span class="cwv-status pass">Good</span>
+                        </div>
+                    </div>
+
+                    <div class="insight-box">
+                        <h4>Impact on Revenue</h4>
+                        <p>Deyga's Core Web Vitals are largely in good shape — LCP of 1.9s and FCP of 1.6s are both well within Google's "good" thresholds, meaning pages load visually fast. The main area of concern is CLS (Cumulative Layout Shift) at 0.164, which exceeds the 0.1 target. This typically means page elements are shifting during load — frustrating users and potentially hurting Google's page experience ranking signal. Fixing layout shifts (often caused by images without dimensions or dynamically injected content like GoKwik widgets) can improve both SEO rankings and on-site conversion rates.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEC 06: UX & CONVERSION FINDINGS (Tabbed) -->
+            <section id="sec-ux">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">06</span>
+                        <div class="section-title-group">
+                            <h2>UX & Conversion Findings</h2>
+                            <p>Page-by-page analysis with visual comparisons against top Beauty & Personal Care stores</p>
+                        </div>
+                    </div>
+
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" onclick="showTab('tab-homepage', this)">Homepage</button>
+                            <button class="tab-btn" onclick="showTab('tab-collection', this)">Collection</button>
+                            <button class="tab-btn" onclick="showTab('tab-pdp', this)">Product Page</button>
+                            <button class="tab-btn" onclick="showTab('tab-cart', this)">Cart & Checkout</button>
+                        </div>
+
+                        <!-- TAB: Homepage -->
+                        <div class="tab-content active" id="tab-homepage">
+                            <div class="finding-cards">
+
+                                <!-- Finding 1: Intrusive Entry Popup -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Intrusive entry popups can increase bounce rates by 10-20% — delaying or suppressing them recovers first-time visitors
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/homepage-hero-desktop.jpeg" alt="Deyga homepage with spin-to-win popup">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>A spin-to-win gamification popup fires immediately on page load, before the user has seen any content.</li>
+                                                    <li>This forces interaction (close or spin) within the first second — high bounce risk for first-time visitors who haven't engaged yet.</li>
+                                                    <li>Best-in-class beauty brands either suppress popups entirely on first visit or delay them by 15+ seconds.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Delay the popup by at least 15 seconds, or trigger it on exit intent instead of page load.</li>
+                                                    <li>Consider replacing spin-to-win with a subtler slide-in banner or sticky footer bar offering a discount.</li>
+                                                    <li>Suppress the popup for returning visitors who've already interacted with it.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Growing &mdash; 4/10 top beauty stores use popups, but none on immediate load</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 2: Confusing Hero Messaging -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Clear, benefit-driven hero messaging can lift engagement by 15-25% — ambiguous copy undermines trust instantly
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/homepage-hero-desktop.jpeg" alt="Deyga hero section with confusing messaging">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>Hero copy reads "BUY ONLY IF YOU WANT" — while likely intended as playful, this is ambiguous and may confuse or repel first-time visitors.</li>
+                                                    <li>"Expect a delay in delivery" displayed prominently on the hero undermines purchase confidence before the user has even browsed products.</li>
+                                                    <li>Top beauty brands lead with clear value propositions: ingredient purity, results, or founding story.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Replace hero copy with a clear value proposition highlighting organic/natural positioning (e.g., "100% Natural. Freshly Made. For Real Results.").</li>
+                                                    <li>Move delivery notices to a dedicated section or FAQ — never on the hero.</li>
+                                                    <li>Lead with brand story, key benefits, or a compelling seasonal offer.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have benefit-driven hero messaging</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 3: No Quick Add on Product Cards -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Quick Add to Cart on homepage cards can boost add-to-cart rates by 8-12% by reducing browsing friction
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/homepage-categories-desktop.jpeg" alt="Deyga product cards without quick add">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>Product cards in Best Sellers and category sections require a full click-through to the PDP to add items to cart.</li>
+                                                    <li>This adds an extra step for returning customers who already know the products they want.</li>
+                                                    <li>No wishlist icon visible on homepage product cards either — missing a "save for later" touchpoint.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add a Quick Add button (hover or persistent) to product cards on homepage sections.</li>
+                                                    <li>For products with variants (size), show a mini variant selector in a Quick Add modal.</li>
+                                                    <li>Add wishlist/heart icon to product cards for save-for-later functionality.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 8/10 top beauty stores have Quick Add on homepage</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 4: SEO Issues -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Multiple H1 tags and missing structured data reduce organic search visibility — fixing these can lift click-through rates by 20-30%
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/homepage-bottom-desktop.jpeg" alt="Deyga homepage footer area">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>3 H1 tags detected on the homepage — Google recommends exactly 1 H1 per page for clear content hierarchy.</li>
+                                                    <li>Product schema (JSON-LD) is missing from product pages — star ratings, prices, and availability won't appear in Google search results.</li>
+                                                    <li>Breadcrumb schema is missing — reduces structured navigation in search snippets.</li>
+                                                    <li>Open Graph image tag uses HTTP instead of HTTPS — social sharing previews may break.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Consolidate to a single H1 tag per page — use the primary page title as H1, demote others to H2/H3.</li>
+                                                    <li>Add Product schema (JSON-LD) to all PDPs with name, image, price, rating, and availability.</li>
+                                                    <li>Fix OG image URL to use HTTPS protocol.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have proper schema markup</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 5: GoKwik Console Errors -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        JavaScript errors on every page load can silently break checkout flows — impacting conversion rates by 5-15%
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/cart-empty-desktop.jpeg" alt="GoKwik cart drawer with console errors">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>GoKwik checkout script is throwing "checkout element not found" errors repeatedly — logged 8+ times per page load across every page visited.</li>
+                                                    <li>Additional errors from product-form.js and recurpay scripts were also detected.</li>
+                                                    <li>These errors may silently degrade cart/checkout functionality for a subset of users — potentially causing invisible conversion leaks.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Audit the GoKwik integration immediately — check if the checkout element selectors match the current theme's DOM structure.</li>
+                                                    <li>Ensure GoKwik script loads after DOM is fully ready, not on page init.</li>
+                                                    <li>Set up real-time error monitoring (e.g., Sentry or Bugsnag) to catch and alert on checkout-breaking JS errors.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- TAB: Collection -->
+                        <div class="tab-content" id="tab-collection">
+                            <div class="finding-cards">
+
+                                <!-- Collection Finding 1: No Visible Filters -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Prominent filter controls on collection pages can increase product discovery by 20-30% and reduce bounce rates
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/collection-grid-desktop.jpeg" alt="Deyga collection page without visible filters">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>Collection page shows products in a grid with sort functionality, but no visible filter controls (by concern, price, product type, or rating).</li>
+                                                    <li>Beauty shoppers typically browse by skin concern (acne, dark spots, dry skin) — without filters, they must scroll through all 24+ products.</li>
+                                                    <li>Filter elements exist in the DOM but are not visually rendered — likely a CSS/theme display issue.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Make filter controls visually prominent — either as a sidebar or horizontal filter chips above the product grid.</li>
+                                                    <li>Add concern-based filters (key for beauty: acne, hydration, brightening, anti-aging) alongside price range and product type.</li>
+                                                    <li>Enable multi-select filtering with instant results and filter count badges.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores have prominent filter controls</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Collection Finding 2: No Collection Banner -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Collection hero banners increase category engagement by 15% and provide critical SEO value through contextual content
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/collection-grid-desktop.jpeg" alt="Deyga collection page without banner">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>Collection page jumps directly from header to product grid with no hero banner, lifestyle image, or category description.</li>
+                                                    <li>Misses the opportunity to set context, highlight promotions, or feature best sellers for the category.</li>
+                                                    <li>No SEO-friendly collection description text — critical for organic rankings on category terms like "natural face care products".</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add a collection hero banner with lifestyle imagery and a short category-specific value proposition.</li>
+                                                    <li>Include 2-3 sentences of SEO-optimized collection description text for organic ranking.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Growing &mdash; 7/10 top beauty stores have collection banners</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Collection Finding 3: No Breadcrumbs -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Visible breadcrumb navigation improves user orientation and adds rich snippet SEO benefits via Breadcrumb schema
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/collection-grid-desktop.jpeg" alt="Collection page missing breadcrumbs">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>Breadcrumb navigation elements exist in the DOM but are not visually rendered on the collection page.</li>
+                                                    <li>Users can't easily navigate back to parent categories or understand their position in the site hierarchy.</li>
+                                                    <li>Breadcrumb schema (JSON-LD) is also missing — a lost SEO opportunity for enhanced search result snippets.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Fix CSS to make breadcrumbs visible (they already exist in the HTML — just hidden).</li>
+                                                    <li>Implement Breadcrumb schema (JSON-LD) for SEO rich snippets in Google search results.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores show breadcrumb navigation</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Collection Finding 4: No Quick View -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Quick View popups keep shoppers on the collection page — reducing navigation friction and boosting add-to-cart rates
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/collection-grid-desktop.jpeg" alt="Collection page without quick view">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>No Quick View popup available on product cards — users must leave the collection page to see product details.</li>
+                                                    <li>This increases browsing friction, especially for comparison shoppers evaluating multiple products.</li>
+                                                    <li>Product cards do show ratings and prices, but lack a preview mechanism for product descriptions and ingredient lists.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add a Quick View popup showing product images, key details, ingredients, and an Add to Cart button.</li>
+                                                    <li>Include variant selector (size) in the Quick View modal.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Growing &mdash; 6/10 top beauty stores have Quick View</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- TAB: Product Page -->
+                        <div class="tab-content" id="tab-pdp">
+                            <div class="finding-cards">
+
+                                <!-- PDP Finding 1: No Image Zoom -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Image zoom on PDPs increases purchase confidence by 25-40% — critical for beauty products where texture and color matter
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/pdp-hero-desktop.jpeg" alt="Deyga PDP without image zoom">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>Product images (8 available) do not have hover-to-zoom or click-to-expand functionality.</li>
+                                                    <li>Beauty products require close-up inspection of texture, color, and ingredient labels — shoppers can't verify quality visually without zoom.</li>
+                                                    <li>This is a universal standard in beauty e-commerce — its absence stands out to experienced online shoppers.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add hover-to-zoom (desktop) and pinch-to-zoom (mobile) on product images.</li>
+                                                    <li>Include macro/close-up product shots showing texture and ingredient labels.</li>
+                                                    <li>Consider a lightbox gallery for full-screen image viewing.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have image zoom</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PDP Finding 2: No Product Video -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Product demo videos can increase conversions by 10-15% — beauty shoppers expect to see application and texture in motion
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/pdp-hero-desktop.jpeg" alt="Deyga PDP without product video">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>No product video or demonstration content is available on the PDP — only static images.</li>
+                                                    <li>Beauty products benefit heavily from application demos, texture reveals, and before/after demonstrations.</li>
+                                                    <li>Video content increases time on page and builds purchase confidence, especially for first-time buyers of organic skincare.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add short product demo videos (15-30 seconds) to key PDPs showing texture, application, and results.</li>
+                                                    <li>Embed videos within the product image carousel or as a dedicated media tab.</li>
+                                                    <li>Repurpose Instagram Reels/UGC content as product page videos.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Growing &mdash; 7/10 top beauty stores have product videos on PDPs</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PDP Finding 3: No Buy Now / Dynamic Checkout -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Express checkout buttons (Shop Pay, GPay) can reduce checkout time by 60% and increase impulse purchase completion
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/pdp-hero-desktop.jpeg" alt="Deyga PDP without Buy Now button">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>Only "Add to Cart" is available — no Buy Now or express checkout buttons (Shop Pay, GPay, Apple Pay) on the PDP.</li>
+                                                    <li>Impulse buyers who want to purchase immediately must go through the full cart flow, adding friction.</li>
+                                                    <li>GoKwik handles checkout but doesn't provide a PDP-level express checkout shortcut.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add a Buy Now button alongside Add to Cart — bypasses the cart for single-product purchases.</li>
+                                                    <li>Enable Shopify's dynamic checkout buttons (Shop Pay, GPay) below the ATC button.</li>
+                                                    <li>Test placement: Buy Now directly below ATC, express checkout buttons below that.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 8/10 top beauty stores have Buy Now or express checkout</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PDP Finding 4: No Sticky ATC -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        A sticky Add to Cart bar on mobile PDPs can boost conversions by 3-5% — keeping the purchase action always accessible
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/pdp-atc-area-desktop.jpeg" alt="Rebuy floating widget instead of sticky ATC">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>A Rebuy floating widget exists on the PDP, but it's a cross-sell/upsell widget — not a true sticky Add to Cart bar.</li>
+                                                    <li>When users scroll past the main ATC button (to read reviews, FAQs, or descriptions), they lose easy access to add the current product.</li>
+                                                    <li>On mobile especially, the ATC scrolls out of view quickly — users must scroll back up to purchase.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add a native sticky ATC bar on mobile that stays at the bottom of the screen when scrolling.</li>
+                                                    <li>Include product name, price, and selected variant in the sticky bar.</li>
+                                                    <li>Native sticky ATC outperforms floating cross-sell widgets for primary conversion action.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores have sticky ATC on mobile PDPs</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PDP Finding 5: Missing Product Schema -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Product schema (JSON-LD) adds star ratings, price, and availability to Google results — lifting organic CTR by 20-30%
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/pdp-reviews-desktop.jpeg" alt="Deyga PDP reviews section">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>No Product structured data (JSON-LD) detected in page source — despite having strong ratings (4.8 stars, 434 reviews).</li>
+                                                    <li>Without schema, Google search results won't show star ratings, price, or availability — significantly reducing click-through rates.</li>
+                                                    <li>Deyga has great review data (via Judge.me) that's invisible to search engines without proper markup.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Implement Product schema with name, image, description, price, rating, review count, and availability.</li>
+                                                    <li>Add AggregateRating schema to surface star ratings in Google search results.</li>
+                                                    <li>Use a Shopify SEO app (like JSON-LD for SEO) or add schema via custom Liquid code.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have Product schema</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PDP Finding 6: No Stock/Urgency -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Urgency and scarcity indicators can increase purchase motivation by 10-20% — converting browsers into buyers
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/pdp-hero-desktop.jpeg" alt="Deyga PDP without urgency elements">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>"1K+ Bought in Last Month" is excellent social proof — but it's static, not creating urgency.</li>
+                                                    <li>No low-stock indicators, countdown timers, or scarcity messaging visible on the PDP.</li>
+                                                    <li>No information about stock availability or expected restock dates for popular items.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add low-stock indicators ("Only X left in stock") when inventory falls below a threshold.</li>
+                                                    <li>Show real-time purchase notifications ("Someone just bought this 5 minutes ago").</li>
+                                                    <li>Add countdown timers for time-limited offers or seasonal promotions.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Growing &mdash; 6/10 top beauty stores show stock/urgency signals</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- TAB: Cart & Checkout -->
+                        <div class="tab-content" id="tab-cart">
+                            <div class="finding-cards">
+
+                                <!-- Cart Finding 1: GoKwik Errors -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Checkout integration errors can silently kill conversions — every broken checkout interaction is lost revenue
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/cart-empty-desktop.jpeg" alt="GoKwik cart drawer with errors">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>GoKwik checkout app throws "checkout element not found" errors repeatedly — 8+ times per page load on every page visited.</li>
+                                                    <li>The cart uses GoKwik's slide-out drawer (redirects /cart to /?openCart=true) — any GoKwik misconfiguration directly impacts the purchase flow.</li>
+                                                    <li>Additional errors from product-form.js and recurpay scripts compound the issue — multiple third-party scripts competing for DOM control.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Audit GoKwik integration urgently — verify the checkout element selectors match the current theme DOM structure.</li>
+                                                    <li>Ensure GoKwik, Recurpay, and product-form scripts load in the correct order without DOM conflicts.</li>
+                                                    <li>Test the full checkout flow end-to-end across Chrome, Safari, and mobile browsers to identify any user-facing breakage.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cart Finding 2: No Cross-Sell -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Cart-level cross-sell can increase average order value by 5-12% — the cart is a prime moment for complementary suggestions
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/cart-empty-desktop.jpeg" alt="Cart drawer without cross-sell">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>The GoKwik cart drawer shows no product recommendations, cross-sell, or "Complete Your Routine" suggestions.</li>
+                                                    <li>Empty cart state displays a "Grab Here!" CTA but no product suggestions to re-engage the shopper.</li>
+                                                    <li>Rebuy (already installed) powers PDP cross-sell but isn't configured for the cart — a missed AOV opportunity.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add "Complete Your Routine" or "Pairs Well With" recommendations in the cart drawer using Rebuy.</li>
+                                                    <li>Show recently viewed or best sellers in the empty cart state.</li>
+                                                    <li>Add a free shipping progress bar to incentivize adding more items.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Standard &mdash; 8/10 top beauty stores have cross-sell in cart</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cart Finding 3: No Coupon Field / Express Checkout -->
+                                <div class="finding-card">
+                                    <div class="finding-card-header">
+                                        Visible coupon fields and express checkout in the cart reduce checkout abandonment by making the path to purchase frictionless
+                                    </div>
+                                    <div class="finding-card-body">
+                                        <div class="finding-screenshots">
+                                            <div class="finding-screenshot">
+                                                <img src="screenshots/cart-empty-desktop.jpeg" alt="Cart drawer without coupon field">
+                                                <div class="finding-screenshot-label client-label">Deyga Organics</div>
+                                            </div>
+                                        </div>
+                                        <div class="finding-analysis">
+                                            <div class="finding-observations">
+                                                <span class="finding-section-header observations-header">Observations</span>
+                                                <ul>
+                                                    <li>No visible coupon or promo code input field in the cart drawer — customers with discount codes must wait until the checkout page to apply them.</li>
+                                                    <li>No express checkout buttons (Shop Pay, GPay, Apple Pay) visible in the cart — all transactions routed through GoKwik's standard flow.</li>
+                                                    <li>The "Trusted by 20L+ Buyers" scrolling trust bar is a nice touch, but lacks payment security icons (Visa, Mastercard, UPI).</li>
+                                                </ul>
+                                            </div>
+                                            <div class="finding-recommendations">
+                                                <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                <ul>
+                                                    <li>Add a collapsible promo code field in the cart drawer so coupon users don't have to hunt for it.</li>
+                                                    <li>Add express checkout buttons (Shop Pay, GPay, UPI) in the cart for faster purchase completion.</li>
+                                                    <li>Add payment method icons (Visa, MC, UPI, RuPay) alongside the trust messaging.</li>
+                                                </ul>
+                                                <span class="finding-benchmark-tag">Growing &mdash; 6/10 top beauty stores show coupon field in cart</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEC 07: TECHNOLOGY ASSESSMENT -->
+            <section id="sec-tech">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">07</span>
+                        <div class="section-title-group">
+                            <h2>Technology Assessment</h2>
+                            <p>Platform, theme, and architecture insights</p>
+                        </div>
+                    </div>
+
+                    <div class="tech-grid">
+                        <div class="tech-card">
+                            <h4>Platform</h4>
+                            <p><strong>Shopify</strong></p>
+                            <p style="margin-top: 8px; font-size: 13px; color: var(--color-text-muted);">Running on Shopify with a fully custom-built theme (not from the Theme Store).</p>
+                        </div>
+                        <div class="tech-card">
+                            <h4>Theme</h4>
+                            <p><strong>Custom Theme (Deyga Pads | Jeronone)</strong></p>
+                            <p style="margin-top: 8px; font-size: 13px; color: var(--color-text-muted);">Last updated February 2026. Custom-built theme with limited native e-commerce features — lacks image zoom, product tabs, and native sticky ATC.</p>
+                        </div>
+                        <div class="tech-card">
+                            <h4>Analytics</h4>
+                            <p><strong>GTM + GA4 + Multi-Pixel</strong></p>
+                            <p style="margin-top: 8px; font-size: 13px; color: var(--color-text-muted);">GA4, Facebook Pixel, Google Ads, Pinterest Tag, and Microsoft Clarity detected. GA4 ecommerce event status unknown without viewer access.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Technology Narrative</h3>
+                    <div class="insight-box">
+                        <p>Deyga runs on Shopify with a custom-built theme ("Deyga Pads | Jeronone"), last updated February 2026. The custom theme provides full design flexibility but comes with significant trade-offs: it lacks many built-in conversion features that modern Shopify themes offer out of the box — such as image zoom, product tabs, size guides, and native sticky Add to Cart. This means these features must be custom-coded or handled via third-party apps, adding complexity and potential performance overhead.</p>
+                        <p style="margin-top: 12px;">On the analytics front, Deyga has a solid pixel foundation with GA4, Facebook Pixel, Google Ads, Pinterest Tag, and Microsoft Clarity all detected. However, without GA4 viewer access, we cannot confirm whether ecommerce event tracking (view_item, add_to_cart, begin_checkout, purchase) is properly configured — a critical gap for data-driven optimization.</p>
+                        <p style="margin-top: 12px;">A notable concern is GoKwik: while installed for checkout optimization and serving as the cart drawer, it's throwing repeated console errors ("checkout element not found") on every page. Combined with errors from product-form.js and Recurpay scripts, this suggests DOM conflict issues between the custom theme and third-party integrations that need urgent debugging. If these errors are affecting checkout completion rates, the revenue impact could be significant.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEC 08: APP ECOSYSTEM -->
+            <section id="sec-apps">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">08</span>
+                        <div class="section-title-group">
+                            <h2>App Ecosystem</h2>
+                            <p>What's installed vs what's missing from best-in-class Beauty & Personal Care stores</p>
+                        </div>
+                    </div>
+
+                    <div class="app-ecosystem-grid">
+                        <div class="app-column present">
+                            <h4>Present</h4>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Judge.me</div>
+                                    <div class="app-category">Reviews & Social Proof</div>
+                                </div>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Klaviyo</div>
+                                    <div class="app-category">Email Marketing & Automation</div>
+                                </div>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Rebuy</div>
+                                    <div class="app-category">Cross-sell & Upsell</div>
+                                </div>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">GoKwik</div>
+                                    <div class="app-category">Checkout Optimization</div>
+                                </div>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Recharge / Recurpay</div>
+                                    <div class="app-category">Subscriptions & Auto-Replenish</div>
+                                </div>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Bitespeed</div>
+                                    <div class="app-category">WhatsApp Marketing</div>
+                                </div>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">WishlistHero</div>
+                                    <div class="app-category">Wishlist & Save for Later</div>
+                                </div>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Microsoft Clarity</div>
+                                    <div class="app-category">Heatmaps & Session Recording</div>
+                                </div>
+                            </div>
+                            <div class="app-item present">
+                                <div class="app-icon">&#10003;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Facebook Pixel + Google Ads + Pinterest</div>
+                                    <div class="app-category">Advertising Pixels</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-column missing">
+                            <h4>Missing</h4>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Advanced Search App</div>
+                                    <div class="app-category">Search & Discovery — No predictive/autocomplete search detected</div>
+                                </div>
+                            </div>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Loyalty & Rewards App</div>
+                                    <div class="app-category">Customer Retention — Rewards button visible but no app framework detected</div>
+                                </div>
+                            </div>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">SEO / Schema App</div>
+                                    <div class="app-category">SEO Enhancement — Missing Product JSON-LD and Breadcrumb schema</div>
+                                </div>
+                            </div>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Skin Quiz / Routine Builder</div>
+                                    <div class="app-category">Personalization — Help shoppers find the right products for their concerns</div>
+                                </div>
+                            </div>
+                            <div class="app-item missing">
+                                <div class="app-icon">&#10007;</div>
+                                <div class="app-item-details">
+                                    <div class="app-name">Back-in-Stock Notifications</div>
+                                    <div class="app-category">Demand Capture — No "Notify Me" option for out-of-stock products</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEC 09: ABOUT GROWISTO -->
+            <section id="sec-about">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-number">09</span>
+                        <div class="section-title-group">
+                            <h2>About Growisto</h2>
+                            <p>Our approach, case studies, and next steps</p>
+                        </div>
+                    </div>
+
+                    <div class="slides-embed-container">
+                        <div class="slides-placeholder">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
+                            </svg>
+                            <p>Google Slides presentation will be embedded here<br><small>About Growisto | Case Studies | Our Approach | Next Steps</small></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="report-footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-brand">
+                            <img src="growisto-logo-white.png" alt="Growisto">
+                            <p>We help e-commerce brands grow through data-driven CRO, performance optimization, and conversion-focused Shopify development.</p>
+                        </div>
+                        <div class="footer-contact">
+                            <h4>Let's Talk</h4>
+                            <p><strong>Growisto</strong></p>
+                            <p>CRO & Growth Marketing Experts</p>
+                            <p>www.growisto.com</p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>Website & Conversion Audit for Deyga Organics</p>
+                        <p>March 2026 | Confidential</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div><!-- /.content-area -->
+    </div><!-- /.main-content -->
+
+    <!-- ============================================
+         JAVASCRIPT
+    ============================================ -->
+    <script>
+        // Password Protection
+        const correctPassword = 'deyga2026';
+
+        function showLogin() {
+            document.getElementById('coverPage').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('passwordInput').focus();
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            if (input === correctPassword) {
+                sessionStorage.setItem('audit_authenticated', 'true');
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('mainContent').classList.add('visible');
+                initScrollSpy();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        // Check if already authenticated this session
+        if (sessionStorage.getItem('audit_authenticated') === 'true') {
+            document.getElementById('coverPage').classList.add('hidden');
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainContent').classList.add('visible');
+            requestAnimationFrame(initScrollSpy);
+        }
+
+        // Tab Switching
+        function showTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Sidebar Toggle (Mobile)
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    document.getElementById('sidebar').classList.remove('open');
+                    document.getElementById('sidebarOverlay').classList.remove('active');
+                }
+            });
+        });
+
+        // Scroll-Spy (IntersectionObserver)
+        function initScrollSpy() {
+            var sections = document.querySelectorAll('section[id]');
+            var navLinks = document.querySelectorAll('.sidebar-nav a');
+
+            if (!sections.length || !navLinks.length) return;
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var id = entry.target.getAttribute('id');
+                        navLinks.forEach(function(link) {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            });
+
+            sections.forEach(function(section) {
+                observer.observe(section);
+            });
+        }
+    </script>
+</body>
+</html>
