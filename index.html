@@ -691,17 +691,38 @@
         }
 
         /* ============================================
-           VIDEO FINDING CARDS
+           VIDEO FINDING CARDS (Google Drive Embed)
         ============================================ */
         .video-container {
             position: relative;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 9 / 16;
             border-radius: 8px;
             overflow: hidden;
             background: #1a1a1a;
-            cursor: pointer;
             border: 1px solid #e5e7eb;
+            max-height: 560px;
         }
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        .video-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: var(--color-primary);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        /* Legacy video element support (fallback) */
         .finding-video {
             width: 100%;
             height: 100%;
@@ -717,7 +738,7 @@
             justify-content: center;
             gap: 8px;
             background: rgba(0,0,0,0.25);
-            transition: opacity 0.3s ease, background 0.3s ease;
+            transition: opacity 0.3s ease;
         }
         .video-play-overlay span {
             color: #fff;
@@ -726,39 +747,8 @@
             letter-spacing: 0.5px;
             opacity: 0.9;
         }
-        .video-container:hover .video-play-overlay {
-            background: rgba(0,0,0,0.35);
-        }
         .video-container.playing .video-play-overlay {
             opacity: 0;
-            pointer-events: none;
-        }
-        .video-container.playing:hover .video-play-overlay {
-            opacity: 1;
-            pointer-events: auto;
-            background: rgba(0,0,0,0.15);
-        }
-        .video-container.playing:hover .video-play-overlay span {
-            display: none;
-        }
-        .video-container.playing:hover .video-play-overlay svg circle {
-            fill: rgba(54,117,136,0.7);
-        }
-        .video-container.playing:hover .video-play-overlay svg polygon {
-            /* Change to pause icon visually handled via JS */
-        }
-        .video-badge {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: var(--color-primary);
-            color: #fff;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 4px;
-            letter-spacing: 0.5px;
-            z-index: 2;
             pointer-events: none;
         }
         .finding-analysis {
@@ -1030,7 +1020,7 @@
         }
         @media (max-width: 480px) {
             .finding-screenshots { grid-template-columns: 1fr; }
-            .video-container { aspect-ratio: 4 / 3; }
+            .video-container { aspect-ratio: 9 / 16; max-height: 400px; }
         }
         @media (max-width: 768px) {
             .cover-title { font-size: 28px; }
@@ -1183,7 +1173,7 @@
                         <div class="info-card">
                             <h4>Audit Dimensions</h4>
                             <ul>
-                                <li><span>UX & Conversion Design</span><span>18 findings</span></li>
+                                <li><span>UX & Conversion Design</span><span>17 findings</span></li>
                                 <li><span>Performance & Speed</span><span>Mobile + Desktop</span></li>
                                 <li><span>Technology Stack</span><span>Platform & Apps</span></li>
                                 <li><span>Competitive Benchmark</span><span>vs 3 stores</span></li>
@@ -1192,7 +1182,7 @@
                         <div class="info-card">
                             <h4>Pages Analyzed</h4>
                             <ul>
-                                <li><span>Homepage</span><span>5 findings</span></li>
+                                <li><span>Homepage</span><span>4 findings</span></li>
                                 <li><span>Collection Pages</span><span>4 findings</span></li>
                                 <li><span>Product Pages (PDP)</span><span>6 findings</span></li>
                                 <li><span>Cart & Checkout</span><span>3 findings</span></li>
@@ -1533,62 +1523,7 @@
                         <div class="tab-content active" id="tab-homepage">
                             <div class="finding-cards">
 
-                                <!-- Finding 1: No Email/SMS Capture Mechanism -->
-                                <div class="finding-card">
-                                    <div class="finding-card-header">
-                                        Email/SMS popups or embedded signup forms capture 3-8% of first-time visitors into nurture flows — without one, Deyga has no mechanism to recover non-purchasing traffic
-                                    </div>
-                                    <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           poster="https://res.cloudinary.com/dmwar4jbc/video/upload/so_2,f_jpg,w_375,q_auto/v1773145240/growisto-audits/deyga/homepage-no-email-popup.mp4"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="https://res.cloudinary.com/dmwar4jbc/video/upload/v1773145240/growisto-audits/deyga/homepage-no-email-popup.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(54,117,136,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge">VIDEO</span>
-                                                </div>
-                                                <div class="finding-screenshot-label client-label">Deyga — No Popup or Email Capture</div>
-                                                <div class="finding-screenshot-url">deyga.in</div>
-                                            </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-mamaearth-homepage-mobile.jpeg" alt="Mamaearth homepage showing clean entry with timed email capture after browsing">
-                                                <div class="finding-screenshot-label competitor-label">Mamaearth — Timed Email Capture</div>
-                                                <div class="finding-screenshot-url">mamaearth.com</div>
-                                            </div>
-                                        </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Deyga's homepage has <strong>no popup, slide-in, or embedded email/SMS capture form</strong> — first-time visitors who don't purchase leave with no way to bring them back.</li>
-                                                    <li>With 94% mobile traffic and a beauty category where purchase decisions often take multiple visits, <strong>losing first-visit non-buyers permanently</strong> is a significant revenue leak.</li>
-                                                    <li><strong>Psychology: Mere Exposure Effect.</strong> People develop preference for brands they encounter repeatedly. Email/SMS flows create these repeated touchpoints — without a capture mechanism, Deyga relies entirely on paid retargeting or organic return visits.</li>
-                                                    <li>Mamaearth, mCaffeine, and Minimalist all use timed or exit-intent email capture with a discount incentive — typically appearing after 30-60 seconds of browsing or on scroll depth trigger.</li>
-                                                </ul>
-                                            </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>⚡ Quick Win:</strong> Add an exit-intent or scroll-triggered email/SMS capture popup with a 10-15% discount incentive — exit-intent popups convert at 3-10% and don't disrupt browsing since they only appear when the user is leaving.</li>
-                                                    <li><strong>🧪 Test Idea:</strong> Use a click-triggered slide-in ("Tap for your discount") instead of an auto-popup — click-triggered opt-ins convert at 10%+ because the user opts in voluntarily, eliminating Reactance.</li>
-                                                    <li>Suppress the popup for returning visitors who've already subscribed — show max once per session, then not again for 7-30 days.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 8/10 top beauty stores use email/SMS capture popups</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Finding 2: Confusing Hero Messaging -->
+                                <!-- Finding 1: Confusing Hero Messaging -->
                                 <div class="finding-card">
                                     <div class="finding-card-header">
                                         Clear, benefit-driven hero messaging can lift engagement by 15-25% — ambiguous copy undermines trust instantly
@@ -1779,9 +1714,8 @@
                                             <div class="finding-screenshot">
                                                 <div class="video-container" data-lazy-video>
                                                     <video class="finding-video"
-                                                           poster="https://res.cloudinary.com/dmwar4jbc/video/upload/so_2,f_jpg,w_375,q_auto/v1773145243/growisto-audits/deyga/collection-no-filters.mp4"
                                                            muted loop playsinline preload="none"
-                                                           data-src="https://res.cloudinary.com/dmwar4jbc/video/upload/v1773145243/growisto-audits/deyga/collection-no-filters.mp4">
+                                                           data-src="media/videos/collection-no-filters.mp4">
                                                     </video>
                                                     <div class="video-play-overlay">
                                                         <svg viewBox="0 0 48 48" width="48" height="48">
@@ -1796,7 +1730,20 @@
                                                 <div class="finding-screenshot-url">deyga.in/collections/all</div>
                                             </div>
                                             <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-plum-collection-filters.jpeg" alt="Plum Goodness collection with expanded filter sidebar showing concern, price, and product type filters">
+                                                <div class="video-container" data-lazy-video>
+                                                    <video class="finding-video"
+                                                           muted loop playsinline preload="none"
+                                                           data-src="media/videos/competitor-plum-filters.mp4">
+                                                    </video>
+                                                    <div class="video-play-overlay">
+                                                        <svg viewBox="0 0 48 48" width="48" height="48">
+                                                            <circle cx="24" cy="24" r="23" fill="rgba(16,185,129,0.85)"/>
+                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
+                                                        </svg>
+                                                        <span>Click to play</span>
+                                                    </div>
+                                                    <span class="video-badge" style="background:var(--color-success);">VIDEO</span>
+                                                </div>
                                                 <div class="finding-screenshot-label competitor-label">Plum — Expanded Filter Controls</div>
                                                 <div class="finding-screenshot-url">plumgoodness.com/collections</div>
                                             </div>
@@ -1912,9 +1859,8 @@
                                             <div class="finding-screenshot">
                                                 <div class="video-container" data-lazy-video>
                                                     <video class="finding-video"
-                                                           poster="https://res.cloudinary.com/dmwar4jbc/video/upload/so_2,f_jpg,w_375,q_auto/v1773145246/growisto-audits/deyga/collection-no-quick-view.mp4"
                                                            muted loop playsinline preload="none"
-                                                           data-src="https://res.cloudinary.com/dmwar4jbc/video/upload/v1773145246/growisto-audits/deyga/collection-no-quick-view.mp4">
+                                                           data-src="media/videos/collection-no-quick-view.mp4">
                                                     </video>
                                                     <div class="video-play-overlay">
                                                         <svg viewBox="0 0 48 48" width="48" height="48">
@@ -1929,7 +1875,20 @@
                                                 <div class="finding-screenshot-url">deyga.in/collections/all</div>
                                             </div>
                                             <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics collection with rich product cards showing shade options, ratings, and quick add">
+                                                <div class="video-container" data-lazy-video>
+                                                    <video class="finding-video"
+                                                           muted loop playsinline preload="none"
+                                                           data-src="media/videos/competitor-sugar-quick-view.mp4">
+                                                    </video>
+                                                    <div class="video-play-overlay">
+                                                        <svg viewBox="0 0 48 48" width="48" height="48">
+                                                            <circle cx="24" cy="24" r="23" fill="rgba(16,185,129,0.85)"/>
+                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
+                                                        </svg>
+                                                        <span>Click to play</span>
+                                                    </div>
+                                                    <span class="video-badge" style="background:var(--color-success);">VIDEO</span>
+                                                </div>
                                                 <div class="finding-screenshot-label competitor-label">Sugar — Rich Cards with Shade Preview</div>
                                                 <div class="finding-screenshot-url">sugarcosmetics.com/collections</div>
                                             </div>
@@ -1972,9 +1931,8 @@
                                             <div class="finding-screenshot">
                                                 <div class="video-container" data-lazy-video>
                                                     <video class="finding-video"
-                                                           poster="https://res.cloudinary.com/dmwar4jbc/video/upload/so_2,f_jpg,w_375,q_auto/v1773145248/growisto-audits/deyga/pdp-no-image-zoom.mp4"
                                                            muted loop playsinline preload="none"
-                                                           data-src="https://res.cloudinary.com/dmwar4jbc/video/upload/v1773145248/growisto-audits/deyga/pdp-no-image-zoom.mp4">
+                                                           data-src="media/videos/pdp-no-image-zoom.mp4">
                                                     </video>
                                                     <div class="video-play-overlay">
                                                         <svg viewBox="0 0 48 48" width="48" height="48">
@@ -1989,7 +1947,20 @@
                                                 <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
                                             </div>
                                             <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-minimalist-pdp-mobile.jpeg" alt="Minimalist PDP with zoom icon overlay on product image and detailed ingredient display">
+                                                <div class="video-container" data-lazy-video>
+                                                    <video class="finding-video"
+                                                           muted loop playsinline preload="none"
+                                                           data-src="media/videos/competitor-minimalist-zoom.mp4">
+                                                    </video>
+                                                    <div class="video-play-overlay">
+                                                        <svg viewBox="0 0 48 48" width="48" height="48">
+                                                            <circle cx="24" cy="24" r="23" fill="rgba(16,185,129,0.85)"/>
+                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
+                                                        </svg>
+                                                        <span>Click to play</span>
+                                                    </div>
+                                                    <span class="video-badge" style="background:var(--color-success);">VIDEO</span>
+                                                </div>
                                                 <div class="finding-screenshot-label competitor-label">Minimalist — Zoom Icon on Images</div>
                                                 <div class="finding-screenshot-url">beminimalist.co/products</div>
                                             </div>
@@ -2108,9 +2079,8 @@
                                             <div class="finding-screenshot">
                                                 <div class="video-container" data-lazy-video>
                                                     <video class="finding-video"
-                                                           poster="https://res.cloudinary.com/dmwar4jbc/video/upload/so_2,f_jpg,w_375,q_auto/v1773145258/growisto-audits/deyga/pdp-broken-sticky-atc.mp4"
                                                            muted loop playsinline preload="none"
-                                                           data-src="https://res.cloudinary.com/dmwar4jbc/video/upload/v1773145258/growisto-audits/deyga/pdp-broken-sticky-atc.mp4">
+                                                           data-src="media/videos/pdp-broken-sticky-atc.mp4">
                                                     </video>
                                                     <div class="video-play-overlay">
                                                         <svg viewBox="0 0 48 48" width="48" height="48">
@@ -2125,7 +2095,20 @@
                                                 <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
                                             </div>
                                             <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-mcaffeine-pdp-sticky-atc.jpeg" alt="mCaffeine PDP with fixed sticky ATC bar at bottom showing Add to Cart button and quantity selector">
+                                                <div class="video-container" data-lazy-video>
+                                                    <video class="finding-video"
+                                                           muted loop playsinline preload="none"
+                                                           data-src="media/videos/competitor-mcaffeine-sticky-atc.mp4">
+                                                    </video>
+                                                    <div class="video-play-overlay">
+                                                        <svg viewBox="0 0 48 48" width="48" height="48">
+                                                            <circle cx="24" cy="24" r="23" fill="rgba(16,185,129,0.85)"/>
+                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
+                                                        </svg>
+                                                        <span>Click to play</span>
+                                                    </div>
+                                                    <span class="video-badge" style="background:var(--color-success);">VIDEO</span>
+                                                </div>
                                                 <div class="finding-screenshot-label competitor-label">mCaffeine — Functional Sticky ATC Bar</div>
                                                 <div class="finding-screenshot-url">mcaffeine.com/products</div>
                                             </div>
@@ -2263,9 +2246,8 @@
                                             <div class="finding-screenshot">
                                                 <div class="video-container" data-lazy-video>
                                                     <video class="finding-video"
-                                                           poster="https://res.cloudinary.com/dmwar4jbc/video/upload/so_2,f_jpg,w_375,q_auto/v1773145262/growisto-audits/deyga/cart-gokwik-errors.mp4"
                                                            muted loop playsinline preload="none"
-                                                           data-src="https://res.cloudinary.com/dmwar4jbc/video/upload/v1773145262/growisto-audits/deyga/cart-gokwik-errors.mp4">
+                                                           data-src="media/videos/cart-gokwik-errors.mp4">
                                                     </video>
                                                     <div class="video-play-overlay">
                                                         <svg viewBox="0 0 48 48" width="48" height="48">
