@@ -644,118 +644,96 @@
             line-height: 1.4;
             text-align: center;
         }
+        /* ============================================
+           FINDING CARDS — 2-ROW LAYOUT
+           Row 1: Client evidence (screenshots + observations)
+           Row 2: Competitor evidence (screenshots + recommendations)
+        ============================================ */
         .finding-card-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            min-height: 400px;
-        }
-        .finding-screenshots {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            padding: 24px;
-            border-right: 1px solid #e5e7eb;
-            align-content: start;
-        }
-        .finding-screenshot {
             display: flex;
             flex-direction: column;
-            gap: 8px;
         }
-        .finding-screenshot img {
+        .finding-row {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .finding-row:last-child {
+            border-bottom: none;
+        }
+        .finding-row-label {
+            grid-column: 1 / -1;
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        .finding-row-label.client-row-label {
+            background: #fef2f2;
+            color: #991b1b;
+            border-bottom: 1px solid #fecaca;
+        }
+        .finding-row-label.competitor-row-label {
+            background: #f0fdf4;
+            color: #166534;
+            border-bottom: 1px solid #bbf7d0;
+        }
+        .finding-row-screenshots {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 16px;
+            border-right: 1px solid #e5e7eb;
+        }
+        .screenshot-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 0;
+        }
+        .screenshot-step img {
             width: 100%;
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid #e5e7eb;
             object-fit: cover;
-            max-height: 420px;
+            max-height: 400px;
             background: #f0f0f0;
         }
-        .finding-screenshot-label {
+        .screenshot-step-label {
             text-align: center;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 4px 0;
-        }
-        .finding-screenshot-label.client-label { color: var(--color-danger); }
-        .finding-screenshot-label.competitor-label { color: var(--color-success); }
-        .finding-screenshot-label.benchmark-label { color: var(--color-success); }
-        .finding-screenshot-url {
-            text-align: center;
-            font-size: 10px;
-            color: var(--color-text-muted);
-            opacity: 0.7;
-            font-family: monospace;
-            padding: 0 4px 4px;
-            word-break: break-all;
-        }
-
-        /* ============================================
-           VIDEO FINDING CARDS (Google Drive Embed)
-        ============================================ */
-        .video-container {
-            position: relative;
-            aspect-ratio: 9 / 16;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #1a1a1a;
-            border: 1px solid #e5e7eb;
-            max-height: 560px;
-        }
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-        .video-badge {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: var(--color-primary);
-            color: #fff;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 4px;
-            letter-spacing: 0.5px;
-            z-index: 2;
-            pointer-events: none;
-        }
-        /* Legacy video element support (fallback) */
-        .finding-video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-        .video-play-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: rgba(0,0,0,0.25);
-            transition: opacity 0.3s ease;
-        }
-        .video-play-overlay span {
-            color: #fff;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.5px;
-            opacity: 0.9;
+            color: var(--color-text-muted);
+            line-height: 1.3;
         }
-        .video-container.playing .video-play-overlay {
-            opacity: 0;
-            pointer-events: none;
+        .step-arrow {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-primary);
+            padding: 0 2px;
+            flex-shrink: 0;
+            margin-top: 60px;
         }
-        .finding-analysis {
-            padding: 24px;
+        .finding-row-text {
+            padding: 16px 20px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 12px;
+            justify-content: center;
+        }
+        .code-evidence-block {
+            background: #1e1e2e;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: auto;
         }
         .finding-section-header {
             display: inline-block;
@@ -1014,13 +992,12 @@
             .tab-buttons { top: 56px; }
         }
         @media (max-width: 900px) {
-            .finding-card-body { grid-template-columns: 1fr; }
-            .finding-screenshots { border-right: none; border-bottom: 1px solid #e5e7eb; }
-            .finding-screenshots { grid-template-columns: 1fr 1fr; }
+            .finding-row { grid-template-columns: 1fr; }
+            .finding-row-screenshots { border-right: none; border-bottom: 1px solid #e5e7eb; }
         }
         @media (max-width: 480px) {
-            .finding-screenshots { grid-template-columns: 1fr; }
-            .video-container { aspect-ratio: 9 / 16; max-height: 400px; }
+            .finding-row-screenshots { flex-direction: column; }
+            .step-arrow { margin-top: 0; transform: rotate(90deg); align-self: center; padding: 4px 0; }
         }
         @media (max-width: 768px) {
             .cover-title { font-size: 28px; }
@@ -1529,37 +1506,46 @@
                                         Clear, benefit-driven hero messaging can lift engagement by 15-25% — ambiguous copy undermines trust instantly
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-hero-buyonlyifyouwant.jpeg" alt="Deyga hero slide reading BUY ONLY IF YOU WANT with delivery delay warning">
-                                                <div class="finding-screenshot-label client-label">Deyga — "Buy Only If You Want" Hero</div>
-                                                <div class="finding-screenshot-url">deyga.in</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-hero-buyonlyifyouwant.jpeg" alt="Deyga hero slide reading BUY ONLY IF YOU WANT with delivery delay warning">
+                                                    <div class="screenshot-step-label">Ambiguous hero copy</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-mcaffeine-pdp-trust-mobile.jpeg" alt="mCaffeine homepage with clear benefit-driven trust messaging">
-                                                <div class="finding-screenshot-label competitor-label">mCaffeine — Benefit-Driven Messaging</div>
-                                                <div class="finding-screenshot-url">mcaffeine.com</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>One of the hero carousel slides reads <strong>"BUY ONLY IF YOU WANT"</strong> — while intended as playful/quirky, this is ambiguous and may confuse or repel first-time visitors who don't know the brand.</li>
+                                                        <li><strong>Psychology: Ambiguity Aversion.</strong> When people encounter unclear messaging, they default to inaction. "BUY ONLY IF YOU WANT" creates uncertainty about the brand's confidence in its own products — and uncertain visitors don't convert.</li>
+                                                        <li>Another hero slide states <strong>"Expect a delay in delivery"</strong> prominently — this plants a negative expectation before the user has even browsed a single product.</li>
+                                                        <li>The hero carousel has 6 slides, mixing product-focused slides with confusing copy — inconsistent messaging weakens brand positioning.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>One of the hero carousel slides reads <strong>"BUY ONLY IF YOU WANT"</strong> — while intended as playful/quirky, this is ambiguous and may confuse or repel first-time visitors who don't know the brand.</li>
-                                                    <li><strong>Psychology: Ambiguity Aversion.</strong> When people encounter unclear messaging, they default to inaction. "BUY ONLY IF YOU WANT" creates uncertainty about the brand's confidence in its own products — and uncertain visitors don't convert. First-time visitors need clarity, not riddles.</li>
-                                                    <li>Another hero slide states <strong>"Expect a delay in delivery"</strong> prominently — this plants a negative expectation before the user has even browsed a single product. It front-loads a pain point that should be handled in cart or checkout where commitment is already established.</li>
-                                                    <li>The hero carousel has 6 slides, mixing product-focused slides with confusing copy — inconsistent messaging weakens brand positioning.</li>
-                                                    <li>Top beauty brands (mCaffeine, Mamaearth, Minimalist) lead with clear trust signals: ingredient purity, clinical results, and social proof.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; mCaffeine</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-mcaffeine-pdp-trust-mobile.jpeg" alt="mCaffeine homepage with clear benefit-driven trust messaging">
+                                                    <div class="screenshot-step-label">Benefit-driven trust messaging</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>🔥 High Impact:</strong> Replace "BUY ONLY IF YOU WANT" with a specific benefit headline: <em>"100% Handmade. Zero Chemicals. Made Fresh For Your Skin."</em> — clear, benefit-driven, eliminates ambiguity. Specificity converts; cleverness confuses.</li>
-                                                    <li><strong>⚡ Quick Win:</strong> Move delivery delay notices to a subtle announcement bar or FAQ — never on the hero. Reduce carousel to 3 slides max (hero headline, bestseller spotlight, seasonal offer) since 6 slides mean most are never seen.</li>
-                                                    <li>Lead slide 1 with brand promise (organic/handmade), slide 2 with social proof ("Trusted by 20L+ buyers"), slide 3 with an offer/CTA — this mirrors what mCaffeine and Mamaearth do.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have benefit-driven hero messaging</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>🔥 High Impact:</strong> Replace "BUY ONLY IF YOU WANT" with a specific benefit headline: <em>"100% Handmade. Zero Chemicals. Made Fresh For Your Skin."</em> — clear, benefit-driven, eliminates ambiguity.</li>
+                                                        <li><strong>⚡ Quick Win:</strong> Move delivery delay notices to a subtle announcement bar or FAQ — never on the hero. Reduce carousel to 3 slides max since 6 slides mean most are never seen.</li>
+                                                        <li>Lead slide 1 with brand promise (organic/handmade), slide 2 with social proof ("Trusted by 20L+ buyers"), slide 3 with an offer/CTA.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have benefit-driven hero messaging</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1571,36 +1557,45 @@
                                         Inline variant selectors and wishlist icons on product cards can boost add-to-cart rates by 8-12% and capture purchase intent earlier
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-hp-product-cards-atc.jpeg" alt="Deyga product cards with Add to Cart button but no variant selector or wishlist icon">
-                                                <div class="finding-screenshot-label client-label">Deyga — ATC Button, No Variants</div>
-                                                <div class="finding-screenshot-url">deyga.in</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-hp-product-cards-atc.jpeg" alt="Deyga product cards with Add to Cart button but no variant selector or wishlist icon">
+                                                    <div class="screenshot-step-label">ATC button, no variant selector</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics product cards with shade swatches, ratings, and quick add">
-                                                <div class="finding-screenshot-label competitor-label">Sugar — Shade Swatches + Ratings on Cards</div>
-                                                <div class="finding-screenshot-url">sugarcosmetics.com</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>Product cards do have an "Add to Cart" button (good), but <strong>clicking it adds the default variant without showing size options</strong> — customers may get the wrong size in their cart.</li>
+                                                        <li>Many Deyga products come in multiple sizes (30ml, 100ml, combo packs) — the homepage card ATC doesn't let users choose.</li>
+                                                        <li>No wishlist/heart icon on product cards — missing a "save for later" touchpoint that captures purchase intent from browsers not yet ready to buy.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Product cards do have an "Add to Cart" button (good), but <strong>clicking it adds the default variant without showing size options</strong> — customers may get the wrong size in their cart.</li>
-                                                    <li>Many Deyga products come in multiple sizes (30ml, 100ml, combo packs) — the homepage card ATC doesn't let users choose.</li>
-                                                    <li>No wishlist/heart icon on product cards — missing a "save for later" touchpoint that captures purchase intent from browsers not yet ready to buy.</li>
-                                                    <li>Sugar Cosmetics shows shade swatches (23 colors visible), star ratings, and clear variant selection directly on collection cards.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Sugar Cosmetics</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics product cards with shade swatches, ratings, and quick add">
+                                                    <div class="screenshot-step-label">Shade swatches + ratings on cards</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li>Add a mini variant selector (size dropdown or pills) that appears on tap/hover before adding to cart.</li>
-                                                    <li>Add a wishlist/heart icon on each product card — WishlistHero is already installed but not visible on homepage cards.</li>
-                                                    <li>Show star ratings directly on product cards to leverage Judge.me review data in browsing context.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 8/10 top beauty stores show variant selectors on product cards</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li>Add a mini variant selector (size dropdown or pills) that appears on tap/hover before adding to cart.</li>
+                                                        <li>Add a wishlist/heart icon on each product card — WishlistHero is already installed but not visible on homepage cards.</li>
+                                                        <li>Show star ratings directly on product cards to leverage Judge.me review data in browsing context.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Standard &mdash; 8/10 top beauty stores show variant selectors on product cards</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1612,41 +1607,49 @@
                                         Multiple H1 tags and missing structured data reduce organic search visibility — fixing these can lift click-through rates by 20-30%
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot" style="width:100%;">
-                                                <div style="background: #1e1e2e; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; color: #e0e0e0; line-height: 1.7; overflow-x: auto;">
-                                                    <div style="color: #888; margin-bottom: 8px;">/* 3 H1 tags found on homepage — Google expects exactly 1 */</div>
-                                                    <div><span style="color: #ff6b6b;">&lt;h1&gt;</span> "Our Best Sellers" <span style="color: #ff6b6b;">&lt;/h1&gt;</span></div>
-                                                    <div><span style="color: #ff6b6b;">&lt;h1&gt;</span> "Shop By Concern" <span style="color: #ff6b6b;">&lt;/h1&gt;</span></div>
-                                                    <div><span style="color: #ff6b6b;">&lt;h1&gt;</span> "Our Ingredients" <span style="color: #ff6b6b;">&lt;/h1&gt;</span></div>
-                                                    <div style="color: #888; margin-top: 12px;">/* Missing from page source: */</div>
-                                                    <div style="color: #ffa07a;">&#10007; Product JSON-LD schema</div>
-                                                    <div style="color: #ffa07a;">&#10007; Breadcrumb schema</div>
-                                                    <div style="color: #ffa07a;">&#10007; AggregateRating schema</div>
-                                                    <div style="color: #69db7c;">&#10003; Open Graph tags present (but image URL uses HTTP)</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Source Code Evidence</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step" style="flex: 1;">
+                                                    <div class="code-evidence-block" style="background: #1e1e2e; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; color: #e0e0e0; line-height: 1.7; overflow-x: auto;">
+                                                        <div style="color: #888; margin-bottom: 8px;">/* 3 H1 tags found on homepage — Google expects exactly 1 */</div>
+                                                        <div><span style="color: #ff6b6b;">&lt;h1&gt;</span> "Our Best Sellers" <span style="color: #ff6b6b;">&lt;/h1&gt;</span></div>
+                                                        <div><span style="color: #ff6b6b;">&lt;h1&gt;</span> "Shop By Concern" <span style="color: #ff6b6b;">&lt;/h1&gt;</span></div>
+                                                        <div><span style="color: #ff6b6b;">&lt;h1&gt;</span> "Our Ingredients" <span style="color: #ff6b6b;">&lt;/h1&gt;</span></div>
+                                                        <div style="color: #888; margin-top: 12px;">/* Missing from page source: */</div>
+                                                        <div style="color: #ffa07a;">&#10007; Product JSON-LD schema</div>
+                                                        <div style="color: #ffa07a;">&#10007; Breadcrumb schema</div>
+                                                        <div style="color: #ffa07a;">&#10007; AggregateRating schema</div>
+                                                        <div style="color: #69db7c;">&#10003; Open Graph tags present (but image URL uses HTTP)</div>
+                                                    </div>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Deyga — Source Code Evidence</div>
-                                                <div class="finding-screenshot-url">deyga.in (view-source)</div>
+                                            </div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li><strong>3 H1 tags</strong> found on the homepage: "Our Best Sellers", "Shop By Concern", and "Our Ingredients" — Google recommends exactly 1 H1 per page.</li>
+                                                        <li><strong>Product schema (JSON-LD) missing</strong> from product pages — despite having 4.8★ ratings with 434+ reviews (via Judge.me), star ratings won't appear in Google search results.</li>
+                                                        <li><strong>Breadcrumb schema missing</strong> — no structured navigation in search snippets, reducing organic CTR.</li>
+                                                        <li>Open Graph image tag uses <strong>HTTP instead of HTTPS</strong> — social sharing previews may break.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li><strong>3 H1 tags</strong> found on the homepage: "Our Best Sellers", "Shop By Concern", and "Our Ingredients" — Google recommends exactly 1 H1 per page for clear content hierarchy.</li>
-                                                    <li><strong>Product schema (JSON-LD) missing</strong> from product pages — despite having 4.8★ ratings with 434+ reviews (via Judge.me), star ratings won't appear in Google search results.</li>
-                                                    <li><strong>Breadcrumb schema missing</strong> — no structured navigation in search snippets, reducing organic CTR.</li>
-                                                    <li>Open Graph image tag uses <strong>HTTP instead of HTTPS</strong> — social sharing previews may break on Facebook, WhatsApp, and other platforms.</li>
-                                                </ul>
-                                            </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li>Consolidate to a single H1 tag per page — keep "Our Best Sellers" as H1 (if the most important), demote others to H2.</li>
-                                                    <li>Add Product schema (JSON-LD) to all PDPs with name, image, price, rating, review count, and availability.</li>
-                                                    <li>Fix OG image URL to use HTTPS protocol for reliable social sharing.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have proper schema markup</span>
+                                        <!-- Recommendations Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Industry Standard</div>
+                                            <div class="finding-row-text" style="flex: 1;">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li>Consolidate to a single H1 tag per page — keep "Our Best Sellers" as H1 (if the most important), demote others to H2.</li>
+                                                        <li>Add Product schema (JSON-LD) to all PDPs with name, image, price, rating, review count, and availability.</li>
+                                                        <li>Fix OG image URL to use HTTPS protocol for reliable social sharing.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have proper schema markup</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1658,40 +1661,48 @@
                                         JavaScript errors on every page load can silently break checkout flows — impacting conversion rates by 5-15%
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot" style="width:100%;">
-                                                <div style="background: #1e1e2e; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 11px; color: #e0e0e0; line-height: 1.8; overflow-x: auto;">
-                                                    <div style="color: #888; margin-bottom: 8px;">/* Console errors logged on EVERY page load */</div>
-                                                    <div style="color: #ff6b6b;">&#9888; GoKwik: "checkout element not found" <span style="color:#888;">&times;8 per page</span></div>
-                                                    <div style="color: #ff6b6b;">&#9888; GoKwik: "gokwikCheckout is not defined"</div>
-                                                    <div style="color: #ff6b6b;">&#9888; product-form.js: "Cannot read properties of null"</div>
-                                                    <div style="color: #ff6b6b;">&#9888; Recurpay: SyntaxError in querySelectorAll</div>
-                                                    <div style="color: #ff6b6b;">&#9888; Bitespeed: InvalidStateError on widget init</div>
-                                                    <div style="color: #888; margin-top: 8px;">/* Fires on: Homepage, Collection, PDP, Cart — every page */</div>
-                                                    <div style="color: #ffa07a; margin-top: 4px;">Total: 15+ errors per page load across 4 different scripts</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Console Error Log</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step" style="flex: 1;">
+                                                    <div class="code-evidence-block" style="background: #1e1e2e; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 11px; color: #e0e0e0; line-height: 1.8; overflow-x: auto;">
+                                                        <div style="color: #888; margin-bottom: 8px;">/* Console errors logged on EVERY page load */</div>
+                                                        <div style="color: #ff6b6b;">&#9888; GoKwik: "checkout element not found" <span style="color:#888;">&times;8 per page</span></div>
+                                                        <div style="color: #ff6b6b;">&#9888; GoKwik: "gokwikCheckout is not defined"</div>
+                                                        <div style="color: #ff6b6b;">&#9888; product-form.js: "Cannot read properties of null"</div>
+                                                        <div style="color: #ff6b6b;">&#9888; Recurpay: SyntaxError in querySelectorAll</div>
+                                                        <div style="color: #ff6b6b;">&#9888; Bitespeed: InvalidStateError on widget init</div>
+                                                        <div style="color: #888; margin-top: 8px;">/* Fires on: Homepage, Collection, PDP, Cart */</div>
+                                                        <div style="color: #ffa07a; margin-top: 4px;">Total: 15+ errors per page load across 4 scripts</div>
+                                                    </div>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Deyga — Console Error Log (All Pages)</div>
-                                                <div class="finding-screenshot-url">deyga.in (console)</div>
+                                            </div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li><strong>GoKwik</strong> throws "checkout element not found" <strong>8+ times per page load</strong> — the checkout app can't find its target DOM elements in the custom theme.</li>
+                                                        <li><strong>product-form.js</strong> throws null reference errors — likely the product form script running before DOM is ready.</li>
+                                                        <li><strong>Recurpay</strong> (subscription app) has a SyntaxError in its querySelectorAll call — the subscription widget may not render correctly.</li>
+                                                        <li><strong>Bitespeed</strong> (WhatsApp widget) throws InvalidStateError on initialization — the WhatsApp popup may fail for some users.</li>
+                                                        <li>These 4 scripts compete for DOM access on every page — a symptom of integration conflicts between the custom theme and third-party apps.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li><strong>GoKwik</strong> throws "checkout element not found" <strong>8+ times per page load</strong> on every page — the checkout app can't find its target DOM elements in the custom theme.</li>
-                                                    <li><strong>product-form.js</strong> throws null reference errors — likely the product form script running before DOM is ready.</li>
-                                                    <li><strong>Recurpay</strong> (subscription app) has a SyntaxError in its querySelectorAll call — the subscription widget may not render correctly.</li>
-                                                    <li><strong>Bitespeed</strong> (WhatsApp widget) throws InvalidStateError on initialization — the WhatsApp popup may fail for some users.</li>
-                                                    <li>These 4 scripts compete for DOM access on every page — a symptom of integration conflicts between the custom theme and third-party apps.</li>
-                                                </ul>
-                                            </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li>Audit the GoKwik integration urgently — its checkout element selectors don't match the custom theme's DOM structure.</li>
-                                                    <li>Ensure all third-party scripts load after DOM is fully ready (use DOMContentLoaded or defer attributes).</li>
-                                                    <li>Set up real-time error monitoring (e.g., Sentry or Bugsnag) to catch checkout-breaking JS errors before they impact revenue.</li>
-                                                </ul>
+                                        <!-- Recommendations Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Recommended Fix &mdash; Urgent</div>
+                                            <div class="finding-row-text" style="flex: 1;">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li>Audit the GoKwik integration urgently — its checkout element selectors don't match the custom theme's DOM structure.</li>
+                                                        <li>Ensure all third-party scripts load after DOM is fully ready (use DOMContentLoaded or defer attributes).</li>
+                                                        <li>Set up real-time error monitoring (e.g., Sentry or Bugsnag) to catch checkout-breaking JS errors before they impact revenue.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1710,62 +1721,55 @@
                                         Prominent filter controls on collection pages can increase product discovery by 20-30% and reduce bounce rates
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/collection-no-filters.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(54,117,136,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge">VIDEO</span>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page with no filter controls visible">
+                                                    <div class="screenshot-step-label">Collection page loads</div>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Deyga — Sort Only, No Filters</div>
-                                                <div class="finding-screenshot-url">deyga.in/collections/all</div>
+                                                <div class="step-arrow">&rarr;</div>
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/collection-mobile-sort-only.jpeg" alt="Deyga collection showing only Sort dropdown, no Filter option">
+                                                    <div class="screenshot-step-label">Only Sort available &mdash; no filters</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/competitor-plum-filters.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(16,185,129,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge" style="background:var(--color-success);">VIDEO</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>Collection page shows <strong>only a Sort dropdown</strong> — no visible Filter button or filter controls anywhere on the page.</li>
+                                                        <li><strong>Psychology: Hick's Law + Paradox of Choice.</strong> Showing 24+ products without filters forces users to evaluate every option — when choice overwhelms, users choose nothing.</li>
+                                                        <li>Beauty shoppers typically browse by skin concern (acne, dark spots, dry skin) — without filters, they must scroll through all products to find what they need.</li>
+                                                    </ul>
                                                 </div>
-                                                <div class="finding-screenshot-label competitor-label">Plum — Expanded Filter Controls</div>
-                                                <div class="finding-screenshot-url">plumgoodness.com/collections</div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Collection page shows <strong>only a Sort dropdown</strong> — no visible Filter button or filter controls anywhere on the page.</li>
-                                                    <li><strong>Psychology: Hick's Law + Paradox of Choice.</strong> Decision time increases with the number of options. Showing 24+ products without filters forces users to evaluate every option — and when choice overwhelms, users choose nothing. Filters reduce the decision set to 3-5 relevant products, making the "Add to Cart" decision dramatically easier.</li>
-                                                    <li>Beauty shoppers typically browse by skin concern (acne, dark spots, dry skin) — without filters, they must scroll through all 24+ products to find what they need.</li>
-                                                    <li>Plum (shown right) provides Filter + Sort buttons with expandable facets for concern, price range, product type, and skin type — letting shoppers narrow results instantly.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Plum Goodness</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-plum-collection-mobile.jpeg" alt="Plum collection page showing Filter + Sort buttons">
+                                                    <div class="screenshot-step-label">Collection with Filter button</div>
+                                                </div>
+                                                <div class="step-arrow">&rarr;</div>
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-plum-collection-filters.jpeg" alt="Plum filter drawer open showing concern, price, skin type facets">
+                                                    <div class="screenshot-step-label">Filter drawer with facets open</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>🔥 High Impact:</strong> Add a visible "Filter" button alongside Sort — opening a sidebar or drawer with filter facets. This is the #1 missing feature on the collection page.</li>
-                                                    <li>Include concern-based filters (critical for beauty: acne, hydration, brightening, anti-aging) plus price range and product type — matching how beauty shoppers actually think.</li>
-                                                    <li><strong>⚡ Quick Win:</strong> Enable multi-select filtering with instant results and active filter count badges — most modern Shopify themes support this natively.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores have prominent filter controls</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>High Impact:</strong> Add a visible "Filter" button alongside Sort — opening a sidebar or drawer with filter facets.</li>
+                                                        <li>Include concern-based filters (acne, hydration, brightening, anti-aging) plus price range and product type.</li>
+                                                        <li><strong>Quick Win:</strong> Enable multi-select filtering with instant results and active filter count badges — most modern Shopify themes support this natively.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores have prominent filter controls</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1777,34 +1781,43 @@
                                         Collection hero banners increase category engagement by 15% and provide critical SEO value through contextual content
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page jumping straight to product grid with no banner or description">
-                                                <div class="finding-screenshot-label client-label">Deyga — No Banner, Straight to Grid</div>
-                                                <div class="finding-screenshot-url">deyga.in/collections/all</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page jumping straight to product grid with no banner or description">
+                                                    <div class="screenshot-step-label">No banner &mdash; straight to product grid</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics collection with hero banner, BESTSELLER badges, shade swatches, and ratings">
-                                                <div class="finding-screenshot-label competitor-label">Sugar — Banner + Badges + Swatches</div>
-                                                <div class="finding-screenshot-url">sugarcosmetics.com/collections</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>Collection page jumps directly from header to product grid — no hero banner, lifestyle image, or category description visible.</li>
+                                                        <li><strong>Why this matters:</strong> Collection pages are the #1 landing page for category-level Google searches. Without a banner and description, Deyga loses both SEO ranking and trust-building context.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Collection page jumps directly from header to product grid — no hero banner, lifestyle image, or category description visible. First impression is a grid of products with no context, no brand story, no reason to stay.</li>
-                                                    <li><strong>Why this matters:</strong> Collection pages are the #1 landing page for category-level Google searches ("organic face care products"). Without a banner and description text, Deyga loses both the SEO ranking opportunity AND the chance to frame the product set with trust-building context before users start browsing. This directly impacts organic traffic and bounce rate.</li>
-                                                    <li>Sugar (right) shows how a rich collection page looks: category banner, BESTSELLER badges on cards, shade swatches, star ratings, and filter controls.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Sugar Cosmetics</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar Cosmetics collection with hero banner, BESTSELLER badges, shade swatches, and ratings">
+                                                    <div class="screenshot-step-label">Banner + badges + swatches + ratings</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>⚡ Quick Win:</strong> Add a collection hero banner with lifestyle imagery (Deyga already has strong visual content from Instagram) and a short value proposition — e.g., for "Face Care": <em>"Handmade with 100% natural ingredients. Freshly crafted in small batches for your skin."</em></li>
-                                                    <li><strong>🔥 High Impact:</strong> Add 2-3 sentences of SEO-optimized collection description targeting category keywords ("organic face care products India", "natural lip balm handmade") — this is the single highest-ROI SEO fix for collection page rankings.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Growing &mdash; 7/10 top beauty stores have collection banners</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>Quick Win:</strong> Add a collection hero banner with lifestyle imagery and a short value proposition.</li>
+                                                        <li><strong>High Impact:</strong> Add 2-3 sentences of SEO-optimized collection description targeting category keywords — the highest-ROI SEO fix for collection rankings.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Growing &mdash; 7/10 top beauty stores have collection banners</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1816,34 +1829,44 @@
                                         Visible breadcrumb navigation improves user orientation and adds rich snippet SEO benefits via Breadcrumb schema
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page with no breadcrumb navigation visible">
-                                                <div class="finding-screenshot-label client-label">Deyga — No Breadcrumbs Visible</div>
-                                                <div class="finding-screenshot-url">deyga.in/collections/all</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-collection-no-filters.jpeg" alt="Deyga collection page with no breadcrumb navigation visible">
+                                                    <div class="screenshot-step-label">No breadcrumbs visible above grid</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-mamaearth-collection-mobile.jpeg" alt="Mamaearth collection showing breadcrumb trail: Home > Face Care > Face Wash">
-                                                <div class="finding-screenshot-label competitor-label">Mamaearth — Breadcrumb Navigation</div>
-                                                <div class="finding-screenshot-url">mamaearth.com/collections</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>Breadcrumb navigation elements exist in the DOM but are not visually rendered — a CSS fix away from working.</li>
+                                                        <li>Users who land deep in the catalog have no way to discover parent categories. They see one product, can't navigate up, and bounce.</li>
+                                                        <li>Breadcrumb schema (JSON-LD) is also missing — Google can't show navigation trails in search results.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Breadcrumb navigation elements exist in the DOM but are not visually rendered on the collection page — a CSS fix away from working.</li>
-                                                    <li><strong>Why this matters:</strong> Without visible breadcrumbs, users who land deep in the catalog (e.g., from a Google search for "deyga lip balm") have no way to discover parent categories or related collections. They see one product, can't navigate up, and bounce — instead of exploring the "Lip Care" or "Face Care" collection. This hurts both session depth and discovery-driven purchases.</li>
-                                                    <li>Breadcrumb schema (JSON-LD) is also missing — Google can't show navigation trails in search results. Breadcrumb-rich snippets typically improve organic CTR by 10-15% on category and product pages.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Mamaearth</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-mamaearth-collection-mobile.jpeg" alt="Mamaearth collection showing breadcrumb trail: Home > Face Care > Face Wash">
+                                                    <div class="screenshot-step-label">Breadcrumb trail: Home &gt; Face Care</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>⚡ Quick Win:</strong> Fix CSS to make breadcrumbs visible — they already exist in the HTML, just hidden by CSS. Likely a single `display: none` override to remove.</li>
-                                                    <li><strong>🔥 High Impact:</strong> Implement Breadcrumb schema (JSON-LD) alongside the visual fix — one change gives both user navigation AND Google rich snippet benefits.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores show breadcrumb navigation</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>Quick Win:</strong> Fix CSS to make breadcrumbs visible — they already exist in the HTML, just hidden by CSS.</li>
+                                                        <li><strong>High Impact:</strong> Implement Breadcrumb schema (JSON-LD) alongside the visual fix — one change gives both navigation AND Google rich snippet benefits.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores show breadcrumb navigation</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1855,60 +1878,48 @@
                                         Quick View popups keep shoppers on the collection page — reducing navigation friction and boosting add-to-cart rates by 5-8%
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/collection-no-quick-view.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(54,117,136,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge">VIDEO</span>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/collection-mobile-product-cards-no-variants.jpeg" alt="Deyga collection product cards with no quick view or variant options">
+                                                    <div class="screenshot-step-label">Collection page &mdash; plain cards</div>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Deyga — No Quick View on Cards</div>
-                                                <div class="finding-screenshot-url">deyga.in/collections/all</div>
+                                                <div class="step-arrow">&rarr;</div>
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-pdp-above-fold-mobile.jpeg" alt="Full PDP loads after tapping product - must leave collection page">
+                                                    <div class="screenshot-step-label">Tap product &rarr; full PDP loads</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/competitor-sugar-quick-view.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(16,185,129,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge" style="background:var(--color-success);">VIDEO</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>No Quick View popup on product cards — users must navigate to the full PDP for every product comparison.</li>
+                                                        <li><strong>Why this matters:</strong> Each comparison requires collection &rarr; PDP &rarr; back &rarr; collection &rarr; PDP. With 3.0s LCP, that's 18-30 seconds of loading just to compare 3 products.</li>
+                                                    </ul>
                                                 </div>
-                                                <div class="finding-screenshot-label competitor-label">Sugar — Rich Cards with Shade Preview</div>
-                                                <div class="finding-screenshot-url">sugarcosmetics.com/collections</div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>No Quick View popup or preview mechanism on product cards — users must navigate to the full PDP to see ingredient lists, descriptions, or variant options.</li>
-                                                    <li><strong>Why this matters:</strong> Beauty shoppers compare 3-5 products before buying. Without Quick View, each comparison requires a full page navigation (collection → PDP → back → collection → PDP) — that's 6-10 page loads for a typical comparison session. On mobile with Deyga's 3.0s LCP, that's 18-30 seconds of loading time just to compare 3 products. Many users give up after the second product.</li>
-                                                    <li>Sugar (right) shows richer product cards with shade swatches and ratings inline — reducing the need to leave the collection page entirely.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Sugar Cosmetics</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-sugar-collection-mobile.jpeg" alt="Sugar collection with rich product cards showing shade swatches and ratings">
+                                                    <div class="screenshot-step-label">Rich cards with swatches + ratings</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li>Add a Quick View popup (eye icon on hover/tap) showing product images, key details, ingredients, and an Add to Cart button with variant selector.</li>
-                                                    <li>At minimum, show star ratings and key benefits directly on the product cards to aid comparison without leaving the page.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Growing &mdash; 6/10 top beauty stores have Quick View</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li>Add a Quick View popup (eye icon on hover/tap) showing product images, key details, ingredients, and an Add to Cart button.</li>
+                                                        <li>At minimum, show star ratings and key benefits directly on the product cards to aid comparison without leaving the page.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Growing &mdash; 6/10 top beauty stores have Quick View</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1927,61 +1938,49 @@
                                         Image zoom on PDPs increases purchase confidence by 30%+ — critical for beauty products where shoppers need to verify texture, color, and ingredient labels before buying
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/pdp-no-image-zoom.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(54,117,136,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge">VIDEO</span>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/pdp-mobile-above-fold.jpeg" alt="Deyga PDP showing product image gallery on mobile">
+                                                    <div class="screenshot-step-label">Product image on PDP</div>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Deyga — No Zoom on Product Images</div>
-                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
+                                                <div class="step-arrow">&rarr;</div>
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/pdp-mobile-image-tap-no-zoom.jpeg" alt="Same image after tapping — no zoom, no lightbox, nothing happens">
+                                                    <div class="screenshot-step-label">Tap image &mdash; nothing happens</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/competitor-minimalist-zoom.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(16,185,129,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge" style="background:var(--color-success);">VIDEO</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>Product images (8 available per PDP) have <strong>no hover-to-zoom, tap-to-zoom, or pinch-to-zoom</strong> functionality on either desktop or mobile.</li>
+                                                        <li>Beauty products require close-up inspection of texture, color, and ingredient labels — shoppers can't verify product quality visually without zoom.</li>
+                                                    </ul>
                                                 </div>
-                                                <div class="finding-screenshot-label competitor-label">Minimalist — Zoom Icon on Images</div>
-                                                <div class="finding-screenshot-url">beminimalist.co/products</div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Product images (8 available per PDP) have <strong>no hover-to-zoom, tap-to-zoom, or pinch-to-zoom</strong> functionality on either desktop or mobile.</li>
-                                                    <li>Beauty products require close-up inspection of texture, color, and ingredient labels — shoppers can't verify product quality visually without zoom.</li>
-                                                    <li>Minimalist (right) shows a clear zoom icon overlay on product images — tapping opens a full-screen zoomable view. This is a universal standard across all 10 beauty stores we analyzed.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Minimalist</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-minimalist-pdp-mobile.jpeg" alt="Minimalist PDP with zoom icon visible on product images">
+                                                    <div class="screenshot-step-label">Zoom icon on images &mdash; tap to enlarge</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li>Add hover-to-zoom (desktop) and pinch-to-zoom (mobile) on product images — the custom theme currently lacks this.</li>
-                                                    <li>Include macro/close-up product shots showing texture and ingredient labels.</li>
-                                                    <li>Add a lightbox gallery for full-screen image viewing with swipe navigation.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have image zoom</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li>Add hover-to-zoom (desktop) and pinch-to-zoom (mobile) on product images — the custom theme currently lacks this.</li>
+                                                        <li>Include macro/close-up product shots showing texture and ingredient labels.</li>
+                                                        <li>Add a lightbox gallery for full-screen image viewing with swipe navigation.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have image zoom</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1993,36 +1992,45 @@
                                         Product demo videos can increase conversions by 10-15% — beauty shoppers expect to see application and texture in motion
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-pdp-above-fold-mobile.jpeg" alt="Deyga PDP showing 8 static product images, no video indicator in the image carousel">
-                                                <div class="finding-screenshot-label client-label">Deyga — Static Images Only, No Video</div>
-                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-pdp-above-fold-mobile.jpeg" alt="Deyga PDP showing 8 static product images, no video indicator in the image carousel">
+                                                    <div class="screenshot-step-label">PDP image carousel &mdash; static images only, no video</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-forestessentials-pdp-video.jpeg" alt="Forest Essentials PDP with Vimeo product story video embed, 'What Makes It Special' section, and clinical proof">
-                                                <div class="finding-screenshot-label competitor-label">Forest Essentials — Product Story Videos on PDP</div>
-                                                <div class="finding-screenshot-url">forestessentials.com/products</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>PDP has 8 product images but <strong>no video content</strong> — no application demos, texture reveals, or before/after demonstrations in the image carousel.</li>
+                                                        <li>Deyga has a strong Instagram presence with Reels and video content, but <strong>none of it appears on the PDP</strong> where purchase decisions happen.</li>
+                                                        <li>Beauty products benefit heavily from seeing the product in use — how a lip balm glides, how a face wash lathers — static images can't convey this.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>PDP has 8 product images but <strong>no video content</strong> — no application demos, texture reveals, or before/after demonstrations in the image carousel.</li>
-                                                    <li>Deyga has a strong Instagram presence with Reels and video content, but <strong>none of it appears on the PDP</strong> where purchase decisions happen.</li>
-                                                    <li>Beauty products benefit heavily from seeing the product in use — how a lip balm glides, how a face wash lathers — static images can't convey this.</li>
-                                                    <li>Forest Essentials (right) embeds multiple Vimeo product story videos directly on PDPs — including application demos, ingredient sourcing stories, and "What Makes It Special" editorial content. This rich media approach builds trust and reduces purchase anxiety for premium beauty products.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Forest Essentials</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-forestessentials-pdp-video.jpeg" alt="Forest Essentials PDP with Vimeo product story video embed and 'What Makes It Special' section">
+                                                    <div class="screenshot-step-label">Vimeo product story videos embedded on PDP</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>⚡ Quick Win:</strong> Repurpose existing Instagram Reels as product page media — Deyga already has high-quality video content. Embed as the 2nd or 3rd slide in the image carousel. No new production needed, just cross-posting.</li>
-                                                    <li><strong>🔥 High Impact:</strong> Add 15-30 second product demo videos to the top 10 hero SKUs first (lip balm, face wash, hair oil) — beauty shoppers need to see texture, application, and results in motion.</li>
-                                                    <li><strong>🧪 Test Idea:</strong> For hero products, add a "How to Use" video section below the main gallery — test whether application tutorials increase conversion more than product beauty shots.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Growing &mdash; Premium beauty brands like Forest Essentials use product story videos to justify higher price points</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>⚡ Quick Win:</strong> Repurpose existing Instagram Reels as product page media — Deyga already has high-quality video content. Embed as the 2nd or 3rd slide in the image carousel. No new production needed, just cross-posting.</li>
+                                                        <li><strong>🔥 High Impact:</strong> Add 15-30 second product demo videos to the top 10 hero SKUs first (lip balm, face wash, hair oil) — beauty shoppers need to see texture, application, and results in motion.</li>
+                                                        <li><strong>🧪 Test Idea:</strong> For hero products, add a "How to Use" video section below the main gallery — test whether application tutorials increase conversion more than product beauty shots.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Growing &mdash; Premium beauty brands like Forest Essentials use product story videos to justify higher price points</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2034,36 +2042,45 @@
                                         A dedicated Buy Now button reduces checkout steps and increases impulse purchase completion by 15-25%
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-pdp-atc-area-nobuynow.jpeg" alt="Deyga PDP ATC area showing only Add to Cart button with size variants, no Buy Now option">
-                                                <div class="finding-screenshot-label client-label">Deyga — Only "Add to Cart", No Buy Now</div>
-                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-pdp-atc-area-nobuynow.jpeg" alt="Deyga PDP ATC area showing only Add to Cart button, no Buy Now option">
+                                                    <div class="screenshot-step-label">Only &ldquo;Add to Cart&rdquo; &mdash; no Buy Now button</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-sugar-pdp-bnpl-area.jpeg" alt="Sugar Cosmetics PDP showing ₹949 price, 'Pay ₹95 now via SUGAR Pay Later' BNPL bar, '2261 people bought this month' social proof, and Add to Cart button">
-                                                <div class="finding-screenshot-label competitor-label">Sugar — BNPL "Pay Later" + Social Proof + ATC</div>
-                                                <div class="finding-screenshot-url">sugarcosmetics.com/products</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>Only "Add to Cart" is available on the PDP — no dedicated Buy Now button for single-product impulse purchases.</li>
+                                                        <li>Impulse buyers must go through the full cart flow (ATC → cart drawer → GoKwik checkout) — that's <strong>3 steps and 2 extra page transitions</strong> vs a direct Buy Now → checkout flow.</li>
+                                                        <li>GoKwik supports direct checkout integration — a Buy Now button could route directly to GoKwik, skipping the cart entirely.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Only "Add to Cart" is available on the PDP — no dedicated Buy Now button for single-product impulse purchases.</li>
-                                                    <li>Impulse buyers must go through the full cart flow (ATC → cart drawer → GoKwik checkout) — that's <strong>3 steps and 2 extra page transitions</strong> vs a direct Buy Now → checkout flow. Form CRO research shows every additional step costs 10-15% of users. The current flow loses up to 25% of impulse buyers before they reach payment.</li>
-                                                    <li>Sugar Cosmetics (right) offers a BNPL option ("Pay ₹95 now, rest via SUGAR Pay Later") alongside ATC — plus social proof ("2261 people bought this month") creating both urgency and affordability signals at the point of purchase decision.</li>
-                                                    <li>GoKwik supports direct checkout integration — a Buy Now button could route directly to GoKwik, skipping the cart entirely.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Sugar Cosmetics</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-sugar-pdp-bnpl-area.jpeg" alt="Sugar Cosmetics PDP showing BNPL bar, social proof, and Add to Cart button">
+                                                    <div class="screenshot-step-label">BNPL + social proof + ATC area</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>🔥 High Impact:</strong> Add a Buy Now button alongside Add to Cart — styled as a secondary CTA (outline or different color) below ATC. Eliminates 2 steps from the impulse purchase path.</li>
-                                                    <li>Connect Buy Now directly to GoKwik checkout with the selected product and variant pre-loaded — GoKwik supports direct checkout integration.</li>
-                                                    <li><strong>🧪 Test Idea:</strong> Add BNPL options (Simpl, LazyPay) visible at the PDP level for combo packs and ₹500+ products — making the "I can afford this" decision easier increases conversion for higher-AOV items.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Growing &mdash; 6/10 top Indian beauty stores have Buy Now or express checkout</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>🔥 High Impact:</strong> Add a Buy Now button alongside Add to Cart — styled as a secondary CTA (outline or different color) below ATC. Eliminates 2 steps from the impulse purchase path.</li>
+                                                        <li>Connect Buy Now directly to GoKwik checkout with the selected product and variant pre-loaded — GoKwik supports direct checkout integration.</li>
+                                                        <li><strong>🧪 Test Idea:</strong> Add BNPL options (Simpl, LazyPay) visible at the PDP level for combo packs and ₹500+ products — making the "I can afford this" decision easier increases conversion for higher-AOV items.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Growing &mdash; 6/10 top Indian beauty stores have Buy Now or express checkout</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2075,62 +2092,60 @@
                                         Deyga has a sticky ATC bar on mobile — but it's non-functional, meaning the investment exists without delivering the 3-5% conversion lift it should
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/pdp-broken-sticky-atc.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(54,117,136,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge">VIDEO</span>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-pdp-atc-mobile.jpeg" alt="Deyga PDP ATC button visible at top of product page">
+                                                    <div class="screenshot-step-label">ATC button visible above fold</div>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Deyga — Sticky ATC Present but Broken</div>
-                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
+                                                <div class="step-arrow">&rarr;</div>
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/pdp-mobile-scroll-no-sticky-atc.jpeg" alt="Scrolling down on Deyga PDP — sticky ATC bar not functional">
+                                                    <div class="screenshot-step-label">Scroll down &mdash; sticky bar appears</div>
+                                                </div>
+                                                <div class="step-arrow">&rarr;</div>
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/pdp-mobile-deep-scroll-no-sticky-atc.jpeg" alt="Deep scroll on Deyga PDP — tapping sticky bar does nothing">
+                                                    <div class="screenshot-step-label">Tap sticky ATC &mdash; nothing happens</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/competitor-mcaffeine-sticky-atc.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(16,185,129,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
-                                                    </div>
-                                                    <span class="video-badge" style="background:var(--color-success);">VIDEO</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>Deyga <strong>does have a sticky ATC bar</strong> on mobile PDPs — but <strong>the bar is non-functional</strong>: tapping it does not add the product to cart or trigger any action.</li>
+                                                        <li>This is <strong>worse than not having it at all</strong> — users see a CTA, tap it expecting to add the product, and nothing happens. Broken promise = conversion killer.</li>
+                                                        <li>With Deyga's long PDPs (images + description + 434 reviews + FAQs), users scroll extensively — a <strong>broken sticky ATC means every deep-scroll user hits a dead-end CTA</strong>.</li>
+                                                    </ul>
                                                 </div>
-                                                <div class="finding-screenshot-label competitor-label">mCaffeine — Functional Sticky ATC Bar</div>
-                                                <div class="finding-screenshot-url">mcaffeine.com/products</div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Deyga <strong>does have a sticky ATC bar</strong> on mobile PDPs — it appears at the bottom of the screen when users scroll past the main ATC button. However, <strong>the bar is non-functional</strong>: tapping it does not add the product to cart or trigger any action.</li>
-                                                    <li>This is <strong>worse than not having it at all</strong> — users see a clear call-to-action, tap it expecting to add the product, and nothing happens. This creates frustration and erodes trust in the site's reliability (broken promise = conversion killer).</li>
-                                                    <li>mCaffeine (right) shows a fully functional sticky ATC bar: tapping it immediately adds the product and opens the cart, creating a seamless purchase flow regardless of scroll position.</li>
-                                                    <li>With Deyga's long PDPs (images + description + 434 reviews + FAQs), users scroll extensively — a <strong>broken sticky ATC means every deep-scroll user hits a dead-end CTA</strong>.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; mCaffeine</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-mcaffeine-pdp-mobile.jpeg" alt="mCaffeine PDP on mobile showing product details">
+                                                    <div class="screenshot-step-label">mCaffeine PDP</div>
+                                                </div>
+                                                <div class="step-arrow">&rarr;</div>
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-mcaffeine-pdp-sticky-atc.jpeg" alt="mCaffeine sticky ATC bar appears on scroll and works when tapped">
+                                                    <div class="screenshot-step-label">Sticky ATC works on tap</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>🔥 High Impact:</strong> Fix the existing sticky ATC bar so it actually triggers an add-to-cart action — this is likely a JavaScript event binding issue or a conflict with the Rebuy widget. Debug and fix before anything else.</li>
-                                                    <li>Ensure the fixed sticky bar works alongside GoKwik's checkout flow — tapping sticky ATC should add to cart and open the GoKwik drawer seamlessly.</li>
-                                                    <li>Consider enhancing the sticky bar to show selected variant, price, and a quantity selector for a best-in-class experience (like mCaffeine).</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores have a functional sticky ATC on mobile PDPs</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>🔥 High Impact:</strong> Fix the existing sticky ATC bar so it actually triggers an add-to-cart action — likely a JavaScript event binding issue or a conflict with the Rebuy widget.</li>
+                                                        <li>Ensure the fixed sticky bar works alongside GoKwik's checkout flow — tapping sticky ATC should add to cart and open the GoKwik drawer seamlessly.</li>
+                                                        <li>Consider enhancing the sticky bar to show selected variant, price, and a quantity selector for a best-in-class experience (like mCaffeine).</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Standard &mdash; 9/10 top beauty stores have a functional sticky ATC on mobile PDPs</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2142,47 +2157,54 @@
                                         Product schema (JSON-LD) adds star ratings, price, and availability to Google results — lifting organic CTR by 20-30%
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot" style="flex: 1;">
-                                                <!-- Code evidence panel: Schema analysis from PDP page source -->
-                                                <div style="background: #1e1e2e; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; color: #e0e0e0; line-height: 1.8; overflow-x: auto;">
-                                                    <div style="color: #888; margin-bottom: 8px;">/* PDP page source analysis — deyga.in/products/deyga-lip-balm */</div>
-                                                    <div style="color: #69db7c;">&#10003; Judge.me reviews widget loaded (4.8 stars, 434 reviews)</div>
-                                                    <div style="color: #69db7c;">&#10003; Product price and variant data in DOM</div>
-                                                    <div style="color: #69db7c;">&#10003; Open Graph tags present (og:title, og:image)</div>
-                                                    <div style="color: #888; margin-top: 12px;">/* Missing from &lt;head&gt; and page source: */</div>
-                                                    <div style="color: #ff6b6b;">&#10007; <strong>Product JSON-LD schema</strong> — no @type: "Product" found</div>
-                                                    <div style="color: #ff6b6b;">&#10007; <strong>AggregateRating schema</strong> — 434 reviews invisible to Google</div>
-                                                    <div style="color: #ff6b6b;">&#10007; <strong>Breadcrumb schema</strong> — no @type: "BreadcrumbList" found</div>
-                                                    <div style="color: #ff6b6b;">&#10007; <strong>Offer/price schema</strong> — price not in structured data</div>
-                                                    <div style="color: #888; margin-top: 12px;">/* Impact: Google search results show plain blue links */</div>
-                                                    <div style="color: #ffa07a;">&#9888; No star ratings in search results despite 4.8★ average</div>
-                                                    <div style="color: #ffa07a;">&#9888; No price/availability shown in search snippets</div>
-                                                    <div style="color: #ffa07a;">&#9888; No rich product cards in Google Shopping results</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Page Source Analysis</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step" style="flex: 1;">
+                                                    <div style="background: #1e1e2e; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; color: #e0e0e0; line-height: 1.8; overflow-x: auto;">
+                                                        <div style="color: #888; margin-bottom: 8px;">/* PDP page source analysis — deyga.in/products/deyga-lip-balm */</div>
+                                                        <div style="color: #69db7c;">&#10003; Judge.me reviews widget loaded (4.8 stars, 434 reviews)</div>
+                                                        <div style="color: #69db7c;">&#10003; Product price and variant data in DOM</div>
+                                                        <div style="color: #69db7c;">&#10003; Open Graph tags present (og:title, og:image)</div>
+                                                        <div style="color: #888; margin-top: 12px;">/* Missing from &lt;head&gt; and page source: */</div>
+                                                        <div style="color: #ff6b6b;">&#10007; <strong>Product JSON-LD schema</strong> — no @type: "Product" found</div>
+                                                        <div style="color: #ff6b6b;">&#10007; <strong>AggregateRating schema</strong> — 434 reviews invisible to Google</div>
+                                                        <div style="color: #ff6b6b;">&#10007; <strong>Breadcrumb schema</strong> — no @type: "BreadcrumbList" found</div>
+                                                        <div style="color: #ff6b6b;">&#10007; <strong>Offer/price schema</strong> — price not in structured data</div>
+                                                        <div style="color: #888; margin-top: 12px;">/* Impact: Google search results show plain blue links */</div>
+                                                        <div style="color: #ffa07a;">&#9888; No star ratings in search results despite 4.8★ average</div>
+                                                        <div style="color: #ffa07a;">&#9888; No price/availability shown in search snippets</div>
+                                                        <div style="color: #ffa07a;">&#9888; No rich product cards in Google Shopping results</div>
+                                                    </div>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Deyga PDP — Page Source Schema Analysis</div>
-                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm (view-source)</div>
+                                            </div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>No Product structured data (JSON-LD) detected in any PDP page source — despite having <strong>4.8-star ratings with 434+ reviews</strong> via Judge.me.</li>
+                                                        <li>Deyga's Google search results appear as <strong>plain blue links</strong> — competitors with schema show star ratings, price (₹249), availability, and review counts directly in search results, getting significantly higher click-through rates.</li>
+                                                        <li>Judge.me has built-in schema support, but it's either <strong>not enabled or overridden</strong> by the custom theme — a configuration fix, not a development task.</li>
+                                                        <li>Missing Breadcrumb schema compounds the issue — no rich navigation trail in search results.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>No Product structured data (JSON-LD) detected in any PDP page source — despite having <strong>4.8-star ratings with 434+ reviews</strong> via Judge.me.</li>
-                                                    <li>Deyga's Google search results appear as <strong>plain blue links</strong> — competitors with schema show star ratings, price (₹249), availability, and review counts directly in search results, getting significantly higher click-through rates.</li>
-                                                    <li>Judge.me has built-in schema support, but it's either <strong>not enabled or overridden</strong> by the custom theme — a configuration fix, not a development task.</li>
-                                                    <li>Missing Breadcrumb schema compounds the issue — no rich navigation trail in search results.</li>
-                                                </ul>
-                                            </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>⚡ Quick Win:</strong> Enable Judge.me's built-in Product + AggregateRating schema output — likely a single toggle in app settings. Judge.me supports injecting <code>@type: Product</code> with <code>aggregateRating</code> automatically.</li>
-                                                    <li>If the custom theme overrides Judge.me's schema, add Product JSON-LD manually via Liquid. Required properties: <code>name</code>, <code>image</code>, <code>description</code>, <code>sku</code>, <code>offers</code> (with <code>price</code>, <code>priceCurrency</code>, <code>availability</code>), and <code>aggregateRating</code> (with <code>ratingValue</code>, <code>reviewCount</code>).</li>
-                                                    <li><strong>🔥 High Impact:</strong> Add Breadcrumb schema via Liquid templates — combined with Product schema, this gives Deyga rich search results with star ratings + price + navigation path. Two schema types, one deployment.</li>
-                                                    <li>Validate with Google's Rich Results Test tool. Target: every PDP should pass both Product and Breadcrumb validation within 48 hours of deployment.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have Product schema</span>
+                                        <!-- Recommendations Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Industry Standard</div>
+                                            <div class="finding-row-text" style="flex: 1;">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>⚡ Quick Win:</strong> Enable Judge.me's built-in Product + AggregateRating schema output — likely a single toggle in app settings. Judge.me supports injecting <code>@type: Product</code> with <code>aggregateRating</code> automatically.</li>
+                                                        <li>If the custom theme overrides Judge.me's schema, add Product JSON-LD manually via Liquid. Required properties: <code>name</code>, <code>image</code>, <code>description</code>, <code>sku</code>, <code>offers</code> (with <code>price</code>, <code>priceCurrency</code>, <code>availability</code>), and <code>aggregateRating</code> (with <code>ratingValue</code>, <code>reviewCount</code>).</li>
+                                                        <li><strong>🔥 High Impact:</strong> Add Breadcrumb schema via Liquid templates — combined with Product schema, this gives Deyga rich search results with star ratings + price + navigation path. Two schema types, one deployment.</li>
+                                                        <li>Validate with Google's Rich Results Test tool. Target: every PDP should pass both Product and Breadcrumb validation within 48 hours of deployment.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Standard &mdash; 10/10 top beauty stores have Product schema</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2194,36 +2216,45 @@
                                         Authentic scarcity signals ("Only 3 left") increase purchase motivation by 15%+ — especially powerful for Deyga's handmade, small-batch products where scarcity is real
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-pdp-atc-mobile.jpeg" alt="Deyga PDP ATC area showing price and Add to Cart but no stock level, urgency timer, or scarcity messaging">
-                                                <div class="finding-screenshot-label client-label">Deyga — No Stock or Urgency Signals</div>
-                                                <div class="finding-screenshot-url">deyga.in/products/lip-balm</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-pdp-atc-mobile.jpeg" alt="Deyga PDP ATC area showing price and Add to Cart but no stock level, urgency timer, or scarcity messaging">
+                                                    <div class="screenshot-step-label">No stock or urgency signals</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-dotandkey-pdp-social-proof.jpeg" alt="Dot & Key PDP showing '150K+ Sold Recently' and '18.3K+ Views Today' social proof badges, BESTSELLER tag, and pincode checker">
-                                                <div class="finding-screenshot-label competitor-label">Dot &amp; Key — Real-Time Social Proof Signals</div>
-                                                <div class="finding-screenshot-url">dotandkey.com/products</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li><strong>"1K+ Bought in Last Month"</strong> badge is excellent social proof — but it's static text, not creating real-time urgency. It confirms popularity without pushing immediate action.</li>
+                                                        <li><strong>Psychology: Loss Aversion + Scarcity.</strong> People feel the pain of losing something twice as strongly as the pleasure of gaining it. "Only 3 left" triggers fear of missing out — far more motivating than "1K+ bought." Deyga's handmade, small-batch production model makes scarcity <em>authentic</em>, not manufactured — this is a rare advantage most brands fake.</li>
+                                                        <li>No <strong>low-stock indicators</strong> ("Only 3 left!"), <strong>countdown timers</strong> for sales, or <strong>"X people viewing this"</strong> live activity signals anywhere on the PDP.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li><strong>"1K+ Bought in Last Month"</strong> badge is excellent social proof — but it's static text, not creating real-time urgency. It confirms popularity without pushing immediate action.</li>
-                                                    <li><strong>Psychology: Loss Aversion + Scarcity.</strong> People feel the pain of losing something twice as strongly as the pleasure of gaining it. "Only 3 left" triggers fear of missing out — far more motivating than "1K+ bought." Deyga's handmade, small-batch production model makes scarcity <em>authentic</em>, not manufactured — this is a rare advantage most brands fake.</li>
-                                                    <li>No <strong>low-stock indicators</strong> ("Only 3 left!"), <strong>countdown timers</strong> for sales, or <strong>"X people viewing this"</strong> live activity signals anywhere on the PDP.</li>
-                                                    <li>Dot &amp; Key (right) layers multiple social proof and urgency signals: <strong>"150K+ Sold Recently"</strong> builds trust, <strong>"18.3K+ Views Today"</strong> creates live activity urgency, a <strong>BESTSELLER</strong> tag adds authority — each reinforcing the purchase decision. These are dynamic, real-time signals that feel authentic.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Dot &amp; Key</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-dotandkey-pdp-social-proof.jpeg" alt="Dot & Key PDP showing '150K+ Sold Recently' and '18.3K+ Views Today' social proof badges, BESTSELLER tag, and pincode checker">
+                                                    <div class="screenshot-step-label">Multiple real-time social proof signals</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>⚡ Quick Win:</strong> Add low-stock indicators ("Only X left in stock") triggered when inventory drops below a threshold — authentic for Deyga's handmade, small-batch production. This is a Shopify Liquid template change, no app needed.</li>
-                                                    <li><strong>🔥 High Impact:</strong> Display an offers section below price: bank offers (10% off with HDFC), combo deals ("Buy 2, Get 10% Off"), and free shipping thresholds — layering multiple reasons to act now.</li>
-                                                    <li><strong>🧪 Test Idea:</strong> Use Shopify's inventory API to show real stock levels dynamically — test "Only X left" vs "Selling fast" messaging to find which drives higher urgency without feeling manipulative.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Growing &mdash; 6/10 top beauty stores show stock/urgency signals</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>⚡ Quick Win:</strong> Add low-stock indicators ("Only X left in stock") triggered when inventory drops below a threshold — authentic for Deyga's handmade, small-batch production. This is a Shopify Liquid template change, no app needed.</li>
+                                                        <li><strong>🔥 High Impact:</strong> Display an offers section below price: bank offers (10% off with HDFC), combo deals ("Buy 2, Get 10% Off"), and free shipping thresholds — layering multiple reasons to act now.</li>
+                                                        <li><strong>🧪 Test Idea:</strong> Use Shopify's inventory API to show real stock levels dynamically — test "Only X left" vs "Selling fast" messaging to find which drives higher urgency without feeling manipulative.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Growing &mdash; 6/10 top beauty stores show stock/urgency signals</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2242,62 +2273,52 @@
                                         GoKwik checkout integration throws 15+ JavaScript errors per page load — these errors risk breaking the checkout flow and silently losing revenue
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <div class="video-container" data-lazy-video>
-                                                    <video class="finding-video"
-                                                           muted loop playsinline preload="none"
-                                                           data-src="media/videos/cart-gokwik-errors.mp4">
-                                                    </video>
-                                                    <div class="video-play-overlay">
-                                                        <svg viewBox="0 0 48 48" width="48" height="48">
-                                                            <circle cx="24" cy="24" r="23" fill="rgba(54,117,136,0.85)"/>
-                                                            <polygon points="18,14 36,24 18,34" fill="white"/>
-                                                        </svg>
-                                                        <span>Click to play</span>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Cart &amp; Console Evidence</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-cart-drawer-mobile.jpeg" alt="Deyga cart drawer showing product line item and checkout button">
+                                                    <div class="screenshot-step-label">GoKwik-powered cart drawer</div>
+                                                </div>
+                                                <div class="step-arrow">&rarr;</div>
+                                                <div class="screenshot-step" style="flex: 1;">
+                                                    <div style="background: #1e1e2e; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 11px; color: #e0e0e0; line-height: 1.8; overflow-x: auto;">
+                                                        <div style="color: #888; margin-bottom: 8px;">/* Console errors on cart interaction */</div>
+                                                        <div style="color: #ff6b6b;">&#9888; GoKwik: <strong>"checkout element not found"</strong></div>
+                                                        <div style="color: #888; padding-left: 16px;">&times;8 per page load</div>
+                                                        <div style="color: #ff6b6b; margin-top: 6px;">&#9888; GoKwik: <strong>"gokwikCheckout is not defined"</strong></div>
+                                                        <div style="color: #888; padding-left: 16px;">Checkout function missing from global scope</div>
+                                                        <div style="color: #ff6b6b; margin-top: 6px;">&#9888; product-form.js: <strong>"Cannot read properties of null"</strong></div>
+                                                        <div style="color: #ffa07a; margin-top: 6px;">&#9888; Any GoKwik error = potential checkout failure</div>
                                                     </div>
-                                                    <span class="video-badge">VIDEO</span>
+                                                    <div class="screenshot-step-label">15+ JS errors per page load</div>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Deyga — GoKwik Cart Drawer</div>
-                                                <div class="finding-screenshot-url">deyga.in (cart drawer)</div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <!-- Console error evidence: GoKwik-specific errors in cart/checkout flow -->
-                                                <div style="background: #1e1e2e; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 11px; color: #e0e0e0; line-height: 1.8; overflow-x: auto;">
-                                                    <div style="color: #888; margin-bottom: 8px;">/* Console errors on cart interaction */</div>
-                                                    <div style="color: #ff6b6b;">&#9888; GoKwik: <strong>"checkout element not found"</strong></div>
-                                                    <div style="color: #888; padding-left: 16px;">&times;8 per page load &mdash; fires on Homepage, Collection, PDP, Cart</div>
-                                                    <div style="color: #ff6b6b; margin-top: 6px;">&#9888; GoKwik: <strong>"gokwikCheckout is not defined"</strong></div>
-                                                    <div style="color: #888; padding-left: 16px;">Checkout function reference missing from global scope</div>
-                                                    <div style="color: #ff6b6b; margin-top: 6px;">&#9888; product-form.js: <strong>"Cannot read properties of null"</strong></div>
-                                                    <div style="color: #888; padding-left: 16px;">Theme script failing to find form element</div>
-                                                    <div style="color: #ffa07a; margin-top: 10px;">/* GoKwik controls: */</div>
-                                                    <div style="color: #e0e0e0;">&#8226; Cart drawer (slide-out)</div>
-                                                    <div style="color: #e0e0e0;">&#8226; /cart &rarr; /?openCart=true redirect</div>
-                                                    <div style="color: #e0e0e0;">&#8226; Checkout flow &amp; payment</div>
-                                                    <div style="color: #ffa07a; margin-top: 6px;">&#9888; Any GoKwik error = potential checkout failure</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>GoKwik throws <strong>"checkout element not found" 8+ times per page load</strong> — on every page, not just the cart. The script is searching for DOM elements that don't exist in the custom theme.</li>
+                                                        <li>GoKwik controls the <strong>entire purchase flow</strong>: cart drawer, /cart redirect, and checkout. Any misconfiguration directly risks checkout completion.</li>
+                                                        <li>The <strong>"gokwikCheckout is not defined"</strong> error means the checkout function isn't loading into the global scope — the "Checkout" button is at risk of failing silently for users on slower connections or older browsers.</li>
+                                                        <li>Compounding: product-form.js also throws null reference errors — four different scripts (GoKwik, product-form, Recurpay, Bitespeed) are fighting for DOM control simultaneously.</li>
+                                                    </ul>
                                                 </div>
-                                                <div class="finding-screenshot-label client-label">Console Errors — GoKwik Integration</div>
-                                                <div class="finding-screenshot-url">deyga.in (console)</div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>GoKwik throws <strong>"checkout element not found" 8+ times per page load</strong> — on every page, not just the cart. The script is searching for DOM elements that don't exist in the custom theme.</li>
-                                                    <li>GoKwik controls the <strong>entire purchase flow</strong>: cart drawer, /cart redirect, and checkout. Any misconfiguration directly risks checkout completion.</li>
-                                                    <li>The <strong>"gokwikCheckout is not defined"</strong> error means the checkout function isn't loading into the global scope — the "Checkout" button is at risk of failing silently for users on slower connections or older browsers.</li>
-                                                    <li>Compounding: product-form.js also throws null reference errors — four different scripts (GoKwik, product-form, Recurpay, Bitespeed) are fighting for DOM control simultaneously. Every pageview is a silent lottery where the checkout button either works or doesn't.</li>
-                                                </ul>
-                                            </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>Urgent:</strong> Contact GoKwik support and share these console errors — verify the checkout element selectors match the custom theme's DOM structure.</li>
-                                                    <li>Test the full checkout flow end-to-end on Chrome, Safari, and mobile Samsung browser — confirm the "Checkout" button actually works in all cases.</li>
-                                                    <li>Check if GoKwik scripts can be lazy-loaded (only on cart/checkout pages) to avoid 8 errors per page load on homepage and collection pages.</li>
-                                                </ul>
+                                        <!-- Recommendations Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Recommended Fix &mdash; Urgent</div>
+                                            <div class="finding-row-text" style="flex: 1;">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>Urgent:</strong> Contact GoKwik support and share these console errors — verify the checkout element selectors match the custom theme's DOM structure.</li>
+                                                        <li>Test the full checkout flow end-to-end on Chrome, Safari, and mobile Samsung browser — confirm the "Checkout" button actually works in all cases.</li>
+                                                        <li>Check if GoKwik scripts can be lazy-loaded (only on cart/checkout pages) to avoid 8 errors per page load on homepage and collection pages.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2309,36 +2330,45 @@
                                         Deyga has cart cross-sell via Rebuy with a promotional progress bar — but the bar promotes "Free Pads" instead of showing a free shipping threshold, missing the AOV-boosting "Complete Your Routine" framing that top beauty stores use to lift cart value by 8-12%
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-cart-drawer-mobile.jpeg" alt="Deyga cart drawer showing product line item and Rebuy cross-sell recommendations below — functional but basic presentation">
-                                                <div class="finding-screenshot-label client-label">Deyga — Cart Cross-Sell (Basic)</div>
-                                                <div class="finding-screenshot-url">deyga.in (cart drawer)</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-cart-drawer-mobile.jpeg" alt="Deyga cart drawer showing product line item and Rebuy cross-sell recommendations below — functional but basic presentation">
+                                                    <div class="screenshot-step-label">Basic Rebuy cross-sell in cart</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/competitor/competitor-dotandkey-cart-crosssell.jpeg" alt="Dot & Key cart page showing tiered offers (Flat 15% OFF, +1 Gift, +2 Gifts), swap for better value upsell, Vitamin C combo suggestion at ₹744, and Unlock Free Moisturizer on Rs.799 progress bar">
-                                                <div class="finding-screenshot-label competitor-label">Dot &amp; Key — Tiered Incentives + Cart Upsell</div>
-                                                <div class="finding-screenshot-url">dotandkey.com/cart</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>Deyga's cart drawer <strong>does show cross-sell product recommendations</strong> when items are in the cart — powered by Rebuy. This is a solid foundation, but the presentation is basic compared to best-in-class implementations.</li>
+                                                        <li><strong>Progress bar exists but under-utilized.</strong> Deyga's cart has a promotional progress bar showing a "Free Pads" offer — but it <strong>doesn't show the free shipping threshold</strong>. Adding free shipping clarity ("₹150 away from free shipping!") to this bar would exploit <strong>Goal-Gradient + Zero-Price Effect</strong> — two biases that increase AOV by 8-15% without any discount cost.</li>
+                                                        <li><strong>Missing: "Complete Your Routine" framing.</strong> The cross-sell appears as generic product suggestions rather than curated routine-based bundles. Beauty products have natural complementary pairs (face wash + toner, lip balm + lip scrub) — contextual framing lifts cross-sell click-through by 20-40% vs. generic recommendations.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>Deyga's cart drawer <strong>does show cross-sell product recommendations</strong> when items are in the cart — powered by Rebuy. This is a solid foundation, but the presentation is basic compared to best-in-class implementations.</li>
-                                                    <li><strong>Progress bar exists but under-utilized.</strong> Deyga's cart has a promotional progress bar showing a "Free Pads" offer — but it <strong>doesn't show the free shipping threshold</strong>. Adding free shipping clarity ("₹150 away from free shipping!") to this bar would exploit <strong>Goal-Gradient + Zero-Price Effect</strong> — two biases that increase AOV by 8-15% without any discount cost.</li>
-                                                    <li><strong>Missing: "Complete Your Routine" framing.</strong> The cross-sell appears as generic product suggestions rather than curated routine-based bundles. Beauty products have natural complementary pairs (face wash + toner, lip balm + lip scrub) — contextual framing lifts cross-sell click-through by 20-40% vs. generic recommendations.</li>
-                                                    <li>Dot &amp; Key (right) shows the gold standard: <strong>tiered incentives</strong> (Flat 15% OFF → +1 Gift → +2 Gifts), <strong>"swap for better value"</strong> upsell prompts, <strong>combo product suggestions</strong> (Vitamin C duo at ₹744), and a <strong>"Unlock Free Moisturizer on Rs.799"</strong> progress bar — all working together to maximize AOV at the highest-intent moment.</li>
-                                                </ul>
+                                        <!-- Competitor Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Dot &amp; Key</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/competitor/competitor-dotandkey-cart-crosssell.jpeg" alt="Dot & Key cart page showing tiered offers (Flat 15% OFF, +1 Gift, +2 Gifts), swap for better value upsell, Vitamin C combo suggestion at ₹744, and Unlock Free Moisturizer on Rs.799 progress bar">
+                                                    <div class="screenshot-step-label">Tiered incentives + combo upsell</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>🔥 High Impact:</strong> Add a free shipping threshold to the existing progress bar — show "₹X away from free shipping!" alongside the current "Free Pads" promo. This exploits Goal-Gradient Effect to drive one more add-to-cart without building anything new.</li>
-                                                    <li><strong>⚡ Quick Win:</strong> Reconfigure Rebuy's cart widget to use <strong>"Complete Your Routine"</strong> or <strong>"Pairs Well With"</strong> contextual framing instead of generic recommendations — this is a Rebuy configuration change, not development.</li>
-                                                    <li><strong>🧪 Test Idea:</strong> Add tiered incentives ("Add ₹200 more for a free mini lip balm!") to create a gamified AOV boost alongside the existing cross-sell.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Present but under-optimized &mdash; 8/10 top beauty stores have enhanced cart cross-sell with progress bars</span>
+                                            <div class="finding-row-text">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>🔥 High Impact:</strong> Add a free shipping threshold to the existing progress bar — show "₹X away from free shipping!" alongside the current "Free Pads" promo. This exploits Goal-Gradient Effect to drive one more add-to-cart without building anything new.</li>
+                                                        <li><strong>⚡ Quick Win:</strong> Reconfigure Rebuy's cart widget to use <strong>"Complete Your Routine"</strong> or <strong>"Pairs Well With"</strong> contextual framing instead of generic recommendations — this is a Rebuy configuration change, not development.</li>
+                                                        <li><strong>🧪 Test Idea:</strong> Add tiered incentives ("Add ₹200 more for a free mini lip balm!") to create a gamified AOV boost alongside the existing cross-sell.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Present but under-optimized &mdash; 8/10 top beauty stores have enhanced cart cross-sell with progress bars</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2350,36 +2380,45 @@
                                         Deyga's cart drawer has a coupon field — but lacks payment trust signals (UPI, COD, PhonePe icons) that reduce abandonment by 10%+ at the final decision point
                                     </div>
                                     <div class="finding-card-body">
-                                        <div class="finding-screenshots">
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-cart-drawer-mobile.jpeg" alt="Deyga cart drawer showing coupon code field and checkout button, but no payment method icons or trust badges">
-                                                <div class="finding-screenshot-label client-label">Deyga — Coupon Field Present, No Trust Signals</div>
-                                                <div class="finding-screenshot-url">deyga.in (cart drawer)</div>
+                                        <!-- Client Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label client-row-label">Deyga &mdash; Current Experience</div>
+                                            <div class="finding-row-screenshots">
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-cart-drawer-mobile.jpeg" alt="Deyga cart drawer showing coupon code field and checkout button, but no payment method icons or trust badges">
+                                                    <div class="screenshot-step-label">Cart drawer — no trust signals</div>
+                                                </div>
+                                                <div class="step-arrow">→</div>
+                                                <div class="screenshot-step">
+                                                    <img src="media/screenshots/client/deyga-gokwik-checkout-mobile.jpeg" alt="GoKwik checkout page showing coupon field and payment options at checkout stage">
+                                                    <div class="screenshot-step-label">GoKwik checkout — options visible here only</div>
+                                                </div>
                                             </div>
-                                            <div class="finding-screenshot">
-                                                <img src="media/screenshots/client/deyga-gokwik-checkout-mobile.jpeg" alt="GoKwik checkout page showing coupon field and payment options at checkout stage">
-                                                <div class="finding-screenshot-label client-label">GoKwik Checkout — Payment Options Visible</div>
-                                                <div class="finding-screenshot-url">deyga.in (GoKwik checkout)</div>
+                                            <div class="finding-row-text">
+                                                <div class="finding-observations">
+                                                    <span class="finding-section-header observations-header">Observations</span>
+                                                    <ul>
+                                                        <li>The cart drawer <strong>does have a coupon code field</strong> — shoppers can apply discount codes before proceeding to checkout. This is a positive element that reduces the need for coupon-holders to hunt for a field.</li>
+                                                        <li><strong>Missing: Payment method icons.</strong> No visual indicators for UPI, PhonePe, COD, Visa, or Mastercard in the cart drawer. <strong>Psychology: Ambiguity Aversion</strong> — when shoppers can't see their preferred payment method, they assume it's unavailable and leave.</li>
+                                                        <li>The <strong>"Trusted by 20L+ Buyers"</strong> scrolling ticker sits on the PDP, not the cart. The cart drawer — the final decision point — has <strong>zero trust signals</strong>. Authority Bias is most effective right where money changes hands.</li>
+                                                        <li>No <strong>"COD Available"</strong> badge — COD is expected by 60%+ of Indian beauty shoppers, and confirming it in the cart reduces "will they accept COD?" hesitation.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="finding-analysis">
-                                            <div class="finding-observations">
-                                                <span class="finding-section-header observations-header">Observations</span>
-                                                <ul>
-                                                    <li>The cart drawer <strong>does have a coupon code field</strong> — shoppers can apply discount codes before proceeding to checkout. This is a positive element that reduces the need for coupon-holders to hunt for a field.</li>
-                                                    <li><strong>Missing: Payment method icons.</strong> No visual indicators for UPI, PhonePe, COD, Visa, or Mastercard in the cart drawer. <strong>Psychology: Ambiguity Aversion</strong> — when shoppers can't see their preferred payment method, they assume it's unavailable and leave. Every Indian shopper must guess whether their payment method is supported.</li>
-                                                    <li>The <strong>"Trusted by 20L+ Buyers"</strong> scrolling ticker sits on the PDP, not the cart. The cart drawer — the final decision point — has <strong>zero trust signals</strong>. Authority Bias (trust badges, payment logos, security icons) is most effective right where money changes hands.</li>
-                                                    <li>No <strong>"COD Available"</strong> badge — COD is expected by 60%+ of Indian beauty shoppers, and confirming it in the cart reduces "will they accept COD?" hesitation.</li>
-                                                </ul>
-                                            </div>
-                                            <div class="finding-recommendations">
-                                                <span class="finding-section-header recommendations-header">Recommendations</span>
-                                                <ul>
-                                                    <li><strong>⚡ Quick Win:</strong> Add a row of <strong>payment method icons</strong> (UPI, PhonePe, Paytm, COD, Visa, Mastercard) below the checkout button — visual reassurance in 20px of height that eliminates "do they accept my payment?" doubt.</li>
-                                                    <li><strong>🔥 High Impact:</strong> Add <strong>"COD Available" and "Free Shipping above ₹X"</strong> badges in the cart — these two signals address the top 2 reasons Indian shoppers abandon carts (payment uncertainty + shipping cost surprise).</li>
-                                                    <li><strong>🧪 Test Idea:</strong> Add a <strong>"100% Secure Checkout" badge</strong> with a lock icon near the checkout button — even a simple trust signal at this decision point can reduce abandonment by 3-5%.</li>
-                                                </ul>
-                                                <span class="finding-benchmark-tag">Growing &mdash; 7/10 top Indian beauty stores show payment icons in cart</span>
+                                        <!-- Recommendations Row -->
+                                        <div class="finding-row">
+                                            <div class="finding-row-label competitor-row-label">Recommended Fix &mdash; Trust Signals</div>
+                                            <div class="finding-row-text" style="flex: 1;">
+                                                <div class="finding-recommendations">
+                                                    <span class="finding-section-header recommendations-header">Recommendations</span>
+                                                    <ul>
+                                                        <li><strong>⚡ Quick Win:</strong> Add a row of <strong>payment method icons</strong> (UPI, PhonePe, Paytm, COD, Visa, Mastercard) below the checkout button — visual reassurance in 20px of height that eliminates "do they accept my payment?" doubt.</li>
+                                                        <li><strong>🔥 High Impact:</strong> Add <strong>"COD Available" and "Free Shipping above ₹X"</strong> badges in the cart — these two signals address the top 2 reasons Indian shoppers abandon carts (payment uncertainty + shipping cost surprise).</li>
+                                                        <li><strong>🧪 Test Idea:</strong> Add a <strong>"100% Secure Checkout" badge</strong> with a lock icon near the checkout button — even a simple trust signal at this decision point can reduce abandonment by 3-5%.</li>
+                                                    </ul>
+                                                    <span class="finding-benchmark-tag">Growing &mdash; 7/10 top Indian beauty stores show payment icons in cart</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2739,86 +2778,6 @@
             });
         }
 
-        // ============================================
-        // VIDEO: Lazy Loading + Click-to-Play
-        // ============================================
-        (function() {
-            // Lazy load videos when scrolled near AND parent tab is active
-            var videoObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (!entry.isIntersecting) return;
-                    var container = entry.target;
-                    var video = container.querySelector('video[data-src]');
-                    if (!video) return;
-                    // Check if parent tab is active
-                    var tabContent = container.closest('.tab-content');
-                    if (tabContent && !tabContent.classList.contains('active')) return;
-                    // Load the video source
-                    video.src = video.getAttribute('data-src');
-                    video.removeAttribute('data-src');
-                    video.load();
-                    videoObserver.unobserve(container);
-                });
-            }, { rootMargin: '200px 0px' });
-
-            // Observe all lazy video containers
-            document.querySelectorAll('[data-lazy-video]').forEach(function(el) {
-                videoObserver.observe(el);
-            });
-
-            // Re-check lazy videos when a tab becomes active
-            var origShowTab = window.showTab;
-            window.showTab = function(tabId, btn) {
-                origShowTab(tabId, btn);
-                // After tab switch, check for unloaded videos in the new active tab
-                var activeTab = document.getElementById(tabId);
-                if (!activeTab) return;
-                activeTab.querySelectorAll('[data-lazy-video]').forEach(function(container) {
-                    var video = container.querySelector('video[data-src]');
-                    if (!video) return;
-                    var rect = container.getBoundingClientRect();
-                    // Load if it's in or near the viewport
-                    if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
-                        video.src = video.getAttribute('data-src');
-                        video.removeAttribute('data-src');
-                        video.load();
-                    }
-                });
-            };
-
-            // Click-to-play/pause toggle
-            document.addEventListener('click', function(e) {
-                var container = e.target.closest('.video-container');
-                if (!container) return;
-                var video = container.querySelector('video');
-                if (!video || !video.src || video.src === '') return;
-
-                if (container.classList.contains('playing')) {
-                    // Currently playing → pause
-                    video.pause();
-                    container.classList.remove('playing');
-                } else {
-                    // Currently paused → play
-                    // Pause all other playing videos first
-                    document.querySelectorAll('.video-container.playing').forEach(function(other) {
-                        if (other !== container) {
-                            other.classList.remove('playing');
-                            other.querySelector('video').pause();
-                        }
-                    });
-                    var playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(function() {
-                            container.classList.add('playing');
-                        }).catch(function() {
-                            container.classList.remove('playing');
-                        });
-                    } else {
-                        container.classList.add('playing');
-                    }
-                }
-            });
-        })();
     </script>
 </body>
 </html>
