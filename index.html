@@ -656,14 +656,14 @@
         .finding-row {
             display: grid;
             grid-template-columns: 3fr 2fr;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 2px solid #d1d5db;
         }
         .finding-row:last-child {
             border-bottom: none;
         }
         .finding-row-label {
             grid-column: 1 / -1;
-            padding: 8px 20px;
+            padding: 10px 20px;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.8px;
@@ -672,19 +672,20 @@
         .finding-row-label.client-row-label {
             background: #fef2f2;
             color: #991b1b;
-            border-bottom: 1px solid #fecaca;
+            border-bottom: 2px solid #fca5a5;
         }
         .finding-row-label.competitor-row-label {
             background: #f0fdf4;
             color: #166534;
-            border-bottom: 1px solid #bbf7d0;
+            border-bottom: 2px solid #86efac;
         }
         .finding-row-screenshots {
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: 12px;
             padding: 16px;
             border-right: 1px solid #e5e7eb;
+            background: #f8f9fa;
         }
         .screenshot-step {
             flex: 1;
@@ -692,31 +693,39 @@
             flex-direction: column;
             gap: 6px;
             min-width: 0;
+            background: #fff;
+            border-radius: 8px;
+            padding: 6px;
+            border: 1.5px solid #d1d5db;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
         }
         .screenshot-step img {
             width: 100%;
-            border-radius: 6px;
-            border: 1px solid #e5e7eb;
-            object-fit: cover;
-            max-height: 400px;
-            background: #f0f0f0;
+            border-radius: 4px;
+            object-fit: contain;
+            max-height: 300px;
+            background: #fafafa;
         }
         .screenshot-step-label {
             text-align: center;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--color-text-muted);
             line-height: 1.3;
+            padding: 2px 4px;
+            background: #f3f4f6;
+            border-radius: 4px;
         }
         .step-arrow {
             display: flex;
             align-items: center;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--color-primary);
-            padding: 0 2px;
+            padding: 0 4px;
             flex-shrink: 0;
-            margin-top: 60px;
+            margin-top: 80px;
+            opacity: 0.7;
         }
         .finding-row-text {
             padding: 16px 20px;
@@ -734,6 +743,8 @@
             color: #e0e0e0;
             line-height: 1.8;
             overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
         }
         .finding-section-header {
             display: inline-block;
@@ -1529,11 +1540,11 @@
                                         </div>
                                         <!-- Competitor Row -->
                                         <div class="finding-row">
-                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; mCaffeine</div>
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Mamaearth</div>
                                             <div class="finding-row-screenshots">
                                                 <div class="screenshot-step">
-                                                    <img src="media/screenshots/competitor/competitor-mcaffeine-pdp-trust-mobile.jpeg" alt="mCaffeine homepage with clear benefit-driven trust messaging">
-                                                    <div class="screenshot-step-label">Benefit-driven trust messaging</div>
+                                                    <img src="media/screenshots/competitor/competitor-mamaearth-hero-trust.jpeg" alt="Mamaearth homepage with clear trust bar showing Asia's 1st MADE SAFE Certified brand and benefit-driven hero messaging">
+                                                    <div class="screenshot-step-label">Trust bar + benefit-driven hero messaging</div>
                                                 </div>
                                             </div>
                                             <div class="finding-row-text">
@@ -2064,11 +2075,11 @@
                                         </div>
                                         <!-- Competitor Row -->
                                         <div class="finding-row">
-                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Sugar Cosmetics</div>
+                                            <div class="finding-row-label competitor-row-label">Best Practice &mdash; Minimalist</div>
                                             <div class="finding-row-screenshots">
                                                 <div class="screenshot-step">
-                                                    <img src="media/screenshots/competitor/competitor-sugar-pdp-bnpl-area.jpeg" alt="Sugar Cosmetics PDP showing BNPL bar, social proof, and Add to Cart button">
-                                                    <div class="screenshot-step-label">BNPL + social proof + ATC area</div>
+                                                    <img src="media/screenshots/competitor/competitor-minimalist-pdp-buynow-mobile.jpeg" alt="Minimalist PDP showing prominent Buy Now button alongside Add to Cart, with EMI options and express checkout">
+                                                    <div class="screenshot-step-label">Buy Now + ATC dual-CTA layout</div>
                                                 </div>
                                             </div>
                                             <div class="finding-row-text">
