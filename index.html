@@ -238,30 +238,30 @@
         .traffic-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 16px;
         }
         .traffic-card {
             background: var(--color-bg-primary);
-            padding: 24px;
-            border-radius: 16px;
+            padding: 16px 14px;
+            border-radius: 12px;
             box-shadow: var(--shadow-sm);
             border: 1px solid #e5e7eb;
             text-align: center;
         }
         .traffic-card h5 {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--color-text-muted);
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             font-weight: 600;
         }
         .traffic-value {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--color-text-dark);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .traffic-label {
             font-size: 11px;
@@ -1142,6 +1142,30 @@
                             <h5>Avg Duration</h5>
                             <div class="traffic-value">2:49</div>
                             <div class="traffic-label">Time on site</div>
+                        </div>
+                    </div>
+
+                    <!-- Traffic Insights -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px;">
+                        <div class="insight-box" style="background: var(--color-secondary-light); border-left: 4px solid var(--color-primary);">
+                            <h4 style="font-size: 13px; font-weight: 600; color: var(--color-primary); margin-bottom: 6px;">📊 What These Numbers Mean</h4>
+                            <p style="font-size: 12px; line-height: 1.6; color: var(--color-text-muted);">
+                                <strong>336.9K monthly visits</strong> places Deyga in the <strong>mid-tier D2C range</strong> for Beauty & Personal Care in India. This is solid traffic — enough volume that even small conversion rate improvements translate to meaningful revenue gains. At a typical Beauty CVR of 1.4%, that's ~4,700 orders/month.
+                            </p>
+                        </div>
+                        <div class="insight-box" style="background: var(--color-success-bg); border-left: 4px solid var(--color-success);">
+                            <h4 style="font-size: 13px; font-weight: 600; color: #059669; margin-bottom: 6px;">✅ Engagement Signals Are Strong</h4>
+                            <p style="font-size: 12px; line-height: 1.6; color: var(--color-text-muted);">
+                                <strong>Bounce rate of 40%</strong> is well below the 52% median we see across D2C brands — visitors are engaging. <strong>3.1 pages/visit</strong> and <strong>2:49 duration</strong> suggest users browse multiple products, which is positive. The opportunity lies in converting this engaged traffic more effectively.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <div class="insight-box" style="background: var(--color-warning-bg); border-left: 4px solid var(--color-warning);">
+                            <h4 style="font-size: 13px; font-weight: 600; color: #b45309; margin-bottom: 6px;">⚡ The Conversion Opportunity</h4>
+                            <p style="font-size: 12px; line-height: 1.6; color: var(--color-text-muted);">
+                                With 337K visitors who are clearly engaged (low bounce, high pages/visit), the key question is: <strong>how many are converting to buyers?</strong> UX friction on collection pages, PDPs, and cart can silently erode conversion. The findings in this audit identify exactly where that friction exists — and fixing them could meaningfully lift revenue without spending more on traffic.
+                            </p>
                         </div>
                     </div>
                 </div>
