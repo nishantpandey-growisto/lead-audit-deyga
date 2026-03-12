@@ -956,7 +956,30 @@
             .report-footer { background: #333; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
 
-        /* Finding sub-slide page label */
+        /* Page-category navigation bar for UX Findings */
+        .page-category-nav {
+            display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap;
+        }
+        .page-category-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: #f0f0f0; color: #666; border: none; cursor: pointer;
+            font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            padding: 5px 14px; border-radius: 20px; transition: all 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .page-category-btn:hover { background: #e0e0e0; color: #333; }
+        .page-category-btn .cat-count {
+            font-size: 9px; font-weight: 700; background: rgba(0,0,0,0.08);
+            padding: 1px 5px; border-radius: 8px; margin-left: 2px;
+        }
+        .page-category-btn.active { color: white; }
+        .page-category-btn.active .cat-count { background: rgba(255,255,255,0.25); }
+        .page-category-btn.active.cat-homepage { background: var(--color-primary); }
+        .page-category-btn.active.cat-collection { background: var(--color-accent); }
+        .page-category-btn.active.cat-pdp { background: var(--color-tertiary); }
+        .page-category-btn.active.cat-cart { background: #8b5cf6; }
+
+        /* Legacy single label — keep for non-UX slides if needed */
         .finding-page-label {
             display: inline-block; background: var(--color-accent); color: white;
             font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
@@ -1439,14 +1462,18 @@
 
             <div class="slide" data-slide-index="6">
                 <div class="container">
-                    <div class="section-header">
-                        <span class="section-number">06</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
                         <div class="section-title-group">
-                            <h2>UX & Conversion Findings</h2>
-                            <p>Visual comparisons against top Beauty &amp; Personal Care stores</p>
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
                         </div>
                     </div>
-                    <span class="finding-page-label homepage">Homepage</span>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage active" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1503,8 +1530,18 @@
 
             <div class="slide" data-slide-index="7">
                 <div class="container">
-
-                    <span class="finding-page-label homepage">Homepage</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage active" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1561,8 +1598,18 @@
 
             <div class="slide" data-slide-index="8">
                 <div class="container">
-
-                    <span class="finding-page-label homepage">Homepage</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage active" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1623,8 +1670,18 @@
 
             <div class="slide" data-slide-index="9">
                 <div class="container">
-
-                    <span class="finding-page-label homepage">Homepage</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage active" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1683,8 +1740,18 @@
 
             <div class="slide" data-slide-index="10">
                 <div class="container">
-
-                    <span class="finding-page-label collection">Collection</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection active" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1751,8 +1818,18 @@
 
             <div class="slide" data-slide-index="11">
                 <div class="container">
-
-                    <span class="finding-page-label collection">Collection</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection active" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1807,8 +1884,18 @@
 
             <div class="slide" data-slide-index="12">
                 <div class="container">
-
-                    <span class="finding-page-label collection">Collection</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection active" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1864,8 +1951,18 @@
 
             <div class="slide" data-slide-index="13">
                 <div class="container">
-
-                    <span class="finding-page-label collection">Collection</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection active" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1925,8 +2022,18 @@
 
             <div class="slide" data-slide-index="14">
                 <div class="container">
-
-                    <span class="finding-page-label pdp">Product Page</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp active" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -1987,8 +2094,18 @@
 
             <div class="slide" data-slide-index="15">
                 <div class="container">
-
-                    <span class="finding-page-label pdp">Product Page</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp active" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -2045,8 +2162,18 @@
 
             <div class="slide" data-slide-index="16">
                 <div class="container">
-
-                    <span class="finding-page-label pdp">Product Page</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp active" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -2103,8 +2230,18 @@
 
             <div class="slide" data-slide-index="17">
                 <div class="container">
-
-                    <span class="finding-page-label pdp">Product Page</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp active" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -2176,8 +2313,18 @@
 
             <div class="slide" data-slide-index="18">
                 <div class="container">
-
-                    <span class="finding-page-label pdp">Product Page</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp active" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -2243,8 +2390,18 @@
 
             <div class="slide" data-slide-index="19">
                 <div class="container">
-
-                    <span class="finding-page-label pdp">Product Page</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp active" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -2301,8 +2458,18 @@
 
             <div class="slide" data-slide-index="20">
                 <div class="container">
-
-                    <span class="finding-page-label cart">Cart & Checkout</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart active" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -2366,8 +2533,18 @@
 
             <div class="slide" data-slide-index="21">
                 <div class="container">
-
-                    <span class="finding-page-label cart">Cart & Checkout</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart active" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -2424,8 +2601,18 @@
 
             <div class="slide" data-slide-index="22">
                 <div class="container">
-
-                    <span class="finding-page-label cart">Cart & Checkout</span>
+                    <div class="section-header" style="margin-bottom: 8px;">
+                        <span class="section-number" style="font-size: 14px; width: 28px; height: 28px; line-height: 28px;">06</span>
+                        <div class="section-title-group">
+                            <h2 style="font-size: 16px; margin: 0;">UX &amp; Conversion Findings</h2>
+                        </div>
+                    </div>
+                    <div class="page-category-nav">
+                        <button class="page-category-btn cat-homepage" onclick="goToSubSlide(3,0)">Homepage <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-collection" onclick="goToSubSlide(3,4)">Collection <span class="cat-count">4</span></button>
+                        <button class="page-category-btn cat-pdp" onclick="goToSubSlide(3,8)">Product Page <span class="cat-count">6</span></button>
+                        <button class="page-category-btn cat-cart active" onclick="goToSubSlide(3,14)">Cart & Checkout <span class="cat-count">3</span></button>
+                    </div>
                     <div class="finding-cards">
                                 <div class="finding-card">
                                     <div class="finding-card-header">
@@ -2987,6 +3174,9 @@
                 prevBtn.disabled = (secIdx === 0 && subIdx === 0);
                 nextBtn.disabled = (secIdx === sections.length - 1 && subIdx === sections[secIdx].subSlides.length - 1);
             }
+
+            // Expose for inline onclick handlers (category nav buttons)
+            window.goToSubSlide = goToSubSlide;
 
             function goNext() {
                 if (currentSubSlide < sections[currentSection].subSlides.length - 1) {
